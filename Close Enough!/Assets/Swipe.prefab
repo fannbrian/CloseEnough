@@ -126,7 +126,7 @@ TrailRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_MinVertexDistance: 0.2
+  m_MinVertexDistance: 0.1
   m_Autodestruct: 0
 --- !u!114 &114816767584630334
 MonoBehaviour:
@@ -139,4 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f57808b243c1432eb9f6f79d44bfde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
+  width: 0.1

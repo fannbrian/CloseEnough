@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwipeTrail : MonoBehaviour {
 
@@ -34,20 +35,21 @@ public class SwipeTrail : MonoBehaviour {
 				thisTrail.transform.position = mRay.GetPoint (rayDistance);
 			}
 		}
-
+		//else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0)) {
+		//	if (Vector3.Distance(thisTrail.transform.position, startPos) < 0.1) {
+		//		Destroy(thisTrail);
+		//	}
+		//}
 		//if(Input.GetKeyDown(KeyCode.D)){
 		//	Destroy(instantiated[i]);
 		//	instantiated.RemoveAt(i);
 		//	i--;
 		}
 
-			//else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0)) {
-			//	if (Vector3.Distance(thisTrail.transform.position, startPos) < 0.1) {
-			//		Destroy(thisTrail);
-			//	}
-			//}
-
 	public void undo(){
+		Destroy(instantiated[i]);
+		instantiated.RemoveAt(i);
+		i--;
 		Destroy(instantiated[i]);
 		instantiated.RemoveAt(i);
 		i--;
