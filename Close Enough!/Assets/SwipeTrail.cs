@@ -51,6 +51,9 @@ public class SwipeTrail : MonoBehaviour {
 		Destroy(instantiated[i]);
 		instantiated.RemoveAt(i);
 		i--;
+		Destroy(instantiated[i]);
+		instantiated.RemoveAt(i);
+		i--;
 	}
 }
 
