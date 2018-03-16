@@ -1,66 +1,65 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeTrail : MonoBehaviour {
+/// <summary>
+/// Handles drawing mechanic
+/// 
+/// Created by Alexander Berthon and Jennifer Luong
+/// 
+/// Refactored by Brian Fann
+/// </summary>
+public class SwipeTrail : MonoBehaviour
+{
 
-	public GameObject trailPrefab;
-	GameObject thisTrail;
-	Vector3 startPos; //3
-	Plane objPlane;
-	private List<GameObject> instantiated;
-	int i;
+    public GameObject trailPrefab;
+    Stack<GameObject> _instantiatedSwipes;
 
-	void Start(){
-		objPlane = new Plane(Camera.main.transform.forward* -1, this.transform.position);
-		instantiated = new List<GameObject>();
-		i = -1;
-	}
+    void Start()
+    {
+        _instantiatedSwipes = new Stack<GameObject>();
+    }
 
-	void Update(){
-		if ((Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) || Input.GetMouseButtonDown (0)) {
-			Ray mRay = Camera.main.ScreenPointToRay (Input.mousePosition);
-			float rayDistance;
-			if (objPlane.Raycast (mRay, out rayDistance)) {
-				startPos = mRay.GetPoint (rayDistance);
-			}
-			thisTrail = (GameObject)Instantiate (trailPrefab, startPos, Quaternion.identity);
-			instantiated.Add(thisTrail);
-			i++;
-		} else if (((Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved) || Input.GetMouseButton (0))) {
-			Ray mRay = Camera.main.ScreenPointToRay (Input.mousePosition);
-			float rayDistance;
-			if (objPlane.Raycast (mRay, out rayDistance)) {
-				thisTrail.transform.position = mRay.GetPoint (rayDistance);
-			}
+    void StartSwipe(Vector3 position) {
+        var pos = Camera.main.ScreenToWorldPoint(position);
+        pos.z = 0;
+        var trail = Instantiate(trailPrefab, pos, Quaternion.identity);
+        _instantiatedSwipes.Push(trail);
+    }
+
+    void UpdateSwipe(Vector3 position) {
+        var pos = Camera.main.ScreenToWorldPoint(position);
+        pos.z = 0;
+        var trail = _instantiatedSwipes.Peek();
+
+        trail.transform.position = pos;
+    }
+
+    void Update()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        if (Input.touchCount <= 0) return;
+
+        var touch = Input.GetTouch(0);
+        var targetPos = touch.position;
+
+        if (touch.phase == TouchPhase.Began) {
+            StartSwipe(targetPos);
+        } else if (touch.phase == TouchPhase.Moved) {
+            UpdateSwipe(targetPos);
 		}
+#elif UNITY_EDITOR
+        var targetPos = Input.mousePosition;
 
-		//if(Input.GetKeyDown(KeyCode.D)){
-		//	Destroy(instantiated[i]);
-		//	instantiated.RemoveAt(i);
-		//	i--;
-		}
+        if (Input.GetMouseButtonDown(0)) {
+            StartSwipe(targetPos);
+        }
+        else if (Input.GetMouseButton(0)) {
+            UpdateSwipe(targetPos);
+        }
+        #endif
+    }
 
-			//else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0)) {
-			//	if (Vector3.Distance(thisTrail.transform.position, startPos) < 0.1) {
-			//		Destroy(thisTrail);
-			//	}
-			//}
-
-	public void undo(){
-		Destroy(instantiated[i]);
-		instantiated.RemoveAt(i);
-		i--;
+	public void Undo(){
+        Destroy(_instantiatedSwipes.Pop());
 	}
 }
-
-
-
-	//	// Use this for initialization
-	//	void Start () {
-	//		
-	//	}
-
-
-
-

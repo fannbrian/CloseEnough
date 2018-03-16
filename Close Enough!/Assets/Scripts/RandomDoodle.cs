@@ -7,40 +7,29 @@ namespace CloseEnough{
     [RequireComponent(typeof(Image))]
     public class RandomDoodle : MonoBehaviour
     {
-        public float maxChangeDelay;
-        public float minChangeDelay;
-        public float maxAngleOffset;
-
-        float _changeDelay;
-        float _lastChanged;
-        Object[] _sprites;
-        Image _img;
+        public static List<Object> Sprites { get; set; }
+        public string SpritesheetPath = "Art/Doodlesheet";
 
         void Start()
         {
-            _sprites = Resources.LoadAll("Art/Doodlesheet");
-            _img = GetComponent<Image>();
-            _lastChanged = Time.time;
-            _changeDelay = Random.Range(minChangeDelay, maxChangeDelay);
-            var index = Random.Range(1, _sprites.Length);
+            if (Sprites == null)
+            {
+                Sprites = new List<Object>();
+                Sprites.AddRange(Resources.LoadAll(SpritesheetPath));
+            }
 
+            var img = GetComponent<Image>();
+            var index = Random.Range(1, Sprites.Count);
+
+            // Try to set the image to a random sprite, and then remove the sprite from the list to make it unique.
             try {
-                _img.sprite = (Sprite)_sprites[index];
+                img.sprite = (Sprite)Sprites[index];
+                Sprites.RemoveAt(index);
             }
             catch(System.InvalidCastException e) {
-                Debug.Log("InvalidCastException at index " +index+" from a set of size "+_sprites.Length);
+                Debug.Log("InvalidCastException at index " +index+" from a set of size "+Sprites.Count);
             }
         }
 
-        void Update()
-        {
-            if ((_lastChanged + _changeDelay) > Time.time) return;
-
-            var angleOffset = Random.Range(-maxAngleOffset, maxAngleOffset);
-
-            _lastChanged = Time.time;
-
-            transform.rotation = Quaternion.Euler(new Vector3(0,0,angleOffset));
-        }
     }
 }
