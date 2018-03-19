@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{410F0C51-D810-EA31-ABD6-883582A1E849}|">
+  <MonoDevelop.Ide.ItemProperties.Close_220Enough_221 PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/RandomSprite.cs">
+    <Files>
+      <File FileName="Assets/Scripts/FadingTextAnimation.cs" Line="4" Column="2" />
+      <File FileName="Assets/Scripts/LoadSceneOnTap.cs" Line="7" Column="42" />
+      <File FileName="Assets/Scripts/SwipeTrail.cs" Line="40" Column="62" />
+      <File FileName="Assets/Scripts/Width.cs" Line="18" Column="2" />
+      <File FileName="Assets/Scripts/ScreenCapture.cs" Line="40" Column="26" />
+      <File FileName="Assets/Scripts/ToolsStateManager.cs" Line="54" Column="61" />
+      <File FileName="Assets/Scripts/ToolState.cs" Line="6" Column="76" />
+      <File FileName="Assets/Scripts/ColorOption.cs" Line="6" Column="45" />
+      <File FileName="Assets/Scripts/ColorManager.cs" Line="33" Column="1" />
+      <File FileName="Assets/Scripts/SizeManager.cs" Line="6" Column="82" />
+      <File FileName="Assets/Scripts/DoodleShake.cs" Line="30" Column="13" />
+      <File FileName="Assets/Scripts/ColorPicker.cs" Line="8" Column="9" />
+      <File FileName="Assets/Scripts/RandomSprite.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
