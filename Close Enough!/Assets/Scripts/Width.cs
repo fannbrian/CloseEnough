@@ -1,23 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+namespace CloseEnough
+{
+    public class Width : MonoBehaviour
+    {
+        TrailRenderer swipe;
 
-public class Width : MonoBehaviour {
+        void Start()
+        {
+            swipe = GetComponent<TrailRenderer>();
+            var curve = new AnimationCurve();
+            var size = SizeManager.singleton.GetStrokeSize();
+            curve.AddKey(size, size);
 
-	public float width = 0.1f;
-	private TrailRenderer swipe;
-
-	// Use this for initialization
-	void Start () {
-		swipe = GetComponent<TrailRenderer>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		swipe.widthMultiplier = width;
-	}
-
-	public void changeWidth(float newWidth){
-		width = newWidth;
-	}
+            swipe.widthCurve = curve;
+        }
+    }
 }

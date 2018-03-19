@@ -1,69 +1,112 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeTrail : MonoBehaviour {
+namespace CloseEnough
+{
+    /// <summary>
+    /// Handles drawing mechanic
+    /// 
+    /// Created by Alexander Berthon and Jennifer Luong
+    /// 
+    /// Refactored by Brian Fann
+    /// </summary>
+    public class SwipeTrail : MonoBehaviour
+    {
+        public GameObject trailPrefab;
 
-	public GameObject trailPrefab;
-	GameObject thisTrail;
-	Vector3 startPos; //3
-	Plane objPlane;
-	private List<GameObject> instantiated;
-	int i;
+        Stack<GameObject> _instantiatedSwipes;
+        bool _isDrawing;
 
-	void Start(){
-		objPlane = new Plane(Camera.main.transform.forward* -1, this.transform.position);
-		instantiated = new List<GameObject>();
-		i = -1;
-	}
+        void Start()
+        {
+            _instantiatedSwipes = new Stack<GameObject>();
+            _isDrawing = false;
+        }
 
-	void Update(){
-		if ((Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) || Input.GetMouseButtonDown (0)) {
-			Ray mRay = Camera.main.ScreenPointToRay (Input.mousePosition);
-			float rayDistance;
-			if (objPlane.Raycast (mRay, out rayDistance)) {
-				startPos = mRay.GetPoint (rayDistance);
-			}
-			thisTrail = (GameObject)Instantiate (trailPrefab, startPos, Quaternion.identity);
-			instantiated.Add(thisTrail);
-			i++;
-		} else if (((Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved) || Input.GetMouseButton (0))) {
-			Ray mRay = Camera.main.ScreenPointToRay (Input.mousePosition);
-			float rayDistance;
-			if (objPlane.Raycast (mRay, out rayDistance)) {
-				thisTrail.transform.position = mRay.GetPoint (rayDistance);
-			}
-		}
+        void StartSwipe(Vector3 position)
+        {
+            if (!ToolsStateManager.singleton.IsIdle()) return;
+            if (UIRaycastDetector.singleton.IsPositionOverUI(position)) return;
 
-		//if(Input.GetKeyDown(KeyCode.D)){
-		//	Destroy(instantiated[i]);
-		//	instantiated.RemoveAt(i);
-		//	i--;
-		}
+            _isDrawing = true;
 
-			//else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0)) {
-			//	if (Vector3.Distance(thisTrail.transform.position, startPos) < 0.1) {
-			//		Destroy(thisTrail);
-			//	}
-			//}
+            var pos = Camera.main.ScreenToWorldPoint(position);
+            pos.z = 0;
 
-	public void undo(){
-		Destroy(instantiated[i]);
-		instantiated.RemoveAt(i);
-		i--;
-		Destroy(instantiated[i]);
-		instantiated.RemoveAt(i);
-		i--;
-	}
+            var trail = Instantiate(trailPrefab, pos, Quaternion.identity);
+            var trailRenderer = trail.GetComponent<TrailRenderer>();
+
+            var color = ColorManager.singleton.CurrentColor;
+            var size = SizeManager.singleton.GetStrokeSize();
+
+            _instantiatedSwipes.Push(trail);
+        }
+
+        void UpdateSwipe(Vector3 position)
+        {
+            _isDrawing = false;
+
+            if (!ToolsStateManager.singleton.IsIdle()) return;
+            if (UIRaycastDetector.singleton.IsPositionOverUI(position)) return;
+            if (_instantiatedSwipes.Count <= 0) return;
+
+            _isDrawing = true;
+
+            var pos = Camera.main.ScreenToWorldPoint(position);
+            pos.z = 0;
+
+            var trail = _instantiatedSwipes.Peek();
+
+            trail.transform.position = pos;
+        }
+
+        void Update()
+        {
+#if UNITY_ANDROID || UNITY_IOS
+            if (Input.touchCount <= 0) return;
+
+            var touch = Input.GetTouch(0);
+            var targetPos = touch.position;
+
+            if (touch.phase == TouchPhase.Moved && _isDrawing)
+            {
+                UpdateSwipe(targetPos);
+            }
+            else if (!_isDrawing)
+            {
+                StartSwipe(targetPos);
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                _isDrawing = false;
+            }
+#elif UNITY_EDITOR
+        var targetPos = Input.mousePosition;
+
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            _isDrawing = false;
+        }
+
+        if (!Input.GetMouseButton(0)) return;
+
+        if (!_isDrawing) {
+            StartSwipe(targetPos);
+        }
+        else {
+            UpdateSwipe(targetPos);
+        } 
+#endif
+        }
+
+        public void Undo()
+        {
+            if (_instantiatedSwipes.Count > 0)
+            {
+                Destroy(_instantiatedSwipes.Pop());
+            }
+        }
+    }
 }
-
-
-
-	//	// Use this for initialization
-	//	void Start () {
-	//		
-	//	}
-
-
-
-

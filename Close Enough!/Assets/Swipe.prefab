@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4346927249422612}
   - component: {fileID: 96448576138219380}
   - component: {fileID: 114816767584630334}
-  - component: {fileID: 114653365073384316}
+  - component: {fileID: 114121055281183580}
   m_Layer: 0
   m_Name: Swipe
   m_TagString: Untagged
@@ -57,7 +57,7 @@ TrailRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3073fdea3110944638369df2c64dfb2a, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +80,7 @@ TrailRenderer:
   m_Time: Infinity
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.09
+    widthMultiplier: 0.01
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -122,14 +122,14 @@ TrailRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 10
+    numCapVertices: 10
     alignment: 0
     textureMode: 0
     generateLightingData: 0
   m_MinVertexDistance: 0.2
   m_Autodestruct: 0
---- !u!114 &114653365073384316
+--- !u!114 &114121055281183580
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,20 +137,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1202154236009936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a7b95fb51944d9ba72fa9020a08e14, type: 3}
+  m_Script: {fileID: 11500000, guid: c723e4bfef5bd4c45bf820945afe70a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color:
-  - {fileID: 2100000, guid: 07ebb9a7e1a7f49b3bb8e5fd092f24ec, type: 2}
-  - {fileID: 2100000, guid: 7d7858b68103e403c8c3c2502ae8a3db, type: 2}
-  - {fileID: 2100000, guid: 9886e7736aaab4b55b002f2246bb9a97, type: 2}
-  - {fileID: 2100000, guid: 08ca75b5c24dc411bb6d059e543b79ef, type: 2}
-  - {fileID: 2100000, guid: 13eb5a82bdc18418a887cfd2a7d4f927, type: 2}
-  - {fileID: 2100000, guid: 333fa74f0fd044c46976e8b38e021069, type: 2}
-  - {fileID: 2100000, guid: 3073fdea3110944638369df2c64dfb2a, type: 2}
-  - {fileID: 2100000, guid: c3d5953bb1e2e47c69cb3f955f1fc5cc, type: 2}
-  - {fileID: 2100000, guid: 57ee29ab286c04014b2ed5b4e07ee9f9, type: 2}
-  rend: {fileID: 96448576138219380}
+  rend: {fileID: 0}
 --- !u!114 &114816767584630334
 MonoBehaviour:
   m_ObjectHideFlags: 1
