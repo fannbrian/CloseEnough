@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
+using UnityEngine.Networking.NetworkSystem;
 
 public class ScreenCapture : MonoBehaviour {
 
 	Texture2D texture;
+	byte [] pngEncoded;
 
 	public RectTransform imagePanel;
 	// Screenshot image for user's drawing 
@@ -44,6 +47,10 @@ public class ScreenCapture : MonoBehaviour {
 		texture.Apply();
 
 		img.texture = texture;
+		pngEncoded = new byte[texture.width];
+		pngEncoded = texture.EncodeToPNG();
+
+		NetworkServer.SendBytesToReady (null, pngEncoded, pngEncoded.Length, 0);
 
 		shot = true;
 
