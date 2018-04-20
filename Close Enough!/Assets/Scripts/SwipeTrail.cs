@@ -12,42 +12,97 @@ namespace CloseEnough
     /// </summary>
     public class SwipeTrail : MonoBehaviour
     {
+        public static SwipeTrail singleton;
         public GameObject trailPrefab;
+        public float maxAngleThreshold;
 
-        Stack<GameObject> _instantiatedSwipes;
+        List<Vector3> _positions;
+        Vector3 _vertex;
+        Stack<List<GameObject>> _instantiatedSwipes;
+        LineRenderer _renderer;
         bool _isDrawing;
 
         void Start()
         {
-            _instantiatedSwipes = new Stack<GameObject>();
+            singleton = this;
+            _positions = new List<Vector3>();
+            _instantiatedSwipes = new Stack<List<GameObject>>();
             _isDrawing = false;
         }
 
-        void StartSwipe(Vector3 position)
+        GameObject CreateSwipe(Vector3[] positions) {
+            _positions.Clear();
+
+            foreach(var pos in positions) {
+                _positions.Add(pos);
+            }
+
+            if (_positions.Count == 1) {
+                _positions.Add(positions[0]);
+            }
+
+            var trail = Instantiate(trailPrefab, positions[0], Quaternion.identity);
+            _renderer = trail.GetComponent<LineRenderer>();
+            _renderer.sortingOrder = _instantiatedSwipes.Count;
+            _renderer.SetPositions(_positions.ToArray());
+
+            return trail;
+        }
+
+        public void NewSwipe(Vector3 pos) {
+            _instantiatedSwipes.Peek().Add(CreateSwipe(new Vector3[] { _vertex, pos }));
+        }
+
+        public void StartSwipe(Vector3 position)
         {
-            if (!ToolsStateManager.singleton.IsIdle()) return;
+            if (ToolsStateManager.singleton.CurrentState.CancelOnTouch) return;
             if (UIRaycastDetector.singleton.IsPositionOverUI(position)) return;
 
+            var group = new List<GameObject>();
+            _instantiatedSwipes.Push(group);
             _isDrawing = true;
 
             var pos = Camera.main.ScreenToWorldPoint(position);
             pos.z = 0;
 
-            var trail = Instantiate(trailPrefab, pos, Quaternion.identity);
-            var trailRenderer = trail.GetComponent<TrailRenderer>();
+            group.Add(CreateSwipe(new Vector3[] { pos }));
+        }
 
-            var color = ColorManager.singleton.CurrentColor;
-            var size = SizeManager.singleton.GetStrokeSize();
+        bool isAngleValid() {
+            var count = _positions.Count;
+            if (count >= 3)
+            {
+                // b is a vertex
+                var a = _positions[count-3];
+                var b = _positions[count-2];
+                var c = _positions[count-1];
+                var distAB = Vector3.Distance(a, b);
+                var distBC = Vector3.Distance(b, c);
+                var distAC = Vector3.Distance(a, c);
 
-            _instantiatedSwipes.Push(trail);
+                // Law of Cosines: arccos((AB^2 + AC^2 - BC^2) / (2 * AB * AC))
+                var dividend = distAB * distAB + distAC * distAC - distBC * distBC;
+                var divisor = 2 * distAB * distAC;
+
+                if (divisor != 0)
+                {
+                    var angle = Mathf.Acos(dividend / divisor) * Mathf.Rad2Deg;
+                    if (angle > maxAngleThreshold)
+                    {
+                        _vertex = b;
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         void UpdateSwipe(Vector3 position)
         {
             _isDrawing = false;
 
-            if (!ToolsStateManager.singleton.IsIdle()) return;
-            if (UIRaycastDetector.singleton.IsPositionOverUI(position)) return;
+            if (ToolsStateManager.singleton.CurrentState.CancelOnTouch) return;
             if (_instantiatedSwipes.Count <= 0) return;
 
             _isDrawing = true;
@@ -55,9 +110,16 @@ namespace CloseEnough
             var pos = Camera.main.ScreenToWorldPoint(position);
             pos.z = 0;
 
-            var trail = _instantiatedSwipes.Peek();
+            if (pos == _positions[_positions.Count - 1]) return;
 
-            trail.transform.position = pos;
+            _positions.Add(pos);
+
+            if (!isAngleValid()) {
+                NewSwipe(pos);
+            }
+
+            _renderer.positionCount = _positions.Count;
+            _renderer.SetPositions(_positions.ToArray());
         }
 
         void Update()
@@ -105,7 +167,11 @@ namespace CloseEnough
         {
             if (_instantiatedSwipes.Count > 0)
             {
-                Destroy(_instantiatedSwipes.Pop());
+                var group = _instantiatedSwipes.Pop();
+
+                foreach(var swipe in group) {
+                    Destroy(swipe);
+                }
             }
         }
     }

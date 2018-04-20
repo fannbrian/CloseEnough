@@ -10,6 +10,7 @@ namespace CloseEnough
     {
         public string Name;
         public GameObject Menu;
+        public bool CancelOnTouch;
 
         public void Enter()
         {

@@ -56,15 +56,16 @@ namespace CloseEnough
         void LateUpdate()
         {
             if (CurrentState.Name.Equals(IdleString)) return;
+            if (!CurrentState.CancelOnTouch) return;
 
-#if UNITY_ANDROID || UNITY_IOS
+        #if UNITY_ANDROID || UNITY_IOS
         if (Input.touchCount > 0) {
             var pos = Input.GetTouch(0).position;
-#elif UNITY_EDITOR
-            if (Input.GetMouseButtonDown(0))
+        #elif UNITY_EDITOR
+            if (Input.GetMouseButtonUp(0))
             {
                 var pos = Input.mousePosition;
-#endif
+        #endif
                 if (!UIRaycastDetector.singleton.IsPositionOverUI(pos))
                 {
                     TransitionState(IdleString);
