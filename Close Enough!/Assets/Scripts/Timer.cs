@@ -10,12 +10,18 @@ public class Timer : MonoBehaviour {
 
 	public Text countdown;
 	public Text timesUp;
+	public Text waiting;
 
 	public ScreenCapture screenCap;
 
+	public ToolsSlide toolSlide;
+	public DoneSlide doneSlide;
+	public TimerSlide timerSlide;
+
 	// Use this for initialization
 	void Start () {
-		timesUp.enabled = false;
+		timesUp.GetComponent<Text> ().enabled = false;
+		waiting.enabled = false;
 		StartCoroutine ("endTime");
 
 	}
@@ -24,9 +30,8 @@ public class Timer : MonoBehaviour {
 	void Update () {
 		if (timer < 0) {
 			StopCoroutine ("endTime");
-			screenCap.done ();
+			StartCoroutine ("complete");
 
-			timesUp.enabled = true;
 		} else if (timer < 10) {
 			countdown.text = ":0" + timer;
 		} else {
@@ -39,5 +44,27 @@ public class Timer : MonoBehaviour {
 			yield return new WaitForSeconds (1);
 			timer--;
 		}
+	}
+
+	IEnumerator complete() {
+		timesUp.enabled = true;
+		yield return new WaitForSeconds (3);
+		timesUp.enabled = false;
+		toolSlide.play = true;
+		doneSlide.play = true;
+		timerSlide.play = true;
+
+		StartCoroutine ("screenshot");
+
+	}
+
+	IEnumerator screenshot() {
+		yield return new WaitForSeconds (1);
+
+		screenCap.done ();
+		yield return new WaitForSeconds (3);
+
+		screenCap.showImage ();
+
 	}
 }
