@@ -9,7 +9,7 @@ namespace CloseEnough
     {
         public static ColorManager singleton;
         public ColorOption[] Colors;
-        public Material CurrentColor;
+        public Color CurrentColor;
         public Image FillImage;
 
         void Start()
@@ -25,7 +25,7 @@ namespace CloseEnough
                 if (!option.Name.Equals(color)) continue;
 
                 CurrentColor = option.Color;
-                FillImage.material = option.Color;
+                FillImage.color = option.Color;
             }
         }
     }

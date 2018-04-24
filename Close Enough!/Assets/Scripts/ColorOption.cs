@@ -9,6 +9,6 @@ namespace CloseEnough
     public class ColorOption
     {
         public string Name;
-        public Material Color;
+        public Color Color;
     }
 }
