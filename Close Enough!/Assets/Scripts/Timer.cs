@@ -5,12 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour {
-
 	public int timer = 30;
 
 	public Text countdown;
 	public Text timesUp;
-
 	public ScreenCapture screenCap;
 
 	// Use this for initialization
@@ -24,8 +22,7 @@ public class Timer : MonoBehaviour {
 	void Update () {
 		if (timer < 0) {
 			StopCoroutine ("endTime");
-			screenCap.done ();
-
+			//screenCap.Capture();
 			timesUp.enabled = true;
 		} else if (timer < 10) {
 			countdown.text = ":0" + timer;
