@@ -1041,8 +1041,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Lobby
-          m_BoolArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 302479794}
         m_MethodName: Play
@@ -1155,6 +1155,7 @@ GameObject:
   - component: {fileID: 339912223}
   - component: {fileID: 339912222}
   - component: {fileID: 339912226}
+  - component: {fileID: 339912227}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1206,7 +1207,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -4022,7 +4023,7 @@ GameObject:
   - component: {fileID: 1154220192}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4759,7 +4760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trailPrefab: {fileID: 1202154236009936, guid: 85015d8aad4ce414c9a837359d739a33,
     type: 2}
-  maxAngleThreshold: 5
+  maxAngleThreshold: 0
 --- !u!4 &1360377387
 Transform:
   m_ObjectHideFlags: 0

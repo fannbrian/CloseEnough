@@ -1,13 +1,11 @@
-﻿//using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
-using UnityEngine.Networking.NetworkSystem;
 
-public class ScreenCapture : MonoBehaviour {
+public class ScreenCapture : MonoBehaviour
+{
+	bool grab;
+	public RawImage image;
+	Texture2D receivedTexture;
 
 	Texture2D texture;
 	byte [] pngEncoded;
@@ -29,8 +27,8 @@ public class ScreenCapture : MonoBehaviour {
 		texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
 	}
 
-	// Update is called once per frame
-	void Update () {
+	private void Update (){
+	
 	}
 			
 	// Screen capture 

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 
 public class Timer : MonoBehaviour {
-
 	public int timer = 30;
 
 	public Text countdown;
