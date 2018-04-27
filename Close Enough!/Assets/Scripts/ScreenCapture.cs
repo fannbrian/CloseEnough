@@ -50,7 +50,7 @@ public class ScreenCapture : MonoBehaviour {
 		pngEncoded = new byte[texture.width];
 		pngEncoded = texture.EncodeToPNG();
 
-		NetworkServer.SendBytesToReady (null, pngEncoded, pngEncoded.Length, 0);
+		// NetworkServer.SendBytesToReady (null, pngEncoded, pngEncoded.Length, 0);
 
 		shot = true;
 
