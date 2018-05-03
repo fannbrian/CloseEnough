@@ -11,3 +11,5 @@ public class PlayerData : MonoBehaviour {
 		Name = text.text;
 	}
 }
+
+//might not need this one anymore
