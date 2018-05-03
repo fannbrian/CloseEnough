@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4346927249422612}
-  - component: {fileID: 96448576138219380}
   - component: {fileID: 114816767584630334}
-  - component: {fileID: 114653365073384316}
+  - component: {fileID: 114121055281183580}
+  - component: {fileID: 120980120968838192}
   m_Layer: 0
   m_Name: Swipe
   m_TagString: Untagged
@@ -42,9 +42,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!96 &96448576138219380
-TrailRenderer:
-  serializedVersion: 2
+--- !u!114 &114121055281183580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202154236009936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723e4bfef5bd4c45bf820945afe70a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EraseState: Erase
+  rend: {fileID: 0}
+--- !u!114 &114816767584630334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202154236009936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f57808b243c1432eb9f6f79d44bfde2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!120 &120980120968838192
+LineRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -53,11 +76,11 @@ TrailRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_MotionVectors: 1
+  m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3073fdea3110944638369df2c64dfb2a, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,10 +100,12 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: Infinity
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.09
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -122,44 +147,10 @@ TrailRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 5
+    numCapVertices: 5
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_MinVertexDistance: 0.2
-  m_Autodestruct: 0
---- !u!114 &114653365073384316
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202154236009936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a7b95fb51944d9ba72fa9020a08e14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color:
-  - {fileID: 2100000, guid: 07ebb9a7e1a7f49b3bb8e5fd092f24ec, type: 2}
-  - {fileID: 2100000, guid: 7d7858b68103e403c8c3c2502ae8a3db, type: 2}
-  - {fileID: 2100000, guid: 9886e7736aaab4b55b002f2246bb9a97, type: 2}
-  - {fileID: 2100000, guid: 08ca75b5c24dc411bb6d059e543b79ef, type: 2}
-  - {fileID: 2100000, guid: 13eb5a82bdc18418a887cfd2a7d4f927, type: 2}
-  - {fileID: 2100000, guid: 333fa74f0fd044c46976e8b38e021069, type: 2}
-  - {fileID: 2100000, guid: 3073fdea3110944638369df2c64dfb2a, type: 2}
-  - {fileID: 2100000, guid: c3d5953bb1e2e47c69cb3f955f1fc5cc, type: 2}
-  - {fileID: 2100000, guid: 57ee29ab286c04014b2ed5b4e07ee9f9, type: 2}
-  rend: {fileID: 96448576138219380}
---- !u!114 &114816767584630334
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202154236009936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f57808b243c1432eb9f6f79d44bfde2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: 0.1
+  m_UseWorldSpace: 1
+  m_Loop: 0
