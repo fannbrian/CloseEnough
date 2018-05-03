@@ -66,7 +66,7 @@ public class Timer : MonoBehaviour {
 	}
 
 	IEnumerator endTime() {
-		yield return new WaitForSeconds (10);
+		yield return new WaitForSeconds (6);
 
 		while (true) {
 			yield return new WaitForSeconds (1);

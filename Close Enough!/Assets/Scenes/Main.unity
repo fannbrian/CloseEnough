@@ -376,8 +376,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.3000183, y: 2.199936}
-  m_SizeDelta: {x: -379.1, y: -287.35}
+  m_AnchoredPosition: {x: -6.5, y: -81.719376}
+  m_SizeDelta: {x: -714.15, y: -420.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &205743058
 MonoBehaviour:
@@ -450,8 +450,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -55.825, y: -33.916557}
-  m_SizeDelta: {x: 116.8, y: 37}
+  m_AnchoredPosition: {x: -55.825, y: 27.452751}
+  m_SizeDelta: {x: 116.8, y: -85.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &214529572
 MonoBehaviour:
@@ -1033,15 +1033,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1649041040}
-        m_MethodName: clicked
-        m_Mode: 1
+      - m_Target: {fileID: 1336669130}
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Main
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 302479794}
@@ -1155,7 +1155,6 @@ GameObject:
   - component: {fileID: 339912223}
   - component: {fileID: 339912222}
   - component: {fileID: 339912226}
-  - component: {fileID: 339912227}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1237,6 +1236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d24a255b9ac45b39f0dd0ff7abcc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 0}
   imagePanel: {fileID: 1575984646}
   img: {fileID: 1554573750}
 --- !u!1 &386039176
@@ -3773,6 +3773,7 @@ GameObject:
   - component: {fileID: 1046027500}
   - component: {fileID: 1046027502}
   - component: {fileID: 1046027501}
+  - component: {fileID: 1046027503}
   m_Layer: 5
   m_Name: Word Text
   m_TagString: Untagged
@@ -3795,7 +3796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.3000183, y: 2.1999817}
+  m_AnchoredPosition: {x: 1.3000183, y: 63.93612}
   m_SizeDelta: {x: -379.1, y: -287.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1046027501
@@ -3837,6 +3838,36 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1046027499}
+--- !u!114 &1046027503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1046027499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a6275eb5b8e48ab96e0794b1a033d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bank:
+  - Professor
+  - Apple
+  - Cherry
+  - Stethoscope
+  - Megaphone
+  - Mermaid
+  - Sprinkler
+  - Tadpole
+  - Music
+  - Dragon
+  - Nurse
+  - Owl
+  - Mail
+  - Flag
+  - Doctor
+  - Taco
+  - Einstein
+  text: {fileID: 1046027501}
 --- !u!1 &1066494828
 GameObject:
   m_ObjectHideFlags: 0
@@ -3884,7 +3915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.63235295, b: 0.63235295, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5089,7 +5120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9705882, g: 0.4282007, b: 0.4282007, a: 1}
+  m_Color: {r: 1, g: 0.63235295, b: 0.63235295, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6534,15 +6565,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2000683800}
-        m_MethodName: goToLobby
-        m_Mode: 1
+      - m_Target: {fileID: 1336669130}
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Main
           m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
