@@ -93,3 +93,8 @@
 /Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/UnityEditor.iOS.Extensions.dll
 /Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll
 /Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll.mdb
+/Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/Newtonsoft.Json.dll
+/Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/Photon3Unity3D.dll
+/Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/websocket-sharp.dll
+/Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb

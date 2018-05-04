@@ -7,14 +7,13 @@ public class ScreenCapture : MonoBehaviour
 {
     public RectTransform rectTransform;
     bool grab;
-	public RawImage image;
 	Texture2D receivedTexture;
 
 	public Texture2D texture;
 
 	public RectTransform imagePanel;
 	// Screenshot image for user's drawing 
-	public RawImage img;
+	public RawImage image;
 	bool shot = false;
 
     Camera _camera;
@@ -27,7 +26,7 @@ public class ScreenCapture : MonoBehaviour
         imagePanel.GetComponent<RectTransform>();
         imagePanel.gameObject.SetActive(false);
 
-        img.enabled = false;
+        image.enabled = false;
 
         var rect = RectTransformToScreenSpace(rectTransform);
         _width = (int)rect.width;
@@ -59,13 +58,13 @@ public class ScreenCapture : MonoBehaviour
 		texture.ReadPixels(_screenshotRect, 0, 0, false);
 		texture.Apply();
 
-		img.texture = texture;
+		image.texture = texture;
 
 		shot = true;
 	}
 
 	public void showImage() {
 		imagePanel.gameObject.SetActive (true);
-		img.enabled = true;
+		image.enabled = true;
 	}
 }

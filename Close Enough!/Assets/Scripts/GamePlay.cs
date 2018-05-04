@@ -4,80 +4,86 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GamePlay : MonoBehaviour {
+namespace CloseEnough {
 
-	public Timer timer;
+	public class GamePlay : MonoBehaviour {
 
-	private bool drawing;
+		public Timer timer;
 
-	public ToolsSlide toolSlideOut;
-	public DoneSlide doneSlideOut;
-//	public ToolsSlide toolSlideIn;
-	public DoneSlide doneSlideIn;
+		private bool drawing;
 
-	public ScreenCapture screenCap;
-	private bool snap;
+		public ToolsSlide toolSlideOut;
+		public DoneSlide doneSlideOut;
+		//	public ToolsSlide toolSlideIn;
+		public DoneSlide doneSlideIn;
 
-	public Button next;
-	 
-	public RectTransform guessingPanel;
-	public RawImage image;
-	 
-	void Start() {
-		snap = false;
-		drawing = true;
+		public ScreenCapture screenCap;
+		private bool snap;
 
-		guessingPanel.gameObject.SetActive (false);
-		next.gameObject.SetActive (false);
+		public Button next;
 
-		timer.startTime ();
-	}
+		public RectTransform guessingPanel;
+		public RawImage image;
 
-	void Update () {
-		// Done playing
-		if (timer.done && timer.playing) {
-			if (drawing) {
-				toolSlideOut.play = true;
-				doneSlideOut.playOut = true;
-				if (!snap) {
-					StartCoroutine ("screenshot");
+		//	public GameObject swipeManager;
+		public SwipeTrail swipes;
+
+		void Start() {
+			snap = false;
+			drawing = true;
+
+			guessingPanel.gameObject.SetActive (false);
+			next.gameObject.SetActive (false);
+
+			timer.startTime ();
+		}
+
+		void Update () {
+			// Done playing
+			if (timer.done && timer.playing) {
+				if (drawing) {
+					toolSlideOut.play = true;
+					doneSlideOut.playOut = true;
+					if (!snap) {
+						StartCoroutine ("screenshot");
+					}
+				}
+				// reset timer
+				timer.reset(!drawing);
+				// Starting to play
+			} else if (!timer.done && !timer.playing) {
+				if (!drawing) {
+					image.texture = screenCap.texture;
+					screenCap.imagePanel.gameObject.SetActive (false);
+					snap = false;
+					next.gameObject.SetActive (false);
+
+					doneSlideIn.playIn = true;
+					StartCoroutine ("startGuessing");
+					timer.startTime ();
+
 				}
 			}
-			// reset timer
-			timer.reset(!drawing);
-		// Starting to play
-		} else if (!timer.done && !timer.playing) {
-			if (!drawing) {
-				image.texture = screenCap.texture;
-				screenCap.imagePanel.gameObject.SetActive (false);
-				snap = false;
-				next.gameObject.SetActive (false);
-
-				doneSlideIn.playIn = true;
-				StartCoroutine ("startGuessing");
-				timer.startTime ();
-
-			}
 		}
-	}
 
-	IEnumerator screenshot() {
-		yield return new WaitForSeconds (2);
+		IEnumerator screenshot() {
+			yield return new WaitForSeconds (2);
 
-		screenCap.done ();
-		yield return new WaitForSeconds (1);
+			screenCap.done ();
+			yield return new WaitForSeconds (1);
 
-		screenCap.showImage ();
-		next.gameObject.SetActive (true);
+			screenCap.showImage ();
+			next.gameObject.SetActive (true);
 
-		snap = true;
-		drawing = false;
+			snap = true;
+			drawing = false;
 
-	}
+		}
 
-	IEnumerator startGuessing() {
-		yield return new WaitForSeconds (3);
-		guessingPanel.gameObject.SetActive (true);
+		IEnumerator startGuessing() {
+			yield return new WaitForSeconds (3);
+			guessingPanel.gameObject.SetActive (true);
 
+		}
 	}
 }

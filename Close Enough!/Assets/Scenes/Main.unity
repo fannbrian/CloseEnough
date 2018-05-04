@@ -454,8 +454,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -58.23, y: 42.85}
-  m_SizeDelta: {x: 116.8, y: -85.7}
+  m_AnchoredPosition: {x: -58.23, y: 3.8}
+  m_SizeDelta: {x: 116.8, y: -7.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &214529572
 MonoBehaviour:
@@ -1241,10 +1241,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 576905532}
-  image: {fileID: 0}
   texture: {fileID: 0}
   imagePanel: {fileID: 1575984646}
-  img: {fileID: 1554573750}
+  image: {fileID: 1554573750}
 --- !u!1 &386039176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,7 +1931,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1154220189}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4459,6 +4458,7 @@ MonoBehaviour:
   next: {fileID: 2000683798}
   guessingPanel: {fileID: 1775476161}
   image: {fileID: 1378506421}
+  swipes: {fileID: 0}
 --- !u!114 &1154220192
 MonoBehaviour:
   m_ObjectHideFlags: 0
