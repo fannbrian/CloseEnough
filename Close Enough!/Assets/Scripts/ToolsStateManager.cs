@@ -60,14 +60,13 @@ namespace CloseEnough
 			if (!CurrentState.CancelOnTouch)
 				return;
 
-//			#if UNITY_ANDROID || UNITY_IOS
-//        if (Input.touchCount > 0) {
-//            var pos = Input.GetTouch(0).position;
-//			#elif UNITY_EDITOR
-			if (Input.GetMouseButtonUp (0)) {
+            if (Input.touchCount > 0)
+            {
+                var pos = Input.GetTouch(0).position;
+            }
+			else if (Input.GetMouseButton (0)) {
 				var pos = Input.mousePosition;
 
-//				#endif
 				if (!UIRaycastDetector.singleton.IsPositionOverUI (pos)) {
 					TransitionState (IdleString);
 				}

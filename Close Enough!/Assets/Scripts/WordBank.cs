@@ -9,6 +9,6 @@ public class WordBank : MonoBehaviour {
 
 	void Start() {
 		var index = Random.Range (0, bank.Length - 1);
-		text.text = "Your word is:\n" + bank [index];
+		text.text = "Please draw\n" + bank [index];
 	}
 }

@@ -15,32 +15,22 @@ public class StartPlay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		counting = 5;
-		countdown.enabled = false;
+		counting = 3;
+		countdown.enabled = true;
 
-		StartCoroutine ("displayWord");
+		StartCoroutine ("count");
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	IEnumerator displayWord() {
-		yield return new WaitForSeconds (4);
-		word.enabled = false;
+		yield return new WaitForSeconds (1);
 		StartCoroutine ("count");
 	}
 
 	IEnumerator count() {
 		while (counting >= 0) {
 			yield return new WaitForSeconds (1);
-			if (counting == 5) {
-				countdown.enabled = true;
-				countdown.text = "Ready?";
-			}
-			else if (counting == 3) {
+			if (counting == 3) {
 				countdown.text = "3";
 			}
 			else if (counting == 2) {
@@ -52,5 +42,6 @@ public class StartPlay : MonoBehaviour {
 			counting--;
 		}
 		countdown.enabled = false;
+        word.enabled = false;
 	}
 }
