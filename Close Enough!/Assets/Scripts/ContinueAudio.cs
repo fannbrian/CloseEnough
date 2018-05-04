@@ -7,6 +7,6 @@ public class ContinueAudio : MonoBehaviour {
 	//Continue playing audio after switching scenes
 
 	void Awake() {
-		DontDestroyOnLoad (transform.gameObject);
+		//DontDestroyOnLoad (transform.gameObject);
 	}
 }

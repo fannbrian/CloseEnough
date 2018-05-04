@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace CloseEnough
+{
+    public class Timer : MonoBehaviour
+    {
+        public int timer = 30;
 
-public class Timer : MonoBehaviour {
-	public int timer = 30;
 	public int starttimer = 3;
 
 
@@ -23,9 +26,7 @@ public class Timer : MonoBehaviour {
 	public AudioClip ticker;
 	public AudioClip ding;
 
-	AudioSource aud;
-	Boolean playTick;
-	Boolean playDing; 
+        public Button next;
 
 	// Use this for initialization
 	void Start () {
