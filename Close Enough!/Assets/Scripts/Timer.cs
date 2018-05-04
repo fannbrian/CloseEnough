@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace CloseEnough {
-
 	public class Timer : MonoBehaviour {
 		public int timer = 30;
 		public int starttimer = 3;
@@ -34,6 +33,7 @@ namespace CloseEnough {
 			playDing = false;
 			timesUp.enabled = false;
 			waiting.enabled = false;
+            ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
 			aud = GetComponent<AudioSource> ();
 		}
 
@@ -43,7 +43,8 @@ namespace CloseEnough {
 				aud.PlayOneShot (ticker, 1);
 				playTick = true;
 			}
-			else if (timer < 0) {
+            else if (timer < 0) {
+                ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
 				if (!playDing) {
 					aud.PlayOneShot (ding, 1);
 					done = true;
@@ -76,7 +77,8 @@ namespace CloseEnough {
 				}
 				starttimer--;
 			}
-			startcountdown.enabled = false;
+            startcountdown.enabled = false;
+            ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.IdleString);
 		}
 
 		public void startTime() {
@@ -92,7 +94,7 @@ namespace CloseEnough {
 			while (true) {
 				yield return new WaitForSeconds (1);
 				timer--;
-			}
+            }
 		}
 
 		IEnumerator complete() {
