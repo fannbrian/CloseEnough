@@ -9,8 +9,8 @@ public class StartPlay : MonoBehaviour {
 	public Text word;
 	public Text countdown;
 
-	Boolean wordDisplay;
-	Boolean countdownDisplay;
+	bool wordDisplay;
+	bool countdownDisplay;
 	int counting;
 
 	// Use this for initialization

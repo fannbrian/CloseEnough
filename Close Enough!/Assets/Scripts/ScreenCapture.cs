@@ -6,10 +6,9 @@ using System.Collections.Generic;
 public class ScreenCapture : MonoBehaviour
 {
 	bool grab;
-	public RawImage image;
 	Texture2D receivedTexture;
 
-	Texture2D texture;
+	public Texture2D texture;
 
 	public RectTransform imagePanel;
 	// Screenshot image for user's drawing 

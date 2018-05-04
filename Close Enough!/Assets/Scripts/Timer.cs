@@ -7,16 +7,18 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour {
 	public int timer = 30;
+	public int starttimer = 3;
 
+
+	bool countdownDisplay;
+
+	public Text startcountdown;
 	public Text countdown;
 	public Text timesUp;
 	public Text waiting;
 
-	public ScreenCapture screenCap;
-	private Boolean snap;
-
-	public ToolsSlide toolSlide;
-	public DoneSlide doneSlide;
+	public bool playing = false;
+	public bool done = false;
 
 	public AudioClip ticker;
 	public AudioClip ding;
@@ -25,20 +27,13 @@ public class Timer : MonoBehaviour {
 	Boolean playTick;
 	Boolean playDing; 
 
-	 public Button next;
-
 	// Use this for initialization
 	void Start () {
-		snap = false;
 		playTick = false;
 		playDing = false;
 		timesUp.enabled = false;
 		waiting.enabled = false;
-		next.gameObject.SetActive (false);
 		aud = GetComponent<AudioSource> ();
-
-		StartCoroutine ("endTime");
-
 	}
 	
 	// Update is called once per frame
@@ -48,14 +43,13 @@ public class Timer : MonoBehaviour {
 			playTick = true;
 		}
 		else if (timer < 0) {
-			if (!snap && !playDing) {
+			if (!playDing) {
 				aud.PlayOneShot (ding, 1);
-
+				done = true;
 				StopCoroutine ("endTime");
 				StartCoroutine ("complete");
 				playDing = true;
 			}
-
 		} 
 		else if (timer < 10) {
 			countdown.text = ":0" + timer;
@@ -65,9 +59,35 @@ public class Timer : MonoBehaviour {
 		}
 	}
 
-	IEnumerator endTime() {
-		yield return new WaitForSeconds (6);
+	IEnumerator count() {
+		startcountdown.enabled = true;
+		starttimer = 3;
+		while (starttimer >= 0) {
+			yield return new WaitForSeconds (1);
+			if (starttimer == 3) {
+				startcountdown.text = "3";
+			}
+			else if (starttimer == 2) {
+				startcountdown.text = "2";
+			}
+			else if (starttimer == 1) {
+				startcountdown.text = "1";
+			}
+			starttimer--;
+		}
+		startcountdown.enabled = false;
+	}
 
+	public void startTime() {
+		playing = true;
+		StartCoroutine ("count");
+		StartCoroutine ("endTime");
+	}
+
+	IEnumerator endTime() {
+		//Countdown 3..2..1..
+		yield return new WaitForSeconds (3);
+		//Countdown from timer variable
 		while (true) {
 			yield return new WaitForSeconds (1);
 			timer--;
@@ -76,27 +96,17 @@ public class Timer : MonoBehaviour {
 
 	IEnumerator complete() {
 		waiting.enabled = false;
-		snap = true;
 		timesUp.enabled = true;
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (2);
 		timesUp.enabled = false;
-		toolSlide.play = true;
-		doneSlide.play = true;
-
-		StartCoroutine ("screenshot");
-
 	}
 
-	IEnumerator screenshot() {
-		yield return new WaitForSeconds (1);
-
-		screenCap.done ();
-		yield return new WaitForSeconds (3);
-
-		screenCap.showImage ();
-		next.gameObject.SetActive (true);
-
+	public void reset() {
+		done = false;
+		timer = 30;
+		playTick = false;
+		playDing = false;
+		timesUp.enabled = false;
+		waiting.enabled = false;
 	}
-
-
 }

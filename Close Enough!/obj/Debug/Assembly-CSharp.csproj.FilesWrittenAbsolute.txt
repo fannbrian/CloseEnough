@@ -90,3 +90,6 @@
 /Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.xml
 /Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/Assembly-CSharp.dll.mdb
 /Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/UnityEditor.iOS.Extensions.dll
+/Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll
+/Users/jenniferluong/Documents/GitHub/CloseEnough/Close Enough!/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll.mdb
