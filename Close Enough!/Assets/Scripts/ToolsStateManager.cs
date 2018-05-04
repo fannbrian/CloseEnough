@@ -9,6 +9,7 @@ namespace CloseEnough
 	{
 		public static ToolsStateManager singleton;
 		public string IdleString;
+        public string DisableString;
 		public ToolState[] states;
 		public ToolState CurrentState;
 
@@ -33,6 +34,12 @@ namespace CloseEnough
 		/// <param name="stateName">State name.</param>
 		public void TransitionState (string stateName)
 		{
+            Debug.Log("transitioning to " + stateName);
+            if (CurrentState.Name == DisableString)
+            {
+                if (stateName != IdleString) return;
+            }
+
 			foreach (var state in states) {
 				if (!state.Name.Equals (stateName))
 					continue;
