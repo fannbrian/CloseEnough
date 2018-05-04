@@ -44,9 +44,7 @@ public class GamePlay : MonoBehaviour {
 				}
 			}
 			// reset timer
-//			timer.done = false;
-//			timer.timer = 30;
-			timer.reset();
+			timer.reset(!drawing);
 		// Starting to play
 		} else if (!timer.done && !timer.playing) {
 			if (!drawing) {

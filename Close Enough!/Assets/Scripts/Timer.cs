@@ -47,9 +47,9 @@ public class Timer : MonoBehaviour {
 				aud.PlayOneShot (ding, 1);
 				done = true;
 				StopCoroutine ("endTime");
-				StartCoroutine ("complete");
 				playDing = true;
 			}
+			StartCoroutine ("complete");
 		} 
 		else if (timer < 10) {
 			countdown.text = ":0" + timer;
@@ -99,14 +99,22 @@ public class Timer : MonoBehaviour {
 		timesUp.enabled = true;
 		yield return new WaitForSeconds (2);
 		timesUp.enabled = false;
+
 	}
 
-	public void reset() {
+	public void reset(bool drawing) {
+		
 		done = false;
-		timer = 30;
 		playTick = false;
 		playDing = false;
 		timesUp.enabled = false;
 		waiting.enabled = false;
+
+		if (drawing) {
+			timer = 30;
+		} 
+		else {
+			timer = 20;
+		}
 	}
 }

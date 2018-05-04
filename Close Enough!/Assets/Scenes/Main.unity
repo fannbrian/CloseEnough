@@ -3243,6 +3243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 30
+  starttimer: 3
+  startcountdown: {fileID: 205743058}
   countdown: {fileID: 214529572}
   timesUp: {fileID: 1719778842}
   waiting: {fileID: 1649041037}
@@ -5879,8 +5881,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.5049715, y: -11.06007}
-  m_SizeDelta: {x: 387.37, y: 212.38}
+  m_AnchoredPosition: {x: -2, y: -1}
+  m_SizeDelta: {x: 475.7, y: 315.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554573750
 MonoBehaviour:
@@ -5948,8 +5950,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.5, y: -4.607544}
-  m_SizeDelta: {x: -391.2, y: -94.58}
+  m_AnchoredPosition: {x: -4.0000515, y: -7.15469}
+  m_SizeDelta: {x: -291.6, y: -114.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1575984647
 MonoBehaviour:
@@ -5970,8 +5972,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8d6306d532861fa449c82d1f009dc270, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5993,7 +5995,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1606732860}
   - component: {fileID: 1606732859}
-  - component: {fileID: 1606732861}
   m_Layer: 0
   m_Name: DrawingAudio
   m_TagString: Untagged
@@ -6094,17 +6095,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1606732861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1606732858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e7e1ef36087404a83350e540f3ff5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1649041035
 GameObject:
   m_ObjectHideFlags: 0
@@ -6745,7 +6735,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.2899885, y: 106.565056}
+  m_AnchoredPosition: {x: -13, y: 192}
   m_SizeDelta: {x: 301.55, y: 31.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1829259127
