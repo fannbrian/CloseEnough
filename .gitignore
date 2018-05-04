@@ -1,9 +1,10 @@
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/Assets/AssetStoreTools*
+/Close Enough!/[Ll]ibrary/
+/Close Enough!/Library/
+/Close Enough!/[Tt]emp/
+/Close Enough!/[Oo]bj/
+/Close Enough!/[Bb]uild/
+/Close Enough!/[Bb]uilds/
+/Close Enough!/Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
 /.vs/
@@ -12,6 +13,7 @@
 ExportedObj/
 .consulo/
 *.csproj
+*metadata*
 *.unityproj
 *.sln
 *.suo
@@ -22,6 +24,7 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
+*UnityTempFile*
 
 # Unity3D generated meta files
 *.pidb.meta
