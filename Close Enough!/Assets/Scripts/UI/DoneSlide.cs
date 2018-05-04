@@ -6,19 +6,25 @@ public class DoneSlide : MonoBehaviour {
 
 	Animator anim;
 
-	public bool play;
+	public bool playIn;
+	public bool playOut;
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
-		play = false;
+		playIn = false;
+		playOut = false;
+
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (play) {
-			anim.Play ("DoneSlide");
-			play = false;
+		if (playIn) {
+			anim.Play ("DoneSlideIn");
+			playIn = false;
+		} else if (playOut) {
+			anim.Play ("DoneSlideOut");
+			playOut = false;
 		}
 	}
 
