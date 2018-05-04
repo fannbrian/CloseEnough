@@ -1,23 +1,18 @@
 ﻿<Properties StartupConfiguration="{410F0C51-D810-EA31-ABD6-883582A1E849}|">
   <MonoDevelop.Ide.ItemProperties.Close_220Enough_221 PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Networking/PhotonLobbyManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menu Navigation Scripts/Room/PlayerListing.cs">
     <Files>
-      <File FileName="Assets/Scripts/FadingTextAnimation.cs" Line="4" Column="2" />
       <File FileName="Assets/Scripts/LoadSceneOnTap.cs" Line="7" Column="42" />
-      <File FileName="Assets/Scripts/SwipeTrail.cs" Line="144" Column="36" />
-      <File FileName="Assets/Scripts/Width.cs" Line="16" Column="2" />
-      <File FileName="Assets/Scripts/ScreenCapture.cs" Line="40" Column="3" />
-      <File FileName="Assets/Scripts/TrailHandler.cs" Line="38" Column="10" />
-      <File FileName="Assets/Scripts/ToolsStateManager.cs" Line="65" Column="50" />
-      <File FileName="Assets/Scripts/ColorPicker.cs" Line="18" Column="22" />
-      <File FileName="Assets/StartPlay.cs" Line="25" Column="29" />
-      <File FileName="Assets/Scripts/WordBank.cs" Line="12" Column="27" />
-      <File FileName="Assets/Scripts/ToolsSlide.cs" Line="24" Column="5" />
-      <File FileName="Assets/Scripts/DoneSlide.cs" Line="18" Column="18" />
-      <File FileName="Assets/Scripts/Timer.cs" Line="69" Column="37" />
-      <File FileName="Assets/Scripts/NextButtonPressed.cs" Line="9" Column="33" />
-      <File FileName="Assets/Scripts/Networking/PhotonLobbyManager.cs" Line="10" Column="52" />
-      <File FileName="Assets/Photon Unity Networking/readme.txt" Line="28" Column="5" />
+      <File FileName="Assets/Scripts/ScreenCapture.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Timer.cs" Line="1" Column="1" />
+      <File FileName="Assets/Photon Unity Networking/readme.txt" Line="1" Column="1" />
+      <File FileName="Assets/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs" Line="1590" Column="1" />
+      <File FileName="Assets/Scripts/Menu Navigation Scripts/Room/CreateRoom.cs" Line="42" Column="14" />
+      <File FileName="Assets/Scripts/Menu Navigation Scripts/Room/DisplayRoomCode.cs" Line="12" Column="52" />
+      <File FileName="Assets/Scripts/Menu Navigation Scripts/Networks/PlayerNetwork.cs" Line="18" Column="27" />
+      <File FileName="Assets/Scripts/Menu Navigation Scripts/Networks/LobbyNetwork.cs" Line="11" Column="3" />
+      <File FileName="Assets/Scripts/Menu Navigation Scripts/Room/PlayerLayoutGroup.cs" Line="48" Column="29" />
+      <File FileName="Assets/Scripts/Menu Navigation Scripts/Room/PlayerListing.cs" Line="14" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
