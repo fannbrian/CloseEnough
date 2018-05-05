@@ -6,19 +6,24 @@ public class ToolsSlide : MonoBehaviour {
 
 	Animator anim;
 
-	public bool play;
+	public bool playOut;
+	public bool playIn;
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
-		play = false;
+		playOut = false;
+		playIn = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (play) {
-			anim.Play ("ToolSlide");
-			play = false;
+		if (playOut) {
+			anim.Play ("ToolSlideOut");
+			playOut = false;
+		} else if (playIn) {
+			anim.Play ("ToolSlideIn");
+			playIn = false;
 		}
 	}
 

@@ -32,8 +32,8 @@ namespace CloseEnough {
 		void Start () {
 			playTick = false;
 			playDing = false;
-			timesUp.enabled = false;
-			waiting.enabled = false;
+			timesUp.gameObject.SetActive (false);
+			waiting.gameObject.SetActive (false);
 			aud = GetComponent<AudioSource> ();
 		}
 
@@ -62,19 +62,11 @@ namespace CloseEnough {
 
 		IEnumerator count() {
 			startcountdown.enabled = true;
-			starttimer = 3;
 			while (starttimer >= 0) {
-				yield return new WaitForSeconds (1);
-				if (starttimer == 3) {
-					startcountdown.text = "3";
-				}
-				else if (starttimer == 2) {
-					startcountdown.text = "2";
-				}
-				else if (starttimer == 1) {
-					startcountdown.text = "1";
-				}
+				startcountdown.text = starttimer.ToString ();
 				starttimer--;
+				yield return new WaitForSeconds (1);
+
 			}
 			startcountdown.enabled = false;
 		}
@@ -96,10 +88,10 @@ namespace CloseEnough {
 		}
 
 		IEnumerator complete() {
-			waiting.enabled = false;
-			timesUp.enabled = true;
+			waiting.gameObject.SetActive (false);
+			timesUp.gameObject.SetActive (true);
 			yield return new WaitForSeconds (2);
-			timesUp.enabled = false;
+			timesUp.gameObject.SetActive (false);
 
 		}
 
@@ -108,9 +100,11 @@ namespace CloseEnough {
 			done = false;
 			playTick = false;
 			playDing = false;
-			timesUp.enabled = false;
-			waiting.enabled = false;
 
+			waiting.gameObject.SetActive (false);
+
+			starttimer = 3;
+			startcountdown.text = starttimer.ToString ();
 			if (drawing) {
 				timer = 30;
 			}
