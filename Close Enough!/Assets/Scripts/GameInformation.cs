@@ -9,12 +9,18 @@ namespace CloseEnough {
 
 		// Number of players decides number of rounds
 		public static int rounds;
+		public static bool initialRound;
 
 		void Start() {
-			rounds = 1;
+			initialRound = true;
 		}
 		void Update() {
-			rounds = PhotonNetwork.playerList.Length;
+			if (PhotonNetwork.playerList.Length == 0) {
+				rounds = 1;
+			} else {
+				
+				rounds = PhotonNetwork.playerList.Length;
+			}
 		}
 
 		public static GameInformation instance {

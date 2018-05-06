@@ -11,9 +11,10 @@ namespace CloseEnough {
 		void Start() {
 			// Initial round
 			text.text = "Your word is\n";
-			if (GamePlay.rounds == GameInformation.rounds) {
+			if (GameInformation.initialRound) {
 				var index = Random.Range (0, bank.Length - 1);
 				text.text += bank [index];
+				GameInformation.initialRound = false;
 			} else {
 					text.text += GamePlay.wordToDraw;
 			}

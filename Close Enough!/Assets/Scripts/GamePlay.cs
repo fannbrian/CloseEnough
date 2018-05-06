@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 namespace CloseEnough {
 
 	public class GamePlay : MonoBehaviour {
-
-		static public int rounds;
+// 		For testing purposes, change round to amount of turns you'd like to play
+		static public int rounds = 4;
+//		static public int rounds = GameInformation.rounds;
 
 		public Timer timer;
 
@@ -39,7 +40,6 @@ namespace CloseEnough {
 
 
 		void Start() {
-			rounds = GameInformation.rounds;
 			snap = false;
 			drawing = true;
 			reset = false;
@@ -73,7 +73,6 @@ namespace CloseEnough {
 					drawing = !drawing;
 					timer.reset(drawing);
 					next.onClick.AddListener (() => continueGame());
-					print (rounds);
 					rounds--;
 					// Starting to play
 				} else if (!timer.done && !timer.playing) {
