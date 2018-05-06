@@ -7,12 +7,17 @@ namespace CloseEnough {
 	public class WordBank : MonoBehaviour {
 		public string[] bank;
 		public Text text;
-		public GamePlay game;
 
 		void Start() {
-			
-			var index = Random.Range (0, bank.Length - 1);
-			text.text = "Please draw\n" + bank [index];
+			// Initial round
+			text.text = "Your word is\n";
+			if (GamePlay.rounds == GameInformation.rounds) {
+				var index = Random.Range (0, bank.Length - 1);
+				text.text += bank [index];
+			} else {
+					text.text += GamePlay.wordToDraw;
+			}
+
 		}
 	}
 }

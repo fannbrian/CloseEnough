@@ -9,8 +9,7 @@ namespace CloseEnough {
 
 	public class GamePlay : MonoBehaviour {
 
-
-		public int rounds = 4;
+		static public int rounds;
 
 		public Timer timer;
 
@@ -25,6 +24,7 @@ namespace CloseEnough {
 		private bool snap;
 
 		public Button next;
+		public GameObject drawingAudio;
 
 		public RectTransform guessingPanel;
 		public RawImage image;
@@ -32,11 +32,14 @@ namespace CloseEnough {
 		public GameObject swipeManager;
 
 		public InputField wordGuessed;
-		public string wordToDraw;
+		static public string wordToDraw;
+		public Text word;
 
 		private bool reset;
 
+
 		void Start() {
+			rounds = GameInformation.rounds;
 			snap = false;
 			drawing = true;
 			reset = false;
@@ -44,7 +47,6 @@ namespace CloseEnough {
 			guessingPanel.gameObject.SetActive (false);
 			next.gameObject.SetActive (false);
 
-			timer.startTime ();
 		}
 
 		void Update () {
@@ -81,18 +83,28 @@ namespace CloseEnough {
 						doneSlideIn.playIn = true;
 						toolSlideIn.playIn = true;
 						swipeManager.gameObject.SetActive (true);
+						StartCoroutine ("startDrawing");
+
 					// Guessing round
 					} else {
-						image.texture = screenCap.texture;
+						image.texture = screenCap.image.texture;
 						screenCap.imagePanel.gameObject.SetActive (false);
 						snap = false;
 						next.gameObject.SetActive (false);
 						doneSlideIn.playIn = true;
 						StartCoroutine ("startGuessing");
-						timer.startTime ();
 					}
+					timer.startTime ();
+
+
 				}
 			}
+
+		}
+
+		IEnumerator startDrawing() {
+			yield return new WaitForSeconds (3);
+			word.enabled = false;
 
 		}
 
@@ -104,7 +116,7 @@ namespace CloseEnough {
 			screenCap.showImage ();
 
 			snap = true;
-//			drawing = false;
+			drawing = false;
 
 			next.gameObject.SetActive (true);
 
@@ -118,17 +130,18 @@ namespace CloseEnough {
 
 		IEnumerator doneGuessing() {
 			doneSlideOut.playOut = true;
-			yield return new WaitForSeconds (1);
+			yield return new WaitForSeconds (2);
 			next.gameObject.SetActive (true);
 			guessingPanel.gameObject.SetActive (false);
-//			drawing = true;
+			drawing = true;
 			wordToDraw = wordGuessed.text;
 
 		}
 
 		public void continueGame() {
 			if (rounds <= 0) {
-				SceneManager.LoadScene ("Lobby", LoadSceneMode.Additive);
+				Destroy(drawingAudio);
+				SceneManager.LoadScene ("Lobby");
 			} else {
 				if (reset) {
 					SceneManager.LoadScene ("Main");

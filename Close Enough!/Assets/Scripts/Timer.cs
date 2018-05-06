@@ -9,7 +9,6 @@ namespace CloseEnough {
 		public int timer = 30;
 		public int starttimer = 3;
 
-
 		bool countdownDisplay;
 
 		public Text startcountdown;
@@ -31,20 +30,23 @@ namespace CloseEnough {
 		void Start () {
 			playTick = false;
 			playDing = false;
-            ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
+			timesUp.gameObject.SetActive (false);
+			waiting.gameObject.SetActive (false);
+			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
 			aud = GetComponent<AudioSource> ();
+
 		}
 
 		// Update is called once per frame
 		void Update () {
-			if (timer == 4 && !playTick) {
-				aud.PlayOneShot (ticker, 1);
+			if (timer <= 3 && !playTick) {
+				StartCoroutine(PlayAudio (timer));
 				playTick = true;
 			}
-            else if (timer < 0) {
-                ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
+			else if (timer == 0) {
+				ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
 				if (!playDing) {
-					aud.PlayOneShot (ding, 1);
+					aud.PlayOneShot (ding);
 					done = true;
 					StopCoroutine ("endTime");
 					playDing = true;
@@ -59,32 +61,39 @@ namespace CloseEnough {
 			}
 		}
 
+		//Countdown 3..2..1..
 		IEnumerator count() {
+			starttimer = 3;
+
 			startcountdown.enabled = true;
-			while (starttimer >= 0) {
-				startcountdown.text = starttimer.ToString ();
+			while (starttimer > 0) {
+				startcountdown.text = starttimer.ToString();
 				starttimer--;
 				yield return new WaitForSeconds (1);
-
 			}
-            startcountdown.enabled = false;
-            ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.IdleString);
-		}
+			startcountdown.enabled = false;
+			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.IdleString);
+			StartCoroutine ("endTime");
 
+		}
 		public void startTime() {
 			playing = true;
 			StartCoroutine ("count");
-			StartCoroutine ("endTime");
 		}
 
 		IEnumerator endTime() {
-			//Countdown 3..2..1..
-			yield return new WaitForSeconds (3);
 			//Countdown from timer variable
 			while (true) {
 				yield return new WaitForSeconds (1);
 				timer--;
-            }
+			}
+		}
+
+		IEnumerator PlayAudio (int times) {
+			for(int i = 0; i < times; i++) {
+				aud.PlayOneShot (ticker);
+				yield return new WaitForSeconds(ticker.length);
+			}
 		}
 
 		IEnumerator complete() {
@@ -101,10 +110,6 @@ namespace CloseEnough {
 			playTick = false;
 			playDing = false;
 
-			waiting.gameObject.SetActive (false);
-
-			starttimer = 3;
-			startcountdown.text = starttimer.ToString ();
 			if (drawing) {
 				timer = 30;
 			}

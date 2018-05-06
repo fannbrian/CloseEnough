@@ -10,7 +10,8 @@ namespace CloseEnough {
 		public Timer timer;
 
 		public void goToLobby() {
-			SceneManager.LoadScene ("Lobby", LoadSceneMode.Additive);
+			
+			SceneManager.LoadScene ("Lobby");
 		}
 			
 		public void continueGame() {

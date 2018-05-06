@@ -23,6 +23,7 @@ public class StartPlay : MonoBehaviour {
 	}
 
 	IEnumerator displayWord() {
+		print ("is this called");
 		yield return new WaitForSeconds (1);
 		StartCoroutine ("count");
 	}
