@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WordBank : MonoBehaviour {
-	public string[] bank;
-	public Text text;
+namespace CloseEnough {
+	public class WordBank : MonoBehaviour {
+		public string[] bank;
+		public Text text;
 
-	void Start() {
-		var index = Random.Range (0, bank.Length - 1);
-		text.text = "Please draw\n" + bank [index];
+		void Start() {
+			// Initial round
+			text.text = "Your word is\n";
+			if (GameInformation.initialRound) {
+				var index = Random.Range (0, bank.Length - 1);
+				text.text += bank [index];
+				GameInformation.initialRound = false;
+			} else {
+					text.text += GamePlay.wordToDraw;
+			}
+
+		}
 	}
 }
