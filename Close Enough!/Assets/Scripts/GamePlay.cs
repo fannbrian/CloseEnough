@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace CloseEnough {
-
 	public class GamePlay : MonoBehaviour {
 
 		public Timer timer;
