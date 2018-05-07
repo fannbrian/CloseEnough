@@ -596,6 +596,7 @@ GameObject:
   - component: {fileID: 234334111}
   - component: {fileID: 234334112}
   - component: {fileID: 234334113}
+  - component: {fileID: 234334114}
   m_Layer: 0
   m_Name: PlayerNetwork
   m_TagString: Untagged
@@ -641,6 +642,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   singleton: {fileID: 234334113}
   ReconnectDelay: 5
+--- !u!114 &234334114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 234334110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d3ba675a869e44192469d1d4ef0a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &235534005
 GameObject:
   m_ObjectHideFlags: 0
@@ -4166,7 +4178,7 @@ GameObject:
   - component: {fileID: 1601735972}
   - component: {fileID: 1601735971}
   m_Layer: 5
-  m_Name: Nickname Placeholder
+  m_Name: Name Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4222,7 +4234,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter your nickname...
+  m_Text: Enter your name...
 --- !u!222 &1601735972
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5640,7 +5652,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: You must have a name
+  m_Text: Please enter a name
 --- !u!222 &2077011238
 CanvasRenderer:
   m_ObjectHideFlags: 0
