@@ -1,54 +1,72 @@
-﻿//using System;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Networking;
-using UnityEngine.Networking.NetworkSystem;
 
-public class ScreenCapture : MonoBehaviour {
+namespace CloseEnough {
+	public class ScreenCapture : MonoBehaviour
+	{
+	    public RectTransform rectTransform;
+	    bool grab;
+		Texture2D receivedTexture;
 
-	Texture2D texture;
-	byte [] pngEncoded;
+		private Texture2D texture;
 
-	// Screenshot image for user's drawing 
-	public RawImage img;
-	bool shot = false;
+		public RectTransform imagePanel;
+		// Screenshot image for user's drawing 
+		public RawImage image;
+		bool shot = false;
 
+	    Camera _camera;
+	    Rect _screenshotRect;
+	    int _width;
+	    int _height;
 
-	// Use this for initialization
-	void Start () {
-		texture = new Texture2D(Screen.width - 230, Screen.height, TextureFormat.RGB24, false);
-		img.enabled = false;
-	}
+	    void Start()
+	    {
+	        imagePanel.GetComponent<RectTransform>();
+	        imagePanel.gameObject.SetActive(false);
 
-	// Update is called once per frame
-	void Update () {
-	}
-			
-	IEnumerator Capture() {
-		yield return new WaitForEndOfFrame ();
+	        image.enabled = false;
 
-		texture.ReadPixels(new Rect(230, 0, Screen.width - 230, Screen.height), 0, 0, false);
-		texture.Apply();
+	        var rect = RectTransformToScreenSpace(rectTransform);
+	        _width = (int)rect.width;
+	        _height = (int)rect.height;
+	        var pos = new Vector2((int)((Screen.width - _width) / 2), (int)((Screen.height-_height) / 2 ));
+	        texture = new Texture2D(_width, _height-1, TextureFormat.RGB24, false);
 
-		img.texture = texture;
-		pngEncoded = new byte[texture.width];
-		pngEncoded = texture.EncodeToPNG();
+	        _screenshotRect = new Rect(pos, new Vector2(_width, _height-1));
+	    }
 
-		NetworkServer.SendBytesToReady (null, pngEncoded, pngEncoded.Length, 0);
+	    public Rect RectTransformToScreenSpace(RectTransform transform)
+	    {
+	        Vector2 size = Vector2.Scale(transform.rect.size, transform.lossyScale);
+	        float x = transform.position.x + transform.anchoredPosition.x;
+	        float y = Screen.height - transform.position.y - transform.anchoredPosition.y;
 
-		shot = true;
+	        return new Rect(x, y, size.x, size.y);
+	    }
+	    
+		// Screen capture 
+		public void done() {
+			if (!shot) {
+				StartCoroutine ("Capture");
+			}
+		}
 
-	}
+		IEnumerator Capture() {
+			yield return new WaitForEndOfFrame ();
+			texture.ReadPixels(_screenshotRect, 0, 0, false);
+			texture.Apply();
 
-	// Screen capture 
-	public void done() {
-		if (!shot) {
-			StartCoroutine ("Capture");
-			img.enabled = true;
+			image.texture = texture;
 
+			shot = true;
+		}
+
+		public void showImage() {
+			imagePanel.gameObject.SetActive (true);
+			image.enabled = true;
 		}
 	}
 }
