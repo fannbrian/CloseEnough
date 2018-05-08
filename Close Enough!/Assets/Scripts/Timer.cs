@@ -30,6 +30,7 @@ namespace CloseEnough {
 		void Start () {
 			playTick = false;
 			playDing = false;
+			startcountdown.gameObject.SetActive (false);
 			timesUp.gameObject.SetActive (false);
 			waiting.gameObject.SetActive (false);
 			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
@@ -77,6 +78,7 @@ namespace CloseEnough {
 
 		}
 		public void startTime() {
+			startcountdown.gameObject.SetActive (true);
 			playing = true;
 			StartCoroutine ("count");
 		}

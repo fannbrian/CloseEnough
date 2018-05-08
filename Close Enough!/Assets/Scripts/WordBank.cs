@@ -15,8 +15,9 @@ namespace CloseEnough {
 				var index = Random.Range (0, bank.Length - 1);
 				text.text += bank [index];
 				GameInformation.initialRound = false;
+			// Every round after, words should be changed
 			} else {
-					text.text += GamePlay.wordToDraw;
+				text.text += GamePlay.wordToDraw;
 			}
 
 		}

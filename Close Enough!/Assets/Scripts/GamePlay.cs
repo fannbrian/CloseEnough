@@ -9,8 +9,7 @@ namespace CloseEnough {
 
 	public class GamePlay : MonoBehaviour {
 // 		For testing purposes, change round to amount of turns you'd like to play
-		static public int rounds = 4;
-//		static public int rounds = GameInformation.rounds;
+		static public int rounds = GameInformation.rounds;
 
 		public Timer timer;
 
@@ -32,12 +31,16 @@ namespace CloseEnough {
 
 		public GameObject swipeManager;
 
-		public InputField wordGuessed;
+		public InputField guessedInput;
 		static public string wordToDraw;
 		public Text word;
 
+		public RectTransform guessedWordPanel;
+		public Text guessedWord;
+
 		private bool reset;
 
+		static public bool ready;
 
 		void Start() {
 			snap = false;
@@ -47,6 +50,7 @@ namespace CloseEnough {
 			guessingPanel.gameObject.SetActive (false);
 			next.gameObject.SetActive (false);
 
+			ready = true;
 		}
 
 		void Update () {
@@ -60,13 +64,12 @@ namespace CloseEnough {
 						toolSlideOut.playOut = true;
 						doneSlideOut.playOut = true;
 						if (!snap) {
-							StartCoroutine ("doneDrawing");
+							StartCoroutine ("doneDraw");
 							swipeManager.gameObject.SetActive (false);
-
 						}
 					// During a guessing round
 					} else {
-						StartCoroutine ("doneGuessing");
+						StartCoroutine ("doneGuess");
 						reset = true;
 					}
 					// reset timer
@@ -76,42 +79,48 @@ namespace CloseEnough {
 					rounds--;
 					// Starting to play
 				} else if (!timer.done && !timer.playing) {
-					// Drawing round
-					if (drawing) {
-						next.gameObject.SetActive (false);
-						doneSlideIn.playIn = true;
-						toolSlideIn.playIn = true;
-						swipeManager.gameObject.SetActive (true);
-						StartCoroutine ("startDrawing");
+					// If round is to ready to play, prep and start
+					if (ready) {
+						// Drawing Round
+						if (drawing) {
+							prepDraw ();
+							next.gameObject.SetActive (false);
+							doneSlideIn.playIn = true;
+							toolSlideIn.playIn = true;
+							swipeManager.gameObject.SetActive (true);
+							StartCoroutine ("Draw");
 
-					// Guessing round
-					} else {
-						image.texture = screenCap.image.texture;
-						screenCap.imagePanel.gameObject.SetActive (false);
-						snap = false;
-						next.gameObject.SetActive (false);
-						doneSlideIn.playIn = true;
-						StartCoroutine ("startGuessing");
+							// Guessing Round
+						} else {
+							prepGuess ();
+							screenCap.imagePanel.gameObject.SetActive (false);
+							snap = false;
+							next.gameObject.SetActive (false);
+							doneSlideIn.playIn = true;
+							StartCoroutine ("Guess");
+						}	
 					}
-					timer.startTime ();
-
-
 				}
 			}
-
 		}
 
-		IEnumerator startDrawing() {
+		private void prepDraw() {
+			word.text = wordToDraw;
+		}
+
+		IEnumerator Draw() {
+			timer.startTime ();
+			word.gameObject.SetActive (true);
 			yield return new WaitForSeconds (3);
-			word.enabled = false;
+			word.gameObject.SetActive (false);
 
 		}
 
-		IEnumerator doneDrawing() {
+		IEnumerator doneDraw() {
 			yield return new WaitForSeconds (2);
 			screenCap.done ();
 			yield return new WaitForSeconds (1);
-
+			SwipeTrail.singleton.Clear ();
 			screenCap.showImage ();
 
 			snap = true;
@@ -121,19 +130,28 @@ namespace CloseEnough {
 
 		}
 
+		private void prepGuess() {
+			image.texture = screenCap.image.texture;
+		}
 
-		IEnumerator startGuessing() {
+		IEnumerator Guess() {
+			timer.startTime ();
 			yield return new WaitForSeconds (3);
 			guessingPanel.gameObject.SetActive (true);
 		}
 
-		IEnumerator doneGuessing() {
+		IEnumerator doneGuess() {
 			doneSlideOut.playOut = true;
 			yield return new WaitForSeconds (2);
-			next.gameObject.SetActive (true);
 			guessingPanel.gameObject.SetActive (false);
 			drawing = true;
-			wordToDraw = wordGuessed.text;
+			wordToDraw = guessedInput.text;
+
+			guessedWord.text = guessedInput.text;
+			guessedWordPanel.gameObject.SetActive (true);
+			print (guessedWordPanel.gameObject.GetActive ());
+			next.gameObject.SetActive (true);
+
 
 		}
 
