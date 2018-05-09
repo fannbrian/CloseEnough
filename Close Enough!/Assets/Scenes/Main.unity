@@ -1244,6 +1244,7 @@ MonoBehaviour:
   rectTransform: {fileID: 576905532}
   imagePanel: {fileID: 1575984646}
   image: {fileID: 1554573750}
+  shot: 0
 --- !u!1 &386039176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2173,6 +2174,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 675893708}
+--- !u!1 &705338227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 705338228}
+  - component: {fileID: 705338230}
+  - component: {fileID: 705338229}
+  m_Layer: 5
+  m_Name: Round Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &705338228
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 705338227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1154220189}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -18, y: 196.2}
+  m_SizeDelta: {x: 425.9, y: 57.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &705338229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 705338227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 7b4c3dd59eeca454193b1735e82e7b59, type: 3}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 60
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Round
+--- !u!222 &705338230
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 705338227}
 --- !u!1 &770943768
 GameObject:
   m_ObjectHideFlags: 0
@@ -3293,7 +3368,7 @@ MonoBehaviour:
   countdown: {fileID: 214529572}
   timesUp: {fileID: 1719778842}
   waiting: {fileID: 1649041037}
-  playing: 0
+  running: 0
   done: 0
   ticker: {fileID: 8300000, guid: c5e2a73ad4706440f93bf05df0b465fe, type: 3}
   ding: {fileID: 8300000, guid: fbf22fd9dba8b4d65838a03ac1ad098c, type: 3}
@@ -4421,6 +4496,7 @@ RectTransform:
   - {fileID: 576905532}
   - {fileID: 1719778841}
   - {fileID: 1649041036}
+  - {fileID: 705338228}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4452,20 +4528,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 880615828}
+  screenCap: {fileID: 339912226}
   toolSlideOut: {fileID: 56399902}
   doneSlideOut: {fileID: 1549733740}
   toolSlideIn: {fileID: 56399902}
   doneSlideIn: {fileID: 1549733740}
-  screenCap: {fileID: 339912226}
-  next: {fileID: 2000683798}
-  drawingAudio: {fileID: 1606732858}
   guessingPanel: {fileID: 1775476161}
   image: {fileID: 1378506421}
+  next: {fileID: 2000683798}
+  drawingAudio: {fileID: 1606732858}
   swipeManager: {fileID: 1360377385}
   guessedInput: {fileID: 1793868161}
   word: {fileID: 1046027501}
   guessedWordPanel: {fileID: 1496392207}
   guessedWord: {fileID: 1995859040}
+  roundText: {fileID: 705338229}
 --- !u!114 &1154220192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7212,7 +7289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1400303, g: 0.4437925, b: 0.5441177, a: 1}
+  m_Color: {r: 0.22794116, g: 0.22794116, b: 0.22794116, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7445,17 +7522,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2000683800}
-        m_MethodName: continueGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Main
-          m_BoolArgument: 1
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &2000683799
@@ -7475,7 +7541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc316caa0d11412396f16e704a1b47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 880615828}
 --- !u!1 &2072750175
 GameObject:
   m_ObjectHideFlags: 0

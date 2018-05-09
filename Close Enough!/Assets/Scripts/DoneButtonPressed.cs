@@ -15,6 +15,8 @@ namespace CloseEnough {
 			waiting.enabled = true;
 			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
 
+			// Signal that user is complete with the round
+
 		}
 	}
 

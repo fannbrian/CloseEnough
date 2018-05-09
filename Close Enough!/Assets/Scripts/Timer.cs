@@ -16,7 +16,7 @@ namespace CloseEnough {
 		public Text timesUp;
 		public Text waiting;
 
-		public bool playing = false;
+		public bool running = false;
 		public bool done = false;
 
 		public AudioClip ticker;
@@ -79,7 +79,7 @@ namespace CloseEnough {
 		}
 		public void startTime() {
 			startcountdown.gameObject.SetActive (true);
-			playing = true;
+			running = true;
 			StartCoroutine ("count");
 		}
 
