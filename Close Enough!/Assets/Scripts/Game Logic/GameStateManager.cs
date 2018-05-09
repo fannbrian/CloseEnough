@@ -5,8 +5,20 @@ using UnityEngine;
 namespace CloseEnough {
     public class GameStateManager : MonoBehaviour {
         public BaseGameState CurrentState;
+		public static GameStateManager singleton;
 
-        private void Start()
+		public GameStateManager() {
+			singleton = this;
+		}
+
+		public void TransitionNextState() {
+			var nextState = CurrentState.GetNextState();
+			CurrentState.OnExit();
+			nextState.OnEnter();
+			CurrentState = nextState;
+		}
+
+        void Start()
         {
             CurrentState = new MenuState();
         }

@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 187308851}
   - component: {fileID: 187308850}
   m_Layer: 5
-  m_Name: Done Button Text
+  m_Name: Start Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,7 +434,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NEXT
+  m_Text: START
 --- !u!222 &187308851
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 234334110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d3ba675a869e44192469d1d4ef0a5e, type: 3}
+  m_Script: {fileID: 11500000, guid: cdd7759d62551b34dae41361576302d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &235534005
@@ -928,17 +928,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1595016518}
-        m_MethodName: InitializeRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &248548573
@@ -1130,12 +1119,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 323019183}
-  - component: {fileID: 323019182}
   - component: {fileID: 323019185}
   - component: {fileID: 323019184}
   - component: {fileID: 323019187}
   - component: {fileID: 323019186}
-  - component: {fileID: 323019189}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1143,19 +1130,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &323019182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 323019181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d23afb87f73854984985a665852b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  Name: 
 --- !u!4 &323019183
 Transform:
   m_ObjectHideFlags: 0
@@ -1163,7 +1137,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 323019181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 250.89615, y: 129.29414, z: 4.7929096}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1203,7 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da7a41cbc72f464a86b65eb4b4b2ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomCodeText: {fileID: 0}
+  roomCodeText: {fileID: 1084027632}
 --- !u!114 &323019187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,19 +1189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cd47d316ec64aa88594d72d1bb639f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &323019189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 323019181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35a7fd721d32aa241aa5192a58629c1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCreating: 0
-  roomCode: 
 --- !u!1 &335882340
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,7 +3199,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102842269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 240.91733, y: 421.28323, z: -20.27851}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 234334111}
@@ -3414,7 +3375,7 @@ GameObject:
   - component: {fileID: 1152231008}
   - component: {fileID: 1152231007}
   m_Layer: 5
-  m_Name: Done Button
+  m_Name: Start Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3478,9 +3439,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 323019184}
-        m_MethodName: LoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 234334114}
+        m_MethodName: TransitionNextState
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3716,6 +3677,7 @@ GameObject:
   - component: {fileID: 1435764428}
   - component: {fileID: 1435764430}
   - component: {fileID: 1435764429}
+  - component: {fileID: 1435764431}
   m_Layer: 5
   m_Name: Nickname Panel
   m_TagString: Untagged
@@ -3779,6 +3741,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1435764427}
+--- !u!114 &1435764431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1435764427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e00fe97953fb24d85e11493bf8bcac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ErrorMessage: {fileID: 2077011237}
+  ThisPanel: {fileID: 1435764427}
+  NextPanel: {fileID: 1483827830}
+  NameText: {fileID: 765888741}
 --- !u!1 &1439672849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,30 +3832,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1435764427}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1483827830}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 234334112}
-        m_MethodName: SetNickname
+      - m_Target: {fileID: 1435764431}
+        m_MethodName: Next
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4841,7 +4796,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 323019182}
+      - m_Target: {fileID: 0}
         m_MethodName: UpdateText
         m_Mode: 1
         m_Arguments:

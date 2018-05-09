@@ -25,41 +25,57 @@ namespace CloseEnough
         {
             get { return _playerListings; }
         }
-        
-        public void InitializeRoom()
+
+		private void OnEnable()
+		{
+			UpdateRoom();
+		}
+
+		public void UpdateRoom()
         {
             while (PlayerListings.Count > 0)
             {
                 Destroy(PlayerListings[0].gameObject);
                 PlayerListings.RemoveAt(0);
             }
+			Debug.Log("Initializing Room Listings");
             PhotonPlayer[] photonPlayers = PhotonNetwork.playerList;
+			Debug.Log(photonPlayers.Length + " players detected");
             for (int i = 0; i < photonPlayers.Length; i++)
             {
                 PlayerJoinedRoom(photonPlayers[i]);
             }
         }
 
-        //called by photon
-        public override void OnPhotonPlayerConnected(PhotonPlayer photonPlayer)
+		//called by photon
+		public override void OnPhotonPlayerConnected(PhotonPlayer photonPlayer)
         {
-            PlayerJoinedRoom(photonPlayer);
+			Debug.Log("A friend has arrived");
+			UpdateRoom();
         }
 
         //called by photon
         public override void OnPhotonPlayerDisconnected(PhotonPlayer photonPlayer)
         {
-            PlayerLeftRoom(photonPlayer);
+			Debug.Log("A PLAYER LEFT OH NO");
+			UpdateRoom();
         }
 
+		public override void OnMasterClientSwitched(PhotonPlayer newMasterClient)
+		{
+			Debug.Log("MASTER CLIENT SWITCHED");
+			UpdateRoom();
+			base.OnMasterClientSwitched(newMasterClient);
+		}
 
-        private void PlayerJoinedRoom(PhotonPlayer photonPlayer)
+
+		void PlayerJoinedRoom(PhotonPlayer photonPlayer)
         {
-            if (photonPlayer == null)
-                return;
-
-            PlayerLeftRoom(photonPlayer);
-
+			if (photonPlayer == null)
+			{
+				Debug.Log("NULL!!!");
+				return;
+			}         
             GameObject playerListingObj = Instantiate(PlayerListingPrefab);
             playerListingObj.transform.SetParent(transform, false);
 
@@ -68,17 +84,7 @@ namespace CloseEnough
 
             PlayerListings.Add(playerListing);
         }
-
-        private void PlayerLeftRoom(PhotonPlayer photonPlayer)
-        {
-            int index = PlayerListings.FindIndex(x => x.PhotonPlayer == photonPlayer);
-            if (index != -1)
-            {
-                Destroy(PlayerListings[index].gameObject);
-                PlayerListings.RemoveAt(index);
-            }
-        }
-
+      
         public void OnClickLeaveRoom()
         {
             PhotonNetwork.LeaveRoom();
