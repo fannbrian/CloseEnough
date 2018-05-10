@@ -16,7 +16,7 @@ namespace CloseEnough
         void Awake()
         {
             singleton = this;
-            CurrentState = states[0];
+            CurrentState = states[4];
 		}
       
 		/// <summary>

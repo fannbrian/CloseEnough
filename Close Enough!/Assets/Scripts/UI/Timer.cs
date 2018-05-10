@@ -77,7 +77,8 @@ namespace CloseEnough {
 				yield return new WaitForSeconds (1);
 			}
 			startcountdown.enabled = false;
-//			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.IdleString);
+			Debug.Log(ToolsStateManager.singleton.CurrentState.Name);
+   			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.IdleString);
 			StartCoroutine ("endTime");
 
 		}
