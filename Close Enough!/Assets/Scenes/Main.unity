@@ -1155,6 +1155,7 @@ GameObject:
   - component: {fileID: 339912223}
   - component: {fileID: 339912222}
   - component: {fileID: 339912226}
+  - component: {fileID: 339912227}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1239,6 +1240,18 @@ MonoBehaviour:
   image: {fileID: 0}
   imagePanel: {fileID: 1575984646}
   img: {fileID: 1554573750}
+--- !u!114 &339912227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 339912221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 298924f781618d84194d5a9229270150, type: 2}
 --- !u!1 &386039176
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,8 +4117,8 @@ Canvas:
   m_GameObject: {fileID: 1154220185}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 339912224}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -5617,7 +5630,8 @@ AudioSource:
   m_GameObject: {fileID: 1606732858}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 1952f021273af4d43a61a2b428236c69,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d90530173f1e64bf583a265a2f14e24b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.25
@@ -5632,7 +5646,7 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
+  BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
