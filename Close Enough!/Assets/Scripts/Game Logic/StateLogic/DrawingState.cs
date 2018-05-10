@@ -24,8 +24,8 @@ namespace CloseEnough
 
 			Debug.Log("Your word is: " + node.Word);
 
-			/*DrawingRoundManager.instance.wordToDraw = node.Word;         
-			DrawingRoundManager.instance.Draw();*/
+			GamePlay.instance.wordToDraw = node.Word;         
+			GamePlay.instance.Draw();
 		}
 		public override void OnExit()
 		{

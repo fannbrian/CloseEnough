@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 
 namespace CloseEnough {
 	public class GamePlay : MonoBehaviour {
-		static public int rounds = GameInformation.rounds;
+		public static GamePlay instance;
+		public int rounds = GameInformation.rounds;
 
 		public Timer timer;
 		public ScreenCapture screenCap;
@@ -25,15 +26,16 @@ namespace CloseEnough {
 		public GameObject drawingAudio;
 		public GameObject swipeManager;
 		public InputField guessedInput;
-		static public string wordToDraw;
+		public string wordToDraw;
 		public Text word;
 		public RectTransform guessedWordPanel;
 		public Text guessedWord;
 		public Text roundText;
 
 		private bool resetScene;
-
+        
 		void Start() {
+			instance = this;
 			drawing = true;
 			resetScene = false;
 
