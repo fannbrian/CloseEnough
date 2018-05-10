@@ -26,6 +26,10 @@ namespace CloseEnough {
 		Boolean playTick;
 		Boolean playDing;
 
+		void Awake() {
+			aud = GetComponent<AudioSource> ();
+		}
+
 		// Use this for initialization
 		void Start () {
 			playTick = false;
@@ -34,7 +38,7 @@ namespace CloseEnough {
 			timesUp.gameObject.SetActive (false);
 			waiting.gameObject.SetActive (false);
 			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
-			aud = GetComponent<AudioSource> ();
+//			aud = GetComponent<AudioSource> ();
 
 		}
 
@@ -73,7 +77,7 @@ namespace CloseEnough {
 				yield return new WaitForSeconds (1);
 			}
 			startcountdown.enabled = false;
-			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.IdleString);
+//			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.IdleString);
 			StartCoroutine ("endTime");
 
 		}

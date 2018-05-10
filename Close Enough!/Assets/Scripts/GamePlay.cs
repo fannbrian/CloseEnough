@@ -67,8 +67,8 @@ namespace CloseEnough {
 				} else if (!timer.done && !timer.running) {
 					// Drawing Round
 					if (drawing) {
-						prepDraw ();
-						Draw ();
+//						prepDraw ();
+//						Draw ();
 
 						// Guessing Round
 					} else {
