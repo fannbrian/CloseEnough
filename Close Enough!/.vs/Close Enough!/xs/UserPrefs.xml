@@ -1,19 +1,25 @@
 ﻿<Properties StartupConfiguration="{410F0C51-D810-EA31-ABD6-883582A1E849}|">
   <MonoDevelop.Ide.ItemProperties.Close_220Enough_221 PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Drawing Mechanic/SwipeTrail.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GamePlay.cs">
     <Files>
-      <File FileName="Assets/Scripts/LoadSceneOnTap.cs" Line="7" Column="42" />
-      <File FileName="Assets/Scripts/ScreenCapture.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Timer.cs" Line="1" Column="1" />
-      <File FileName="Assets/Photon Unity Networking/readme.txt" Line="1" Column="1" />
-      <File FileName="Assets/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs" Line="1590" Column="1" />
-      <File FileName="Assets/Scripts/Menu Navigation Scripts/Room/CreateRoom.cs" Line="49" Column="38" />
-      <File FileName="Assets/Scripts/Menu Navigation Scripts/Room/DisplayRoomCode.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Menu Navigation Scripts/Networks/PlayerNetwork.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Menu Navigation Scripts/Networks/LobbyNetwork.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Menu Navigation Scripts/Room/PlayerLayoutGroup.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Menu Navigation Scripts/Room/PlayerListing.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Drawing Mechanic/SwipeTrail.cs" Line="174" Column="46" />
+      <File FileName="Assets/Scripts/Network Communication/Game Logic/RpcController.cs" Line="39" Column="37" />
+      <File FileName="Assets/Scripts/Game Logic/InitialGameHandler.cs" Line="43" Column="26" />
+      <File FileName="Assets/Scripts/Network Communication/Game Logic/ViewLoader.cs" Line="8" Column="41" />
+      <File FileName="Assets/Scripts/Game Logic/GameData.cs" Line="13" Column="2" />
+      <File FileName="Assets/Scripts/Game Logic/NetworkTestText.cs" Line="21" Column="3" />
+      <File FileName="Assets/Scripts/Network Communication/Room/PlayerLayoutGroup.cs" Line="82" Column="37" />
+      <File FileName="Assets/Scripts/Network Communication/Room/PlayerListing.cs" Line="14" Column="45" />
+      <File FileName="Assets/Scripts/Game Logic/DrawingStack.cs" Line="14" Column="27" />
+      <File FileName="Assets/Scripts/Game Logic/ByteSerializer.cs" Line="21" Column="47" />
+      <File FileName="Assets/Scripts/Drawing Mechanic/SwipeTrail.cs" Line="58" Column="67" />
+      <File FileName="Assets/Scripts/Game Logic/WordBank.cs" Line="24" Column="22" />
+      <File FileName="Assets/Scripts/Game Logic/StateLogic/InitialState.cs" Line="19" Column="57" />
+      <File FileName="Assets/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs" Line="2980" Column="5" />
+      <File FileName="Assets/Scripts/Game Logic/StateLogic/GameStateManager.cs" Line="25" Column="6" />
+      <File FileName="Assets/Scripts/Game Logic/StateLogic/MenuState.cs" Line="15" Column="4" />
+      <File FileName="Assets/Scripts/Game Logic/StateLogic/HideIfNotMaster.cs" Line="15" Column="4" />
+      <File FileName="Assets/Scripts/SceneLoader.cs" Line="10" Column="1" />
+      <File FileName="Assets/Scripts/GamePlay.cs" Line="25" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

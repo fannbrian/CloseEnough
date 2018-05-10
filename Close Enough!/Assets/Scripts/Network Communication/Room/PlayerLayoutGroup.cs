@@ -26,7 +26,7 @@ namespace CloseEnough
             get { return _playerListings; }
         }
 
-		private void OnEnable()
+		void OnEnable()
 		{
 			UpdateRoom();
 		}
@@ -39,7 +39,7 @@ namespace CloseEnough
                 PlayerListings.RemoveAt(0);
             }
 			Debug.Log("Initializing Room Listings");
-            PhotonPlayer[] photonPlayers = PhotonNetwork.playerList;
+			PhotonPlayer[] photonPlayers = PhotonNetwork.playerList;
 			Debug.Log(photonPlayers.Length + " players detected");
             for (int i = 0; i < photonPlayers.Length; i++)
             {
@@ -73,7 +73,6 @@ namespace CloseEnough
         {
 			if (photonPlayer == null)
 			{
-				Debug.Log("NULL!!!");
 				return;
 			}         
             GameObject playerListingObj = Instantiate(PlayerListingPrefab);

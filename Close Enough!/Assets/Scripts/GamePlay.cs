@@ -44,8 +44,7 @@ namespace CloseEnough {
 			reset = false;
 
 			guessingPanel.gameObject.SetActive (false);
-			next.gameObject.SetActive (false);
-
+			next.gameObject.SetActive (false);         
 		}
 
 		void Update () {
