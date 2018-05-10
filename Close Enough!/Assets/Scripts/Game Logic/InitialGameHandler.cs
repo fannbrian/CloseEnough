@@ -50,7 +50,7 @@ namespace CloseEnough
 			var stacks = new DrawingStack[playerCount];
 
 			for (int i = 0; i < playerCount; i++) {
-				var node = StackNode.InitialNode(playerIds[i], wordList[i]);
+				var node = new StackNode(order[i], wordList[i]);
                 stacks[i] = new DrawingStack();
 				stacks[i].Nodes.Add(node);
 			}

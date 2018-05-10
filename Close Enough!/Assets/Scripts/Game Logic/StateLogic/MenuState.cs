@@ -14,7 +14,7 @@ namespace CloseEnough
 		public override void OnExit()
 		{
             if (PhotonNetwork.isMasterClient) {
-				PhotonNetwork.LoadLevel("NetworkTestScene");
+				PhotonNetwork.LoadLevel("Main");
             }
 		}
 	}

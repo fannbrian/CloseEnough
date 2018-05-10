@@ -18,6 +18,12 @@ namespace CloseEnough
 			GameData.DrawingStacks = ByteSerializer<DrawingStack[]>.Deserialize(nodeBytes);
 			GameData.PlayerOrder = order;
 
+			foreach(var index in order) {
+				if (index == PhotonNetwork.player.ID) {
+					GameData.InitialIndex = index;
+				}
+			}
+
 			foreach(var stack in GameData.DrawingStacks) {
 				foreach(var node in stack.Nodes) {
 					Debug.Log(node.Owner + ": " + node.Type + ", " + node.Word);
@@ -28,8 +34,8 @@ namespace CloseEnough
 			foreach(var player in order) {
 				orderString += player + "-";
 			}
-			Debug.Log(orderString);
 
+			GameStateManager.singleton.TransitionNextState();
 		}
 
         [PunRPC]

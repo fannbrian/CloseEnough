@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuessingState : MonoBehaviour {
+namespace CloseEnough
+{
+	public class GuessingState : BaseGameState
+	{
+		public override BaseGameState GetNextState()
+		{
+			if (GameData.CurrentRound < GameData.PlayerCount) {
+				return new DrawingState();            
+			}
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+			return new GalleryState();
+		}
+
+		public override void OnEnter()
+		{
+			PanelReference.singleton.GuessingPanel.SetActive(true);
+		}
+
+		public override void OnExit()
+		{
+			PanelReference.singleton.GuessingPanel.SetActive(false);
+		}
 	}
 }

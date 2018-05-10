@@ -18,6 +18,7 @@
 		{
 			// Remove the reference to the initial state handler.
 			InitialGameHandler.singleton = null;
+			PanelReference.singleton.InitialPanel.SetActive(false);
 		}
 	}
 }
