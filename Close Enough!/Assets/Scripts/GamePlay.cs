@@ -7,41 +7,35 @@ using UnityEngine.SceneManagement;
 
 namespace CloseEnough {
 	public class GamePlay : MonoBehaviour {
-// 		For testing purposes, change round to amount of turns you'd like to play
-		static public int rounds = 4;
-//		static public int rounds = GameInformation.rounds;
+		static public int rounds = GameInformation.rounds;
 
 		public Timer timer;
+		public ScreenCapture screenCap;
 
 		private bool drawing;
 
+		// UI
 		public ToolsSlide toolSlideOut;
 		public DoneSlide doneSlideOut;
 		public ToolsSlide toolSlideIn;
 		public DoneSlide doneSlideIn;
-
-		public ScreenCapture screenCap;
-		private bool snap;
-
-		public Button next;
-		public GameObject drawingAudio;
-
 		public RectTransform guessingPanel;
 		public RawImage image;
-
+		public Button next;
+		public GameObject drawingAudio;
 		public GameObject swipeManager;
-
-		public InputField wordGuessed;
+		public InputField guessedInput;
 		static public string wordToDraw;
 		public Text word;
+		public RectTransform guessedWordPanel;
+		public Text guessedWord;
+		public Text roundText;
 
-		private bool reset;
-
+		private bool resetScene;
 
 		void Start() {
-			snap = false;
 			drawing = true;
-			reset = false;
+			resetScene = false;
 
 			guessingPanel.gameObject.SetActive (false);
 			next.gameObject.SetActive (false);         
@@ -50,89 +44,137 @@ namespace CloseEnough {
 		void Update () {
 			// If the game is in play
 			if (rounds > 0) {
-				// If a round is complete
-				if (timer.done && timer.playing) {
-					// During a drawing round
+				// If a round is complete and timer just finished counting down
+				// Ending stage
+				if (timer.done && timer.running) {
+					// Drawing round
 					if (drawing) {
-						// 
-						toolSlideOut.playOut = true;
-						doneSlideOut.playOut = true;
-						if (!snap) {
-							StartCoroutine ("doneDrawing");
-							swipeManager.gameObject.SetActive (false);
-
-						}
-					// During a guessing round
+						doneDraw ();
+					// Guessing round
 					} else {
-						StartCoroutine ("doneGuessing");
-						reset = true;
+						doneGuess ();
+						resetScene = true;
 					}
 					// reset timer
 					drawing = !drawing;
 					timer.reset(drawing);
 					next.onClick.AddListener (() => continueGame());
 					rounds--;
-					// Starting to play
-				} else if (!timer.done && !timer.playing) {
-					// Drawing round
+				// Starting to play and timer hasn't counted yet
+				// Prepping stage
+				} else if (!timer.done && !timer.running) {
+					// Drawing Round
 					if (drawing) {
-						next.gameObject.SetActive (false);
-						doneSlideIn.playIn = true;
-						toolSlideIn.playIn = true;
-						swipeManager.gameObject.SetActive (true);
-						StartCoroutine ("startDrawing");
+						prepDraw ();
+						Draw ();
 
-					// Guessing round
+						// Guessing Round
 					} else {
-						image.texture = screenCap.image.texture;
-						screenCap.imagePanel.gameObject.SetActive (false);
-						snap = false;
-						next.gameObject.SetActive (false);
-						doneSlideIn.playIn = true;
-						StartCoroutine ("startGuessing");
-					}
-					timer.startTime ();
-
-
+						prepGuess ();
+						Guess ();
+					}	
 				}
 			}
-
 		}
 
-		IEnumerator startDrawing() {
+		// Loading screen before drawing round starts
+		public void prepDraw() {
+			
+		}
+
+		public void Draw() {
+			// Set Text to the word passed by another player
+			word.text = wordToDraw;
+
+			// UI
+			next.gameObject.SetActive (false);
+			doneSlideIn.playIn = true;
+			toolSlideIn.playIn = true;
+			swipeManager.gameObject.SetActive (true);
+
+			// Begin Drawing Round
+			timer.startTime ();
+			StartCoroutine ("DisplayDrawingWord");
+		}
+
+		// Display the Text passed by another player
+		IEnumerator DisplayDrawingWord() {
+			roundText.text = "Drawing Round";
+			roundText.gameObject.SetActive (true);
+			word.gameObject.SetActive (true);
 			yield return new WaitForSeconds (3);
-			word.enabled = false;
-
+			roundText.gameObject.SetActive (false);
+			word.gameObject.SetActive (false);
 		}
 
-		IEnumerator doneDrawing() {
+		public void doneDraw() {
+			// UI
+			doneSlideOut.playOut = true;
+			toolSlideOut.playOut = true;
+
+			// Disable drawing
+			swipeManager.gameObject.SetActive (false);
+
+			StartCoroutine ("ScreenshotDrawing");
+		}
+
+		IEnumerator ScreenshotDrawing() {
 			yield return new WaitForSeconds (2);
-			screenCap.done ();
+			if (!screenCap.shot) {
+				screenCap.done ();
+			}
 			yield return new WaitForSeconds (1);
 
+			// UI
+			SwipeTrail.singleton.Clear ();
 			screenCap.showImage ();
-
-			snap = true;
-			drawing = false;
-
 			next.gameObject.SetActive (true);
 
+			// Drawing Round complete
+			drawing = false;
 		}
 
+		// Loading screen before guessing round starts
+		public void prepGuess() {
+			
+		}
 
-		IEnumerator startGuessing() {
+		public void Guess() {
+			//Set image to guess to the image passed by another player
+			image.texture = screenCap.image.texture;
+
+			//UI
+			screenCap.imagePanel.gameObject.SetActive (false);
+			next.gameObject.SetActive (false);
+			doneSlideIn.playIn = true;
+
+			// Begin Guessing Round
+			timer.startTime ();
+			StartCoroutine ("GuessRound");
+		}
+
+		IEnumerator GuessRound() {
+			roundText.text = "Guessing Round";
+			roundText.gameObject.SetActive (true);
 			yield return new WaitForSeconds (3);
+			roundText.gameObject.SetActive (false);
 			guessingPanel.gameObject.SetActive (true);
+
 		}
 
-		IEnumerator doneGuessing() {
+		public void doneGuess() {
+			StartCoroutine ("DoneGuessingUI");
+			drawing = true;
+			wordToDraw = guessedInput.text;
+		}
+
+		IEnumerator DoneGuessingUI() {
 			doneSlideOut.playOut = true;
 			yield return new WaitForSeconds (2);
-			next.gameObject.SetActive (true);
 			guessingPanel.gameObject.SetActive (false);
-			drawing = true;
-			wordToDraw = wordGuessed.text;
-
+			guessedWord.text = guessedInput.text;
+			guessedWordPanel.gameObject.SetActive (true);
+			next.gameObject.SetActive (true);
 		}
 
 		public void continueGame() {
@@ -140,13 +182,13 @@ namespace CloseEnough {
 				Destroy(drawingAudio);
 				SceneManager.LoadScene ("Lobby");
 			} else {
-				if (reset) {
+				// After guessing round completes, reload Main scene to start drawing
+				if (resetScene) {
 					SceneManager.LoadScene ("Main");
-					reset = false;
-				} else {
-					timer.playing = false;
-
-				}
+					resetScene = false;
+				} 
+				// Reset timer to not counting down
+				timer.running = false;
 			}
 		}
 	}

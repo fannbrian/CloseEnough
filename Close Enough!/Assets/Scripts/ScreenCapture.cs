@@ -15,7 +15,7 @@ namespace CloseEnough {
 		public RectTransform imagePanel;
 		// Screenshot image for user's drawing 
 		public RawImage image;
-		bool shot = false;
+		public bool shot = false;
 
 	    Camera _camera;
 	    Rect _screenshotRect;

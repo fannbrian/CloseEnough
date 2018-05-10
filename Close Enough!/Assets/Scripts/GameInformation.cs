@@ -11,6 +11,7 @@ namespace CloseEnough {
 		public static int rounds;
 		public static bool initialRound;
 
+
 		void Start() {
 			initialRound = true;
 		}

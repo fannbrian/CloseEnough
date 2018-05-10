@@ -174,5 +174,18 @@ namespace CloseEnough
                 }
             }
         }
+
+		public void Clear()
+		{
+			while (_instantiatedSwipes.Count > 0)
+			{
+				var group = _instantiatedSwipes.Pop();
+
+				foreach(var swipe in group)
+				{
+					Destroy(swipe);
+				}
+			}
+		}
     }
 }

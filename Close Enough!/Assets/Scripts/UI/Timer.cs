@@ -16,7 +16,7 @@ namespace CloseEnough {
 		public Text timesUp;
 		public Text waiting;
 
-		public bool playing = false;
+		public bool running = false;
 		public bool done = false;
 
 		public AudioClip ticker;
@@ -30,6 +30,7 @@ namespace CloseEnough {
 		void Start () {
 			playTick = false;
 			playDing = false;
+			startcountdown.gameObject.SetActive (false);
 			timesUp.gameObject.SetActive (false);
 			waiting.gameObject.SetActive (false);
 			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
@@ -77,7 +78,8 @@ namespace CloseEnough {
 
 		}
 		public void startTime() {
-			playing = true;
+			startcountdown.gameObject.SetActive (true);
+			running = true;
 			StartCoroutine ("count");
 		}
 
