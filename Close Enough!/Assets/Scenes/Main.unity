@@ -4582,7 +4582,6 @@ GameObject:
   - component: {fileID: 1154220187}
   - component: {fileID: 1154220186}
   - component: {fileID: 1154220190}
-  - component: {fileID: 1154220192}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Canvas
@@ -4682,17 +4681,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a34a7c80f77c24e2280f89d3e2ba915f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1154220192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1154220185}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a30eb3012ab214e54a90c609e5a242ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1164895419
@@ -5099,6 +5087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a4b716060ec4ba587033f51401bdec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rounds: 0
   timer: {fileID: 1336669135}
   screenCap: {fileID: 339912226}
   toolSlideOut: {fileID: 56399902}
@@ -5111,6 +5100,7 @@ MonoBehaviour:
   drawingAudio: {fileID: 1606732858}
   swipeManager: {fileID: 1360377385}
   guessedInput: {fileID: 1793868161}
+  wordToDraw: 
   word: {fileID: 1046027501}
   guessedWordPanel: {fileID: 1496392207}
   guessedWord: {fileID: 1995859040}

@@ -13,12 +13,12 @@ namespace CloseEnough
 		public ToolState[] states;
 		public ToolState CurrentState;
 
-		void Start ()
-		{
-			singleton = this;
-			CurrentState = states [0];
+        void Awake()
+        {
+            singleton = this;
+            CurrentState = states[0];
 		}
-
+      
 		/// <summary>
 		/// Checks if the current state is idle.
 		/// </summary>
@@ -35,6 +35,7 @@ namespace CloseEnough
 		public void TransitionState (string stateName)
 		{
             Debug.Log("transitioning to " + stateName);
+			if (CurrentState.Name == stateName) return;
             if (CurrentState.Name == DisableString)
             {
                 if (stateName != IdleString) return;
