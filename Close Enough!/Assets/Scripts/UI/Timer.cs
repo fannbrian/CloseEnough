@@ -25,21 +25,15 @@ namespace CloseEnough {
 		AudioSource aud;
 		Boolean playTick;
 		Boolean playDing;
-
-		void Awake() {
-			aud = GetComponent<AudioSource> ();
-		}
-
+      
 		// Use this for initialization
-		void Start () {
+		void Awake () {
 			playTick = false;
 			playDing = false;
 			startcountdown.gameObject.SetActive (false);
 			timesUp.gameObject.SetActive (false);
 			waiting.gameObject.SetActive (false);
-			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
-//			aud = GetComponent<AudioSource> ();
-
+			aud = GetComponent<AudioSource> ();         
 		}
 
 		// Update is called once per frame
