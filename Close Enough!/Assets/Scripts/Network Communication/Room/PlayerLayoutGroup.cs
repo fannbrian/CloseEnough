@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Photon;
+using System.Linq;
 
 namespace CloseEnough
 {
@@ -39,7 +40,7 @@ namespace CloseEnough
                 PlayerListings.RemoveAt(0);
             }
 			Debug.Log("Initializing Room Listings");
-			PhotonPlayer[] photonPlayers = PhotonNetwork.playerList;
+			PhotonPlayer[] photonPlayers = PhotonNetwork.playerList.OrderBy(p => p.ID).ToArray();
 			Debug.Log(photonPlayers.Length + " players detected");
             for (int i = 0; i < photonPlayers.Length; i++)
             {

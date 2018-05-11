@@ -22,18 +22,16 @@ namespace CloseEnough
 			var currentIndex = (GameData.CurrentRound + GameData.InitialIndex) % GameData.PlayerCount;
 			var nodes = GameData.DrawingStacks[currentIndex].Nodes;
 			var node = nodes[nodes.Count - 1];
-
-			Debug.Log("Your word is: " + node.Word);
-
+         
 			GamePlay.instance.wordToDraw = node.Word;         
 			GamePlay.instance.Draw();
 		}
+
 		public override void OnExit()
 		{
 			GameData.PlayersDone -= GameData.PlayerCount;
-            GameData.CurrentRound++;
 			PanelReference.singleton.WaitingPanel.SetActive(false);
-			PanelReference.singleton.DrawingPanel.SetActive(true);
+			PanelReference.singleton.DrawingPanel.SetActive(false);
 		}
 	}
 }

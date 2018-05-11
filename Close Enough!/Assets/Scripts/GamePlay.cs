@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 namespace CloseEnough {
 	public class GamePlay : MonoBehaviour {
 		public static GamePlay instance;
-		public int rounds = GameInformation.rounds;
+		public int rounds = 1;
 
 		public Timer timer;
 		public ScreenCapture screenCap;
@@ -27,15 +27,20 @@ namespace CloseEnough {
 		public InputField guessedInput;
 		public string wordToDraw;
 		public Text word;
-		public RectTransform guessedWordPanel;
-		public Text guessedWord;
 		public Text roundText;
+
+		bool _isRoundDone;
+
+		public bool IsRoundDone() {
+			return _isRoundDone;
+		}
 
 		void Awake() {
 			instance = this;
 			isDrawing = true;
 
 			next.gameObject.SetActive (false);
+			rounds = PhotonNetwork.playerList.Length;
 		}
               
 		// Loading screen before drawing round starts
@@ -44,8 +49,14 @@ namespace CloseEnough {
 		}
 
 		public void Draw() {
+			_isRoundDone = false;
 			// Set Text to the word passed by another player
-			word.text = "Your word is: \n"+wordToDraw;
+			if (wordToDraw == "") {
+				word.text = "...they didn't guess.\nFeel free to draw anything.";
+			}
+			else {
+                word.text = "Your word is: \n" + wordToDraw;
+			}
 
 			// UI
 			next.gameObject.SetActive (false);
@@ -55,8 +66,8 @@ namespace CloseEnough {
 			isDrawing = true;
 
 			// Begin Drawing Round
-			timer.reset(isDrawing);
-			timer.startTime ();
+			timer.ResetTimer(isDrawing);
+			timer.StartTimer();
 			StartCoroutine ("DisplayDrawingWord");
 		}
 
@@ -76,13 +87,21 @@ namespace CloseEnough {
 			doneSlide.PlayAnimation(false);
 			toolSlide.PlayAnimation(false);
 
-            // Disable drawing
-			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
-			Screenshot();
-			Invoke("DrawWaiting", .5f);
+			// Disable drawing
+			Invoke("Screenshot", .5f);
+			Invoke("DrawWaiting", .8f);
 		}
 
-		public void TimerDone() {
+		public void FinishRound() {
+			if (_isRoundDone) return;
+			_isRoundDone = true;
+
+			PanelReference.singleton.WarningPanel.SetActive(false);
+
+			if (isDrawing) {
+				ToolsStateManager.singleton.Enable(false);
+			}
+
 			if (isDrawing) {
 				doneDraw();
 			}
@@ -116,48 +135,50 @@ namespace CloseEnough {
 
 		// Loading screen before guessing round starts
 		public void prepGuess() {
-			
 		}
 
 		public void Guess() {
+			_isRoundDone = false;
+
 			//Set image to guess to the image passed by another player
 			image.texture = screenCap.image.texture;
 
 			//UI
 			screenCap.imagePanel.gameObject.SetActive (false);
 			next.gameObject.SetActive (false);
-			doneSlide.PlayAnimation(true);
 			isDrawing = false;
 
 			// Begin Guessing Round
-			timer.reset(isDrawing);
-			timer.startTime ();
-			StartCoroutine ("GuessRound");
+			timer.ResetTimer(isDrawing);
+			timer.StartTimer();
+
+            roundText.text = "Guessing Round";
+			roundText.gameObject.SetActive(true);
+			Invoke("DisableGuessRound", 3);
 		}
 
-		IEnumerator GuessRound() {
-			roundText.text = "Guessing Round";
-			roundText.gameObject.SetActive (true);
-			yield return new WaitForSeconds (3);
+		void DisableGuessRound() {
 			roundText.gameObject.SetActive (false);
-			guessingPanel.gameObject.SetActive (true);
-
+			guessingPanel.gameObject.SetActive (true);         
 		}
 
-		public void doneGuess() {
+		public void doneGuess() {         
 			StartCoroutine ("DoneGuessingUI");
-			isDrawing = true;
 			wordToDraw = guessedInput.text;
+
+            var node = new StackNode(PhotonNetwork.player.ID, wordToDraw);
+            var nodeBytes = ByteSerializer<StackNode>.Serialize(node);
+
+            PanelReference.singleton.WaitingPanel.SetActive(true);
+            var currentIndex = (GameData.CurrentRound + GameData.InitialIndex) % GameData.PlayerCount;
+            GameData.LocalView.RPC("SendNode", PhotonTargets.All, currentIndex, nodeBytes);
 		}
 
 		IEnumerator DoneGuessingUI() {
 			doneSlide.PlayAnimation(false);
 			yield return new WaitForSeconds (2);
 			guessingPanel.gameObject.SetActive (false);
-			guessedWord.text = guessedInput.text;
-			guessedWordPanel.gameObject.SetActive (true);
 			next.gameObject.SetActive (true);
 		}
-
 	}
 }

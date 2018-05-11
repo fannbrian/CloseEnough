@@ -17,10 +17,10 @@ namespace CloseEnough
 		public void StartGame(int[] order, byte[] nodeBytes) {
 			GameData.DrawingStacks = ByteSerializer<DrawingStack[]>.Deserialize(nodeBytes);
 			GameData.PlayerOrder = order;
-
-			foreach(var index in order) {
-				if (index == PhotonNetwork.player.ID) {
-					GameData.InitialIndex = index;
+            
+			for (int i = 0; i < order.Length; i++) {
+				if (order[i] == PhotonNetwork.player.ID) {
+					GameData.InitialIndex = i;
 				}
 			}
 
@@ -44,6 +44,7 @@ namespace CloseEnough
 			GameData.DrawingStacks[index].Nodes.Add(node);
 			GameData.PlayersDone++;
 			if (GameData.PlayersDone >= GameData.PlayerCount) {
+                GameData.CurrentRound++;
 				GameStateManager.singleton.TransitionNextState();
 			}
 		}

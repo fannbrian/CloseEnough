@@ -6,7 +6,13 @@ namespace CloseEnough
 	{
 		public override BaseGameState GetNextState()
 		{
-			return null;
+			return new MenuState();
+		}
+
+		public override void OnEnter()
+		{
+			Timer.instance.ResetTimer(false);
+			PanelReference.singleton.GalleryPanel.SetActive(true);
 		}
 	}
 }

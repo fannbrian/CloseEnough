@@ -36,7 +36,6 @@ namespace CloseEnough
 		public override void OnExit()
 		{
 			GameData.PlayersDone -= GameData.PlayerCount;
-			GameData.CurrentRound++;
 			PanelReference.singleton.WaitingPanel.SetActive(false);
 			PanelReference.singleton.GuessingPanel.SetActive(false);
 		}

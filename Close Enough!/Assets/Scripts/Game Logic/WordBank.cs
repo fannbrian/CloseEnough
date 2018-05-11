@@ -26,7 +26,6 @@
             "Biscuit",
             "Sickness",
             "Pizza",
-            "Champion",
             "Stranger",
             "Firefighter",
             "Ice",
@@ -41,9 +40,7 @@
             "Frankenstein",
             "Zombie",
             "Kite",
-            "Psychic",
             "Lover",
-            "Romeo and Juliet",
             "Lipstick",
             "Butter",
             "Bear",
@@ -66,7 +63,22 @@
             "Island",
             "Onion",
             "Password",
-            "School"         
+            "School",
+            "Chopsticks",
+            "Emergency",
+            "Wizard",
+            "Car",
+            "Rain",
+            "Hair",
+            "Truck",
+            "Airplane",
+            "Map",
+            "Scale",
+            "Shadow",
+            "Night",
+            "Bedtime",
+            "Alarm",
+            "Idea"
 		};
 	}
 }

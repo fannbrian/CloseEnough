@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine.SceneManagement;
 
 namespace CloseEnough
 {
@@ -9,6 +7,12 @@ namespace CloseEnough
 		public override BaseGameState GetNextState()
 		{
 			return new InitialState();
+		}
+
+		public override void OnEnter()
+		{
+			PhotonNetwork.automaticallySyncScene = false;
+			SceneManager.LoadScene("Menu Navigation");
 		}
 
 		public override void OnExit()

@@ -28,6 +28,19 @@ namespace CloseEnough
 			return CurrentState.Name.Equals (IdleString);
 		}
 
+        /// <summary>
+        /// Enables or disables drawing.
+        /// </summary>
+        /// <param name="enable">If set to <c>true</c> enable.</param>
+		public void Enable(bool enable) {
+			if (enable) {
+				TransitionState(IdleString);
+			}
+			else {
+				TransitionState(DisableString);
+			}
+		}
+
 		/// <summary>
 		/// Calls the current state's exit method and calls the next state's enter method.
 		/// </summary>
@@ -35,17 +48,16 @@ namespace CloseEnough
 		public void TransitionState (string stateName)
 		{
             Debug.Log("transitioning to " + stateName);
-			if (CurrentState.Name == stateName) return;
             if (CurrentState.Name == DisableString)
             {
                 if (stateName != IdleString) return;
             }
 
 			foreach (var state in states) {
-				if (!state.Name.Equals (stateName))
+				if (state.Name != stateName)
 					continue;
 
-				if (CurrentState == state) {
+				if (CurrentState == state && state.Name != IdleString) {
 					TransitionState (IdleString);
 					return;
 				}
@@ -71,6 +83,11 @@ namespace CloseEnough
             if (Input.touchCount > 0)
             {
                 var pos = Input.GetTouch(0).position;
+
+                if (!UIRaycastDetector.singleton.IsPositionOverUI(pos))
+                {
+                    TransitionState(IdleString);
+                }
             }
 			else if (Input.GetMouseButton (0)) {
 				var pos = Input.mousePosition;
