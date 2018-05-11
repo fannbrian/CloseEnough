@@ -7,15 +7,8 @@ namespace CloseEnough {
 	
 	public class NextButtonPressed : MonoBehaviour {
 
-		public Timer timer;
-
 		public void goToLobby() {
-			
 			SceneManager.LoadScene ("Lobby");
-		}
-			
-		public void continueGame() {
-			timer.playing = false;
 		}
 	}
 

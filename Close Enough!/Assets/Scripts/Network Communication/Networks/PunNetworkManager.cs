@@ -21,12 +21,15 @@ namespace CloseEnough
 
         public PunNetworkManager()
         {
+            IsConnected = true;
             singleton = this;
         }
 
         private void Connect()
         {
-            PhotonNetwork.ConnectUsingSettings("0.0.0");
+			PhotonNetwork.ConnectUsingSettings("0.0.0");
+            PhotonNetwork.automaticallySyncScene = true;
+			PhotonNetwork.autoJoinLobby = false;
         }
 
         private void Awake()
@@ -48,18 +51,33 @@ namespace CloseEnough
             _timeElapsed = 0;
             Connect();
         }
-        public override void OnFailedToConnectToPhoton(DisconnectCause cause)
+
+		/// <summary>
+		/// If connection to photon failed, set IsConnected to false.
+		/// </summary>
+		/// <param name="cause">Cause.</param>
+		public override void OnFailedToConnectToPhoton(DisconnectCause cause)
         {
             IsConnected = false;
             base.OnFailedToConnectToPhoton(cause);
         }
 
+
+        /// <summary>
+        /// If connection failed, set IsConnected to false.
+        /// </summary>
+        /// <param name="cause">Cause.</param>
         public override void OnConnectionFail(DisconnectCause cause)
         {
             IsConnected = false;
             base.OnConnectionFail(cause);
         }
 
+
+        /// <summary>
+        /// If disconnected, set IsConnected to false.
+        /// </summary>
+        /// <param name="cause">Cause.</param>
         public override void OnDisconnectedFromPhoton()
         {
             IsConnected = false;

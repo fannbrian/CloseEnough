@@ -37,4 +37,10 @@ MonoBehaviour:
   - RequestForPickupItems
   - RequestForPickupTimes
   - ClientJoinedMatch
+  - ImHere
+  - TestRpc
+  - AddPlayerName
+  - SendNode
+  - GameLoaded
+  - StartGame
   DisableAutoOpenWizard: 1

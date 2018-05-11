@@ -10,12 +10,11 @@ namespace CloseEnough {
 	    bool grab;
 		Texture2D receivedTexture;
 
-		private Texture2D texture;
+		public Texture2D texture;
 
 		public RectTransform imagePanel;
 		// Screenshot image for user's drawing 
 		public RawImage image;
-		bool shot = false;
 
 	    Camera _camera;
 	    Rect _screenshotRect;
@@ -46,22 +45,27 @@ namespace CloseEnough {
 
 	        return new Rect(x, y, size.x, size.y);
 	    }
+
+		public Vector2 GetTextureSize() {
+			return Vector2.Scale(rectTransform.rect.size, rectTransform.lossyScale);
+		}
 	    
 		// Screen capture 
-		public void done() {
-			if (!shot) {
-				StartCoroutine ("Capture");
-			}
+		public void Screenshot() {
+			StartCoroutine ("Capture");
+		}
+
+		public void SetImage(Texture2D img) {
+			image.texture = img;
 		}
 
 		IEnumerator Capture() {
 			yield return new WaitForEndOfFrame ();
-			texture.ReadPixels(_screenshotRect, 0, 0, false);
-			texture.Apply();
+
+            texture.ReadPixels(_screenshotRect, 0, 0, false);
+            texture.Apply();
 
 			image.texture = texture;
-
-			shot = true;
 		}
 
 		public void showImage() {
