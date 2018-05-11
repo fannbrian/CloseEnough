@@ -10,21 +10,21 @@ public class ToolsSlide : MonoBehaviour {
 	public bool playIn;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		anim = GetComponent<Animator> ();
 		playOut = false;
 		playIn = false;
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (playOut) {
-			anim.Play ("ToolSlideOut");
-			playOut = false;
-		} else if (playIn) {
-			anim.Play ("ToolSlideIn");
-			playIn = false;
-		}
-	}
-
+    public void PlayAnimation(bool isIn)
+    {
+        if (isIn)
+        {
+            anim.Play("ToolSlideIn");
+        }
+        else
+        {
+            anim.Play("ToolSlideOut");
+        }
+    }   
 }

@@ -12,5 +12,6 @@ namespace CloseEnough
 		public static DrawingStack[] DrawingStacks;
 		public static DrawingStack CurrentStack;
 		public static int InitialIndex;
+		public static int PlayersDone;
 	}
 }

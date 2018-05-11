@@ -39,10 +39,13 @@ namespace CloseEnough
 		}
 
         [PunRPC]
-		public void SendNode(byte[] nodeBytes) {
+		public void SendNode(int index, byte[] nodeBytes) {
 			var node = ByteSerializer<StackNode>.Deserialize(nodeBytes);
-			var nodeData = node.Owner + ": " + node.Type + ", " + node.Word;
-			GameData.PlayerNames += nodeData;
+			GameData.DrawingStacks[index].Nodes.Add(node);
+			GameData.PlayersDone++;
+			if (GameData.PlayersDone >= GameData.PlayerCount) {
+				GameStateManager.singleton.TransitionNextState();
+			}
 		}
 
 		[PunRPC]

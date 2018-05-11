@@ -12,14 +12,13 @@ namespace CloseEnough {
 
 		public Timer timer;
 		public ScreenCapture screenCap;
-
-		private bool drawing;
+        
+		public bool isDrawing;
 
 		// UI
-		public ToolsSlide toolSlideOut;
-		public DoneSlide doneSlideOut;
-		public ToolsSlide toolSlideIn;
-		public DoneSlide doneSlideIn;
+		public ToolsSlide toolSlide;
+		public DoneSlide doneSlide;
+
 		public RectTransform guessingPanel;
 		public RawImage image;
 		public Button next;
@@ -32,53 +31,13 @@ namespace CloseEnough {
 		public Text guessedWord;
 		public Text roundText;
 
-		private bool resetScene;
-        
-		void Start() {
+		void Awake() {
 			instance = this;
-			drawing = true;
-			resetScene = false;
+			isDrawing = true;
 
-			guessingPanel.gameObject.SetActive (false);
-			next.gameObject.SetActive (false);         
+			next.gameObject.SetActive (false);
 		}
-
-		void Update () {
-			// If the game is in play
-			if (rounds > 0) {
-				// If a round is complete and timer just finished counting down
-				// Ending stage
-				if (timer.done && timer.running) {
-					// Drawing round
-					if (drawing) {
-						doneDraw ();
-					// Guessing round
-					} else {
-						doneGuess ();
-						resetScene = true;
-					}
-					// reset timer
-					drawing = !drawing;
-					timer.reset(drawing);
-					next.onClick.AddListener (() => continueGame());
-					rounds--;
-				// Starting to play and timer hasn't counted yet
-				// Prepping stage
-				} else if (!timer.done && !timer.running) {
-					// Drawing Round
-					if (drawing) {
-//						prepDraw ();
-//						Draw ();
-
-						// Guessing Round
-					} else {
-						prepGuess ();
-						Guess ();
-					}	
-				}
-			}
-		}
-
+              
 		// Loading screen before drawing round starts
 		public void prepDraw() {
 			
@@ -86,15 +45,17 @@ namespace CloseEnough {
 
 		public void Draw() {
 			// Set Text to the word passed by another player
-			word.text = wordToDraw;
+			word.text = "Your word is: \n"+wordToDraw;
 
 			// UI
 			next.gameObject.SetActive (false);
-			doneSlideIn.playIn = true;
-			toolSlideIn.playIn = true;
+			doneSlide.PlayAnimation(true);
+			toolSlide.PlayAnimation(true);
 			swipeManager.gameObject.SetActive (true);
+			isDrawing = true;
 
 			// Begin Drawing Round
+			timer.reset(isDrawing);
 			timer.startTime ();
 			StartCoroutine ("DisplayDrawingWord");
 		}
@@ -108,32 +69,49 @@ namespace CloseEnough {
 			roundText.gameObject.SetActive (false);
 			word.gameObject.SetActive (false);
 		}
-
+        
 		public void doneDraw() {
-			// UI
-			doneSlideOut.playOut = true;
-			toolSlideOut.playOut = true;
+			Debug.Log("Done Draw");
+			// UI         
+			doneSlide.PlayAnimation(false);
+			toolSlide.PlayAnimation(false);
 
-			// Disable drawing
-			swipeManager.gameObject.SetActive (false);
-
-			StartCoroutine ("ScreenshotDrawing");
+            // Disable drawing
+			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
+			Screenshot();
+			Invoke("DrawWaiting", .5f);
 		}
 
-		IEnumerator ScreenshotDrawing() {
-			yield return new WaitForSeconds (2);
-			if (!screenCap.shot) {
-				screenCap.done ();
+		public void TimerDone() {
+			if (isDrawing) {
+				doneDraw();
 			}
-			yield return new WaitForSeconds (1);
+			else {
+				doneGuess();
+			}
+		}
 
-			// UI
-			SwipeTrail.singleton.Clear ();
-			screenCap.showImage ();
-			next.gameObject.SetActive (true);
+		void Screenshot() {
+			screenCap.Screenshot();
+		}
 
-			// Drawing Round complete
-			drawing = false;
+		void DrawWaiting() {
+			var texBytes = screenCap.texture.EncodeToJPG();
+
+            // UI
+            SwipeTrail.singleton.Clear();
+            //screenCap.showImage();
+            next.gameObject.SetActive(true);
+
+            // Drawing Round complete
+            isDrawing = false;
+                     
+			var node = new StackNode(PhotonNetwork.player.ID, texBytes);
+			var nodeBytes = ByteSerializer<StackNode>.Serialize(node);
+
+			PanelReference.singleton.WaitingPanel.SetActive(true);
+            var currentIndex = (GameData.CurrentRound + GameData.InitialIndex) % GameData.PlayerCount;
+			GameData.LocalView.RPC("SendNode", PhotonTargets.All, currentIndex, nodeBytes);
 		}
 
 		// Loading screen before guessing round starts
@@ -148,9 +126,11 @@ namespace CloseEnough {
 			//UI
 			screenCap.imagePanel.gameObject.SetActive (false);
 			next.gameObject.SetActive (false);
-			doneSlideIn.playIn = true;
+			doneSlide.PlayAnimation(true);
+			isDrawing = false;
 
 			// Begin Guessing Round
+			timer.reset(isDrawing);
 			timer.startTime ();
 			StartCoroutine ("GuessRound");
 		}
@@ -166,12 +146,12 @@ namespace CloseEnough {
 
 		public void doneGuess() {
 			StartCoroutine ("DoneGuessingUI");
-			drawing = true;
+			isDrawing = true;
 			wordToDraw = guessedInput.text;
 		}
 
 		IEnumerator DoneGuessingUI() {
-			doneSlideOut.playOut = true;
+			doneSlide.PlayAnimation(false);
 			yield return new WaitForSeconds (2);
 			guessingPanel.gameObject.SetActive (false);
 			guessedWord.text = guessedInput.text;
@@ -179,19 +159,5 @@ namespace CloseEnough {
 			next.gameObject.SetActive (true);
 		}
 
-		public void continueGame() {
-			if (rounds <= 0) {
-				Destroy(drawingAudio);
-				SceneManager.LoadScene ("Lobby");
-			} else {
-				// After guessing round completes, reload Main scene to start drawing
-				if (resetScene) {
-					SceneManager.LoadScene ("Main");
-					resetScene = false;
-				} 
-				// Reset timer to not counting down
-				timer.running = false;
-			}
-		}
 	}
 }

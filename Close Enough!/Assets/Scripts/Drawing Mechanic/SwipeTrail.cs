@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CloseEnough
 {
@@ -19,10 +20,10 @@ namespace CloseEnough
         List<Vector3> _positions;
         Vector3 _vertex;
         Stack<List<GameObject>> _instantiatedSwipes;
-        LineRenderer _renderer;
+		LineRenderer _renderer;
         bool _isDrawing;
 
-        void Start()
+        void Awake()
         {
             singleton = this;
             _positions = new List<Vector3>();
@@ -30,7 +31,7 @@ namespace CloseEnough
             _isDrawing = false;
         }
 
-        GameObject CreateSwipe(Vector3[] positions) {
+		GameObject CreateSwipe(Vector3[] positions) {
             _positions.Clear();
 
             foreach(var pos in positions) {
@@ -54,9 +55,9 @@ namespace CloseEnough
         }
 
         public void StartSwipe(Vector3 position)
-        {
+		{
             if (ToolsStateManager.singleton.CurrentState.Name == ToolsStateManager.singleton.DisableString) return;
-            if (UIRaycastDetector.singleton.IsPositionOverUI(position)) return;
+			if (UIRaycastDetector.singleton.IsPositionOverUI(position)) return;
 
             var group = new List<GameObject>();
             _instantiatedSwipes.Push(group);
@@ -143,7 +144,7 @@ namespace CloseEnough
             {
                 _isDrawing = false;
             }
-#elif UNITY_EDITOR
+#elif UNITY_EDITOR || UNITY_STANDALONE || UNITY_STANDALONE_OSX
         var targetPos = Input.mousePosition;
 
 

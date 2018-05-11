@@ -10,22 +10,18 @@ public class DoneSlide : MonoBehaviour {
 	public bool playOut;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		anim = GetComponent<Animator> ();
 		playIn = false;
-		playOut = false;
-
+		playOut = false;      
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (playIn) {
-			anim.Play ("DoneSlideIn");
-			playIn = false;
-		} else if (playOut) {
-			anim.Play ("DoneSlideOut");
-			playOut = false;
+	public void PlayAnimation(bool isIn) {
+		if (isIn) {
+			anim.Play("DoneSlideIn");
+		}
+		else {
+			anim.Play("DoneSlideOut");
 		}
 	}
-
 }

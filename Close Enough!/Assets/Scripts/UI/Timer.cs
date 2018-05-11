@@ -18,6 +18,7 @@ namespace CloseEnough {
 
 		public bool running = false;
 		public bool done = false;
+		public bool isComplete = false;
 
 		public AudioClip ticker;
 		public AudioClip ding;
@@ -33,7 +34,7 @@ namespace CloseEnough {
 			startcountdown.gameObject.SetActive (false);
 			timesUp.gameObject.SetActive (false);
 			waiting.gameObject.SetActive (false);
-			aud = GetComponent<AudioSource> ();         
+			aud = GetComponent<AudioSource> ();
 		}
 
 		// Update is called once per frame
@@ -41,8 +42,9 @@ namespace CloseEnough {
 			if (timer <= 3 && !playTick) {
 				StartCoroutine(PlayAudio (timer));
 				playTick = true;
+				isComplete = false;
 			}
-			else if (timer == 0) {
+			else if (timer == 0 && !isComplete) {
 				ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
 				if (!playDing) {
 					aud.PlayOneShot (ding);
@@ -50,7 +52,10 @@ namespace CloseEnough {
 					StopCoroutine ("endTime");
 					playDing = true;
 				}
-				StartCoroutine ("complete");
+				if (!isComplete) {               
+                    StartCoroutine("complete");
+					isComplete = true;
+				}
 			}
 			else if (timer < 10) {
 				countdown.text = ":0" + timer;
@@ -70,16 +75,19 @@ namespace CloseEnough {
 				starttimer--;
 				yield return new WaitForSeconds (1);
 			}
+			Debug.Log("Disabling All");
 			startcountdown.enabled = false;
 			Debug.Log(ToolsStateManager.singleton.CurrentState.Name);
    			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.IdleString);
 			StartCoroutine ("endTime");
 
 		}
-		public void startTime() {
-			startcountdown.gameObject.SetActive (true);
+
+		public void startTime()
+		{
+			startcountdown.gameObject.SetActive(true);
 			running = true;
-			StartCoroutine ("count");
+			StartCoroutine("count");
 		}
 
 		IEnumerator endTime() {
@@ -98,11 +106,12 @@ namespace CloseEnough {
 		}
 
 		IEnumerator complete() {
+			Debug.Log("Complete");
 			waiting.gameObject.SetActive (false);
 			timesUp.gameObject.SetActive (true);
 			yield return new WaitForSeconds (2);
-			timesUp.gameObject.SetActive (false);
-
+			timesUp.gameObject.SetActive (false);            
+			GamePlay.instance.TimerDone();
 		}
 
 		public void reset(bool drawing) {

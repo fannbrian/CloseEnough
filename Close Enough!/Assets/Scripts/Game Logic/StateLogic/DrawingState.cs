@@ -16,6 +16,7 @@ namespace CloseEnough
 
 		public override void OnEnter()
 		{
+			GameData.PlayersDone = 0;
             PanelReference.singleton.DrawingPanel.SetActive(true);
 
 			var currentIndex = (GameData.CurrentRound + GameData.InitialIndex) % GameData.PlayerCount;
@@ -29,6 +30,9 @@ namespace CloseEnough
 		}
 		public override void OnExit()
 		{
+			GameData.PlayersDone -= GameData.PlayerCount;
+            GameData.CurrentRound++;
+			PanelReference.singleton.WaitingPanel.SetActive(false);
 			PanelReference.singleton.DrawingPanel.SetActive(true);
 		}
 	}

@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PanelReference : MonoBehaviour {
-	public GameObject InitialPanel;
+	public GameObject WaitingPanel;
 	public GameObject DrawingPanel;
 	public GameObject GuessingPanel;
 	public GameObject GalleryPanel;
