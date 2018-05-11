@@ -2995,7 +2995,6 @@ GameObject:
   m_Component:
   - component: {fileID: 753743324}
   - component: {fileID: 753743326}
-  - component: {fileID: 753743327}
   m_Layer: 5
   m_Name: Waiting Panel
   m_TagString: Untagged
@@ -3028,19 +3027,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 753743323}
---- !u!114 &753743327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 753743323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7083b981e5b477a41a2025a0ddf1c040, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalDots: 3
-  animationRate: 5
 --- !u!1 &770943768
 GameObject:
   m_ObjectHideFlags: 0
@@ -8934,7 +8920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 11.94558, y: 16.472153}
+  m_AnchoredPosition: {x: 11.94558, y: 16.472107}
   m_SizeDelta: {x: 344.1, y: 40.399994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1829259127
