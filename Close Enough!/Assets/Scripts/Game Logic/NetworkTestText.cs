@@ -16,7 +16,7 @@ namespace CloseEnough
 		// Update is called once per frame
 		void Update()
 		{
-			text.text = GameData.PlayerNames;
+			text.text = GameData.instance.PlayerNames;
 		}
 	}
 }

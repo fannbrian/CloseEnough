@@ -6,4 +6,13 @@ public class SceneLoader : MonoBehaviour {
 	{
         SceneManager.LoadSceneAsync(scene);
 	}
+
+    public void PhotonLoad(string scene)
+    {
+        if (PhotonNetwork.isMasterClient)
+        {
+            PhotonNetwork.room.IsOpen = false;
+            PhotonNetwork.LoadLevel(scene);
+        }
+    }
 }

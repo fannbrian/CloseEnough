@@ -9,14 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Title Screen.unity
     guid: 8f249f6b1635e482881c5f0b31502d67
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: b42edf68166d948bc843aad40004066e
-  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: bf735274fbcda460692cee073919c11a
   - enabled: 1
     path: Assets/Scenes/Menu Navigation.unity
     guid: 095c790b54a7c0849932e28597b85e72
-  - enabled: 0
-    path: Assets/Scenes/NetworkTestScene.unity
-    guid: 4508d8111482541d69fd998411a032cc

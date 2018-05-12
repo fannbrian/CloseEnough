@@ -6,7 +6,7 @@ namespace CloseEnough
     {
         public override BaseGameState GetNextState()
 		{
-            if (GameData.CurrentRound < GameData.PlayerCount)
+            if (GameData.instance.CurrentRound < GameData.instance.PlayerCount)
             {
 				return new GuessingState();
             }
@@ -16,11 +16,11 @@ namespace CloseEnough
 
 		public override void OnEnter()
 		{
-			GameData.PlayersDone = 0;
+			GameData.instance.PlayersDone = 0;
             PanelReference.singleton.DrawingPanel.SetActive(true);
 
-			var currentIndex = (GameData.CurrentRound + GameData.InitialIndex) % GameData.PlayerCount;
-			var nodes = GameData.DrawingStacks[currentIndex].Nodes;
+			var currentIndex = (GameData.instance.CurrentRound + GameData.instance.InitialIndex) % GameData.instance.PlayerCount;
+			var nodes = GameData.instance.DrawingStacks[currentIndex].Nodes;
 			var node = nodes[nodes.Count - 1];
          
 			GamePlay.instance.wordToDraw = node.Word;         
@@ -29,7 +29,7 @@ namespace CloseEnough
 
 		public override void OnExit()
 		{
-			GameData.PlayersDone -= GameData.PlayerCount;
+            GameData.instance.PlayersDone = 0;
 			PanelReference.singleton.WaitingPanel.SetActive(false);
 			PanelReference.singleton.DrawingPanel.SetActive(false);
 		}

@@ -83,7 +83,7 @@ namespace CloseEnough {
         
 		public void doneDraw() {
 			Debug.Log("Done Draw");
-			// UI         
+			// UI
 			doneSlide.PlayAnimation(false);
 			toolSlide.PlayAnimation(false);
 
@@ -129,8 +129,8 @@ namespace CloseEnough {
 			var nodeBytes = ByteSerializer<StackNode>.Serialize(node);
 
 			PanelReference.singleton.WaitingPanel.SetActive(true);
-            var currentIndex = (GameData.CurrentRound + GameData.InitialIndex) % GameData.PlayerCount;
-			GameData.LocalView.RPC("SendNode", PhotonTargets.All, currentIndex, nodeBytes);
+            var currentIndex = (GameData.instance.CurrentRound + GameData.instance.InitialIndex) % GameData.instance.PlayerCount;
+			GameData.instance.LocalView.RPC("SendNode", PhotonTargets.All, currentIndex, nodeBytes);
 		}
 
 		// Loading screen before guessing round starts
@@ -170,8 +170,8 @@ namespace CloseEnough {
             var nodeBytes = ByteSerializer<StackNode>.Serialize(node);
 
             PanelReference.singleton.WaitingPanel.SetActive(true);
-            var currentIndex = (GameData.CurrentRound + GameData.InitialIndex) % GameData.PlayerCount;
-            GameData.LocalView.RPC("SendNode", PhotonTargets.All, currentIndex, nodeBytes);
+            var currentIndex = (GameData.instance.CurrentRound + GameData.instance.InitialIndex) % GameData.instance.PlayerCount;
+            GameData.instance.LocalView.RPC("SendNode", PhotonTargets.All, currentIndex, nodeBytes);
 		}
 
 		IEnumerator DoneGuessingUI() {

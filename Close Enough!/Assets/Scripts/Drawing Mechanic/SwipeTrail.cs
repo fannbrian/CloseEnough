@@ -57,7 +57,7 @@ namespace CloseEnough
         public void StartSwipe(Vector3 position)
 		{
             if (ToolsStateManager.singleton.CurrentState.Name == ToolsStateManager.singleton.DisableString) return;
-			if (UIRaycastDetector.singleton.IsPositionOverUI(position)) return;
+            if (UIRaycastDetector.singleton.IsPositionOverUI(position)) return;
 
             var group = new List<GameObject>();
             _instantiatedSwipes.Push(group);
@@ -102,7 +102,7 @@ namespace CloseEnough
         void UpdateSwipe(Vector3 position)
         {
             _isDrawing = false;
-
+            
             if (ToolsStateManager.singleton.CurrentState.Name == ToolsStateManager.singleton.DisableString) return;
             if (_instantiatedSwipes.Count <= 0) return;
 

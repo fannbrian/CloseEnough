@@ -15,16 +15,16 @@ namespace CloseEnough
 	{
 		[PunRPC]
 		public void StartGame(int[] order, byte[] nodeBytes) {
-			GameData.DrawingStacks = ByteSerializer<DrawingStack[]>.Deserialize(nodeBytes);
-			GameData.PlayerOrder = order;
+			GameData.instance.DrawingStacks = ByteSerializer<DrawingStack[]>.Deserialize(nodeBytes);
+			GameData.instance.PlayerOrder = order;
             
 			for (int i = 0; i < order.Length; i++) {
 				if (order[i] == PhotonNetwork.player.ID) {
-					GameData.InitialIndex = i;
+					GameData.instance.InitialIndex = i;
 				}
 			}
 
-			foreach(var stack in GameData.DrawingStacks) {
+			foreach(var stack in GameData.instance.DrawingStacks) {
 				foreach(var node in stack.Nodes) {
 					Debug.Log(node.Owner + ": " + node.Type + ", " + node.Word);
 				}
@@ -41,23 +41,23 @@ namespace CloseEnough
         [PunRPC]
 		public void SendNode(int index, byte[] nodeBytes) {
 			var node = ByteSerializer<StackNode>.Deserialize(nodeBytes);
-			GameData.DrawingStacks[index].Nodes.Add(node);
-			GameData.PlayersDone++;
-			if (GameData.PlayersDone >= GameData.PlayerCount) {
-                GameData.CurrentRound++;
+			GameData.instance.DrawingStacks[index].Nodes.Add(node);
+			GameData.instance.PlayersDone++;
+			if (GameData.instance.PlayersDone >= GameData.instance.PlayerCount) {
+                GameData.instance.CurrentRound++;
 				GameStateManager.singleton.TransitionNextState();
 			}
 		}
 
 		[PunRPC]
 		public void GameLoaded() {
-			GameData.PlayerCount++;
+			GameData.instance.PlayerCount++;
 			if (PhotonNetwork.isMasterClient) {
 				var gameHandler = InitialGameHandler.singleton;
-
+                
 				if (gameHandler == null) return;
-
-				gameHandler.TryStartGame();
+                
+                gameHandler.TryStartGame();
 			}
 		}
 	}

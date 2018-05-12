@@ -6,7 +6,9 @@ using System.Collections.Generic;
 public class UIRaycastDetector : MonoBehaviour
 {
     public static UIRaycastDetector singleton;
-    
+
+    public GameObject DrawingPanel;
+
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;

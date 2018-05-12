@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using UnityEngine.SceneManagement;
 
 namespace CloseEnough
 {
@@ -6,7 +6,7 @@ namespace CloseEnough
 	{
 		public override BaseGameState GetNextState()
 		{
-			return new MenuState();
+            return null;
 		}
 
 		public override void OnEnter()
@@ -14,5 +14,11 @@ namespace CloseEnough
 			Timer.instance.ResetTimer(false);
 			PanelReference.singleton.GalleryPanel.SetActive(true);
 		}
-	}
+
+        public override void OnExit()
+        {
+            PhotonNetwork.LeaveRoom(false);
+            SceneManager.LoadScene("Menu Navigation");
+        }
+    }
 }

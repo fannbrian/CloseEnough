@@ -10,7 +10,7 @@ public class PlayerNetwork : MonoBehaviour {
 	void Awake()
 	{
 		Instance = this;
-		Instance.PlayerName = "Meow";
+		Instance.PlayerName = "Default User";
 	}
 
 	public void SetNickname(){
