@@ -71,7 +71,12 @@ namespace CloseEnough
 				else
 				{
 					countdown.gameObject.SetActive(false);
-					timesUp.gameObject.SetActive(true);
+
+                    if (!GamePlay.instance.IsRoundDone())
+                    {
+                        timesUp.gameObject.SetActive(true);
+                    }
+
 					_isRunning = false;
 					aud.PlayOneShot(ding);
                     if (GamePlay.instance.isDrawing)
