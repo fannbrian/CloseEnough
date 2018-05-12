@@ -7,6 +7,7 @@ public class UIRaycastDetector : MonoBehaviour
 {
     public static UIRaycastDetector singleton;
 
+    public GameObject[] IgnoredUI;
     public GameObject DrawingPanel;
 
     GraphicRaycaster m_Raycaster;
@@ -15,6 +16,9 @@ public class UIRaycastDetector : MonoBehaviour
 
     void Start()
     {
+        if (IgnoredUI == null) {
+            IgnoredUI = new GameObject[0];
+        }
         singleton = this;
         m_Raycaster = GetComponent<GraphicRaycaster>();
         m_EventSystem = GetComponent<EventSystem>();
@@ -26,6 +30,19 @@ public class UIRaycastDetector : MonoBehaviour
         m_PointerEventData.position = pos;
 
         m_Raycaster.Raycast(m_PointerEventData, results);
+
+        var resultCount = results.Count;
+
+        foreach (var result in results)
+        {
+            foreach (var obj in IgnoredUI)
+            {
+                if (result.gameObject == obj)
+                {
+                    resultCount--;
+                }
+            }
+        }
 
         if (results.Count > 0) {
             return true;
