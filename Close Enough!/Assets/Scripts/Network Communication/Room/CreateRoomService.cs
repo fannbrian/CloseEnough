@@ -13,6 +13,7 @@ namespace CloseEnough
     public class CreateRoomService : PunBehaviour
     {
         public static CreateRoomService singleton;
+        public ConnectFailListener connectFailListener;
 
         public CreateRoomService()
         {
@@ -56,6 +57,7 @@ namespace CloseEnough
             else
             {
                 print("create room failed to send.");
+                connectFailListener.OnCreateFail();
             }
         }
 

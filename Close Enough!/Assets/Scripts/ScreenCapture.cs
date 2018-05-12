@@ -28,7 +28,7 @@ namespace CloseEnough {
 
 	        image.enabled = false;
 
-	        var rect = RectTransformToScreenSpace(rectTransform);
+            var rect = RectTransformToScreenSpace(rectTransform);
 	        _width = (int)rect.width;
 	        _height = (int)rect.height;
 	        var pos = new Vector2((int)((Screen.width - _width) / 2), (int)((Screen.height-_height) / 2 ));
