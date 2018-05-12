@@ -42,3 +42,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Toolbar
+    uniqueID: 745992607
+    locked: 0

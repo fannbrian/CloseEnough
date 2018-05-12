@@ -54,13 +54,14 @@ namespace CloseEnough
                 stacks[i] = new DrawingStack();
 				stacks[i].Nodes.Add(node);
 			}
-			GameData.LocalView.RPC("StartGame", PhotonTargets.AllBufferedViaServer, order, ByteSerializer<DrawingStack[]>.Serialize(stacks));
+			GameData.instance.LocalView.RPC("StartGame", PhotonTargets.AllBufferedViaServer, order, ByteSerializer<DrawingStack[]>.Serialize(stacks));
 		}
 
         // Starts the game if every player is connected.
 		public void TryStartGame()
 		{
-			if (GameData.PlayerCount == PhotonNetwork.playerList.Length)
+            Debug.Log(GameData.instance.PlayerCount + ", " + PhotonNetwork.playerList.Length);
+			if (GameData.instance.PlayerCount == PhotonNetwork.playerList.Length)
 			{
 				InitializeGame();
 			}

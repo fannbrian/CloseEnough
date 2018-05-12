@@ -39,9 +39,9 @@ namespace CloseEnough
                 Destroy(PlayerListings[0].gameObject);
                 PlayerListings.RemoveAt(0);
             }
-			Debug.Log("Initializing Room Listings");
+
 			PhotonPlayer[] photonPlayers = PhotonNetwork.playerList.OrderBy(p => p.ID).ToArray();
-			Debug.Log(photonPlayers.Length + " players detected");
+
             for (int i = 0; i < photonPlayers.Length; i++)
             {
                 PlayerJoinedRoom(photonPlayers[i]);
@@ -58,13 +58,11 @@ namespace CloseEnough
         //called by photon
         public override void OnPhotonPlayerDisconnected(PhotonPlayer photonPlayer)
         {
-			Debug.Log("A PLAYER LEFT OH NO");
 			UpdateRoom();
         }
 
 		public override void OnMasterClientSwitched(PhotonPlayer newMasterClient)
 		{
-			Debug.Log("MASTER CLIENT SWITCHED");
 			UpdateRoom();
 			base.OnMasterClientSwitched(newMasterClient);
 		}

@@ -12,6 +12,10 @@ namespace CloseEnough
     /// </summary>
     public class PunNetworkManager : PunBehaviour
     {
+        public GameObject NicknamePanel;
+        public GameObject LobbyPanel;
+        public PlayerLayoutGroup playerLayout;
+
         public PunNetworkManager singleton;
         public float ReconnectDelay;
 
@@ -27,9 +31,9 @@ namespace CloseEnough
 
         private void Connect()
         {
-			PhotonNetwork.ConnectUsingSettings("0.0.0");
+            PhotonNetwork.ConnectUsingSettings("0.0.0");
             PhotonNetwork.automaticallySyncScene = true;
-			PhotonNetwork.autoJoinLobby = false;
+            PhotonNetwork.autoJoinLobby = false;
         }
 
         private void Awake()

@@ -16,19 +16,22 @@ namespace CloseEnough
         // Action to fire off
         public UnityEvent OnFailConnect;
 
+        public void OnCreateFail()
+        {
+            OnFailConnect.Invoke();
+        }
+
         /// <summary>
         /// Photon Unity Networking's method when the player joins a room (master or client)
         /// </summary>
         public override void OnConnectionFail(DisconnectCause cause)
         {
-            print("OnConnectionFail");
             OnFailConnect.Invoke();
             base.OnConnectionFail(cause);
         }
 
         public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
         {
-            print("OnJoinRoomFail");
             OnFailConnect.Invoke();
             base.OnPhotonJoinRoomFailed(codeAndMsg);
         }

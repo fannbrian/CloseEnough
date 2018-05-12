@@ -8,7 +8,7 @@ namespace CloseEnough
 	{
 		public override BaseGameState GetNextState()
 		{
-			if (GameData.CurrentRound < GameData.PlayerCount) {
+			if (GameData.instance.CurrentRound < GameData.instance.PlayerCount) {
 				return new DrawingState();            
 			}
 
@@ -17,8 +17,8 @@ namespace CloseEnough
 
 		public override void OnEnter()
 		{
-            var currentIndex = (GameData.CurrentRound + GameData.InitialIndex) % GameData.PlayerCount;
-            var nodes = GameData.DrawingStacks[currentIndex].Nodes;
+            var currentIndex = (GameData.instance.CurrentRound + GameData.instance.InitialIndex) % GameData.instance.PlayerCount;
+            var nodes = GameData.instance.DrawingStacks[currentIndex].Nodes;
             var node = nodes[nodes.Count - 1];
 
 			var drawing = new Texture2D(2, 2);
@@ -35,7 +35,7 @@ namespace CloseEnough
 
 		public override void OnExit()
 		{
-			GameData.PlayersDone -= GameData.PlayerCount;
+			GameData.instance.PlayersDone = 0;
 			PanelReference.singleton.WaitingPanel.SetActive(false);
 			PanelReference.singleton.GuessingPanel.SetActive(false);
 		}

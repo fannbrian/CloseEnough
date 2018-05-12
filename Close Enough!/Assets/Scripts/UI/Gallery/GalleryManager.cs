@@ -38,7 +38,7 @@ namespace CloseEnough
 		{
 			// TODO - Create text buttons, create carousel views, attach buttons to carousel views.
 
-			var stackCount = GameData.DrawingStacks.Length;
+			var stackCount = GameData.instance.DrawingStacks.Length;
 
 			// Create text buttons
 			_buttons = new GameObject[stackCount];
@@ -47,12 +47,12 @@ namespace CloseEnough
 			// Create buttons and carousels.
 			for (int i = 0; i < stackCount; i++)
 			{
-				var word = GameData.DrawingStacks[i].Nodes[0].Word;
+				var word = GameData.instance.DrawingStacks[i].Nodes[0].Word;
             
                 // Initialze carousels
 				_carousels[i] = Instantiate(CarouselPrefab, transform);
 				var carouselView = _carousels[i].GetComponent<CarouselView>();
-				carouselView.Initialize(GameData.DrawingStacks[i]);
+				carouselView.Initialize(GameData.instance.DrawingStacks[i]);
 				carouselView.BackButton.GetComponent<Button>().onClick.AddListener(OnBack);
 				_carousels[i].SetActive(false);
 
