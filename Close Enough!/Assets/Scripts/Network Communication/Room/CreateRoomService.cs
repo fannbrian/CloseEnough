@@ -46,7 +46,6 @@ namespace CloseEnough
             var settings = new RoomOptions()
             {
                 MaxPlayers = 10,
-                PlayerTtl = 60000,
                 IsVisible = false
             };
 

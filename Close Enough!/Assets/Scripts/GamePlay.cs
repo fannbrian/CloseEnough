@@ -21,7 +21,6 @@ namespace CloseEnough {
 
 		public RectTransform guessingPanel;
 		public RawImage image;
-		public Button next;
 		public GameObject drawingAudio;
 		public GameObject swipeManager;
 		public InputField guessedInput;
@@ -38,8 +37,7 @@ namespace CloseEnough {
 		void Awake() {
 			instance = this;
 			isDrawing = true;
-
-			next.gameObject.SetActive (false);
+            
 			rounds = PhotonNetwork.playerList.Length;
 		}
               
@@ -59,7 +57,6 @@ namespace CloseEnough {
 			}
 
 			// UI
-			next.gameObject.SetActive (false);
 			doneSlide.PlayAnimation(true);
 			toolSlide.PlayAnimation(true);
 			swipeManager.gameObject.SetActive (true);
@@ -120,7 +117,6 @@ namespace CloseEnough {
             // UI
             SwipeTrail.singleton.Clear();
             //screenCap.showImage();
-            next.gameObject.SetActive(true);
 
             // Drawing Round complete
             isDrawing = false;
@@ -145,7 +141,6 @@ namespace CloseEnough {
 
 			//UI
 			screenCap.imagePanel.gameObject.SetActive (false);
-			next.gameObject.SetActive (false);
 			isDrawing = false;
 
 			// Begin Guessing Round
@@ -178,7 +173,6 @@ namespace CloseEnough {
 			doneSlide.PlayAnimation(false);
 			yield return new WaitForSeconds (2);
 			guessingPanel.gameObject.SetActive (false);
-			next.gameObject.SetActive (true);
 		}
 	}
 }
