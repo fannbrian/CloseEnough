@@ -78,7 +78,30 @@
             "Night",
             "Bedtime",
             "Alarm",
-            "Idea"
+            "Idea",
+            "Photograph",
+            "Door",
+            "Treasure",
+            "Pirate",
+            "Whistle",
+            "Song",
+            "Bicycle",
+            "Hot Dog",
+            "Thief",
+            "Spring",
+            "Skate",
+            "Wax",
+            "Cake",
+            "Palace",
+            "Queen",
+            "Salt",
+            "Fabric",
+            "Exercise",
+            "Drought",
+            "Baguette",
+            "Avocado",
+            "Koala",
+            "Internet"
 		};
 	}
 }
