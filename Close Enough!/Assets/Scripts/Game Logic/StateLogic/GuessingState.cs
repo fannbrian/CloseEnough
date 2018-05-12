@@ -16,7 +16,10 @@ namespace CloseEnough
 		}
 
 		public override void OnEnter()
-		{
+        {
+            PanelReference.singleton.WaitingPanel.SetActive(false);
+            PanelReference.singleton.GuessingPanel.SetActive(true);
+
             var currentIndex = (GameData.instance.CurrentRound + GameData.instance.InitialIndex) % GameData.instance.PlayerCount;
             var nodes = GameData.instance.DrawingStacks[currentIndex].Nodes;
             var node = nodes[nodes.Count - 1];
@@ -30,12 +33,12 @@ namespace CloseEnough
 
 			GamePlay.instance.screenCap.SetImage(drawing);
 			GamePlay.instance.Guess();
-			PanelReference.singleton.GuessingPanel.SetActive(true);
 		}
 
 		public override void OnExit()
 		{
 			GameData.instance.PlayersDone = 0;
+
 			PanelReference.singleton.WaitingPanel.SetActive(false);
 			PanelReference.singleton.GuessingPanel.SetActive(false);
 		}

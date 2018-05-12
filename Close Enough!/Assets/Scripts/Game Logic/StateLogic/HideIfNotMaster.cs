@@ -11,14 +11,16 @@ namespace CloseEnough
     /// </summary>
 	public class HideIfNotMaster : MonoBehaviour
 	{
+        public GameObject ObjectToHide;
+
 		void Update()
 		{
 			if (!PhotonNetwork.isMasterClient)
 			{
-				gameObject.SetActive(false);
+				ObjectToHide.SetActive(false);
 			}
 			else {            
-                gameObject.SetActive(true);
+                ObjectToHide.SetActive(true);
 			}
 		}
 	}

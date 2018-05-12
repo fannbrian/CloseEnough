@@ -3020,10 +3020,10 @@ RectTransform:
   m_Father: {fileID: 56399893}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -169.95131}
-  m_SizeDelta: {x: 0, y: 109.96754}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 56.5, y: -201.1055}
+  m_SizeDelta: {x: 103, y: 130.737}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782942380
 MonoBehaviour:
@@ -5088,6 +5088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34a7c80f77c24e2280f89d3e2ba915f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoredUI: []
   DrawingPanel: {fileID: 576905531}
 --- !u!1 &1164895419
 GameObject:
@@ -5824,10 +5825,10 @@ RectTransform:
   m_Father: {fileID: 56399893}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -279.91885}
-  m_SizeDelta: {x: 0, y: 109.96754}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 56.5, y: -331.8425}
+  m_SizeDelta: {x: 103, y: 130.737}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1340171020
 MonoBehaviour:
@@ -6069,10 +6070,10 @@ RectTransform:
   m_Father: {fileID: 56399893}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -389.88638}
-  m_SizeDelta: {x: 0, y: 109.96754}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 56.5, y: -462.5795}
+  m_SizeDelta: {x: 103, y: 130.737}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1410928775
 MonoBehaviour:
@@ -9085,10 +9086,10 @@ RectTransform:
   m_Father: {fileID: 56399893}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -59.98377}
-  m_SizeDelta: {x: 0, y: 109.96754}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 56.5, y: -70.3685}
+  m_SizeDelta: {x: 103, y: 130.737}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072750177
 MonoBehaviour:
