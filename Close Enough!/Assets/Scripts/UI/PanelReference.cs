@@ -5,6 +5,7 @@ public class PanelReference : MonoBehaviour {
 	public GameObject DrawingPanel;
 	public GameObject GuessingPanel;
 	public GameObject GalleryPanel;
+	public GameObject WarningPanel;
 
 	public static PanelReference singleton;
 

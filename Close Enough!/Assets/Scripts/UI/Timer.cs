@@ -4,8 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CloseEnough {
-	public class Timer : MonoBehaviour {
+namespace CloseEnough
+{
+	public class Timer : MonoBehaviour
+	{
+		public static Timer instance;
+
 		public int timer = 30;
 		public int starttimer = 3;
 
@@ -14,118 +18,121 @@ namespace CloseEnough {
 		public Text startcountdown;
 		public Text countdown;
 		public Text timesUp;
-		public Text waiting;
-
-		public bool running = false;
-		public bool done = false;
-		public bool isComplete = false;
 
 		public AudioClip ticker;
 		public AudioClip ding;
 
 		AudioSource aud;
-		Boolean playTick;
-		Boolean playDing;
-      
+
+		bool _isInitialCountdown = true;
+		bool _isRunning = false;
+		float _timer = 0;
+		int _lastTimer = 0;
+
+		public bool IsCountdown() {
+			return _isInitialCountdown;
+		}
+
 		// Use this for initialization
-		void Awake () {
-			playTick = false;
-			playDing = false;
-			startcountdown.gameObject.SetActive (false);
-			timesUp.gameObject.SetActive (false);
-			waiting.gameObject.SetActive (false);
-			aud = GetComponent<AudioSource> ();
-		}
-
-		// Update is called once per frame
-		void Update () {
-			if (timer <= 3 && !playTick) {
-				StartCoroutine(PlayAudio (timer));
-				playTick = true;
-				isComplete = false;
-			}
-			else if (timer == 0 && !isComplete) {
-				ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.DisableString);
-				if (!playDing) {
-					aud.PlayOneShot (ding);
-					done = true;
-					StopCoroutine ("endTime");
-					playDing = true;
-				}
-				if (!isComplete) {               
-                    StartCoroutine("complete");
-					isComplete = true;
-				}
-			}
-			else if (timer < 10) {
-				countdown.text = ":0" + timer;
-			}
-			else {
-				countdown.text = ":" + timer;
-			}
-		}
-
-		//Countdown 3..2..1..
-		IEnumerator count() {
-			starttimer = 3;
-
-			startcountdown.enabled = true;
-			while (starttimer > 0) {
-				startcountdown.text = starttimer.ToString();
-				starttimer--;
-				yield return new WaitForSeconds (1);
-			}
-			Debug.Log("Disabling All");
-			startcountdown.enabled = false;
-			Debug.Log(ToolsStateManager.singleton.CurrentState.Name);
-   			ToolsStateManager.singleton.TransitionState(ToolsStateManager.singleton.IdleString);
-			StartCoroutine ("endTime");
-
-		}
-
-		public void startTime()
+		void Awake()
 		{
+			instance = this;
+			startcountdown.gameObject.SetActive(false);
+			timesUp.gameObject.SetActive(false);
+			aud = GetComponent<AudioSource>();
+		}
+
+		void NextRound()
+		{
+			timesUp.gameObject.SetActive(false);
+			countdown.gameObject.SetActive(false);
+			GamePlay.instance.FinishRound();
+		}
+
+		void Update()
+		{
+			if (!_isRunning) return;
+
+			_timer -= Time.deltaTime;
+			var timerInt = (int)Mathf.Ceil(_timer);
+
+			if (_timer <= 0)
+			{
+				if (_isInitialCountdown)
+				{
+					startcountdown.gameObject.SetActive(false);
+					_timer = timer;
+					_isInitialCountdown = false;
+                    if (GamePlay.instance.isDrawing)
+                    {
+						ToolsStateManager.singleton.Enable(true);
+                    }
+				}
+				else
+				{
+					countdown.gameObject.SetActive(false);
+					timesUp.gameObject.SetActive(true);
+					_isRunning = false;
+					aud.PlayOneShot(ding);
+                    if (GamePlay.instance.isDrawing)
+                    {
+						ToolsStateManager.singleton.Enable(false);
+                    }
+					Invoke("NextRound", 2);
+				}
+			}
+			else
+			{
+				if (_isInitialCountdown)
+				{
+					startcountdown.text = timerInt.ToString();
+				}
+				else
+				{
+					countdown.text = timerInt.ToString();
+
+					if (timerInt <= 3)
+					{
+						if (_lastTimer != timerInt)
+						{
+							aud.PlayOneShot(ticker);
+						}
+					}
+				}
+			}
+			_lastTimer = timerInt;
+		}
+
+		public void StartTimer()
+		{
+			if (GamePlay.instance.isDrawing) {
+				ToolsStateManager.singleton.Enable(false);
+			}
 			startcountdown.gameObject.SetActive(true);
-			running = true;
-			StartCoroutine("count");
+			countdown.gameObject.SetActive(true);
+			_timer = starttimer;
+			_isRunning = true;
 		}
 
-		IEnumerator endTime() {
-			//Countdown from timer variable
-			while (true) {
-				yield return new WaitForSeconds (1);
-				timer--;
-			}
-		}
+		public void ResetTimer(bool isDrawing)
+		{
+			_isRunning = false;
+			_isInitialCountdown = true;
+			_timer = 0;
+			startcountdown.gameObject.SetActive(false);
+			countdown.gameObject.SetActive(false);
 
-		IEnumerator PlayAudio (int times) {
-			for(int i = 0; i < times; i++) {
-				aud.PlayOneShot (ticker);
-				yield return new WaitForSeconds(ticker.length);
-			}
-		}
-
-		IEnumerator complete() {
-			Debug.Log("Complete");
-			waiting.gameObject.SetActive (false);
-			timesUp.gameObject.SetActive (true);
-			yield return new WaitForSeconds (2);
-			timesUp.gameObject.SetActive (false);            
-			GamePlay.instance.TimerDone();
-		}
-
-		public void reset(bool drawing) {
-
-			done = false;
-			playTick = false;
-			playDing = false;
-
-			if (drawing) {
+			if (isDrawing)
+			{
 				timer = 30;
 			}
-			else {
+			else
+			{
 				timer = 20;
 			}
+
+			startcountdown.text = starttimer.ToString();
+			countdown.text = timer.ToString();
 		}
 	}
 }

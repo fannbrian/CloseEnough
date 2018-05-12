@@ -42,7 +42,14 @@ namespace CloseEnough
 
         public void CreateRoom()
         {
-            if (PhotonNetwork.CreateRoom(GenerateRoomCode()))
+            var settings = new RoomOptions()
+            {
+                MaxPlayers = 10,
+                PlayerTtl = 60000,
+                IsVisible = false
+            };
+
+            if (PhotonNetwork.CreateRoom(GenerateRoomCode(), settings, new TypedLobby()))
             {
                 print("create room successfully sent.");
             }

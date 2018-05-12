@@ -1,17 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
 
 namespace CloseEnough
 {
-	public static class GameData
+	public class GameData : MonoBehaviour
 	{
-		public static PhotonView LocalView;
-		public static int PlayerCount;
-		public static int CurrentRound;
-		public static string PlayerNames = "";
-		public static int[] PlayerOrder;
-		public static DrawingStack[] DrawingStacks;
-		public static DrawingStack CurrentStack;
-		public static int InitialIndex;
-		public static int PlayersDone;
+        public static GameData instance;
+
+        public GameData()
+        {
+            instance = this;
+        }
+
+		public PhotonView LocalView;
+		public int PlayerCount;
+		public int CurrentRound;
+		public string PlayerNames = "";
+		public int[] PlayerOrder;
+		public DrawingStack[] DrawingStacks;
+		public DrawingStack CurrentStack;
+		public int InitialIndex;
+		public int PlayersDone;
 	}
 }
