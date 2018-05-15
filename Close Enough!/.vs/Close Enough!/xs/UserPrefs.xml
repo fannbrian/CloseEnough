@@ -1,13 +1,28 @@
 ﻿<Properties StartupConfiguration="{410F0C51-D810-EA31-ABD6-883582A1E849}|">
   <MonoDevelop.Ide.ItemProperties.Close_220Enough_221 PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SettingsMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Network Communication/Networks/PunNetworkManager.cs">
     <Files>
       <File FileName="Assets/Scripts/UI/Gallery/GridLayoutAdjuster.cs" Line="21" Column="2" />
       <File FileName="Assets/Scripts/GamePlay.cs" Line="67" Column="6" />
       <File FileName="Assets/Scripts/UI/RoomCodeValidation.cs" Line="29" Column="5" />
       <File FileName="Assets/Scripts/InformationPanelHandler.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/imageControl.cs" Line="9" Column="1" />
-      <File FileName="Assets/Scripts/SettingsMenu.cs" Line="69" Column="29" />
+      <File FileName="Assets/Scripts/SettingsMenu.cs" Line="84" Column="6" />
+      <File FileName="Assets/Scripts/Game Logic/Word Packs/WordPackObject.cs" Line="7" Column="54" />
+      <File FileName="Assets/Scripts/Game Logic/WordBank.cs" Line="10" Column="37" />
+      <File FileName="Assets/Scripts/Game Logic/InitialGameHandler.cs" Line="38" Column="19" />
+      <File FileName="Assets/Scripts/Game Logic/Word Packs/WordPackSelector.cs" Line="9" Column="10" />
+      <File FileName="Assets/Scripts/Network Communication/Generic/NetworkRejoin.cs" Line="11" Column="22" />
+      <File FileName="Assets/Scripts/Network Communication/Networks/PunNetworkManager.cs" Line="84" Column="4" />
+      <File FileName="Assets/Scripts/Network Communication/Room/JoinRoomService.cs" Line="25" Column="10" />
+      <File FileName="Assets/Scripts/Network Communication/Room/CreateRoomService.cs" Line="69" Column="10" />
+      <File FileName="Assets/Scripts/UI/PanelReference.cs" Line="12" Column="2" />
+      <File FileName="Assets/Scripts/Network Communication/Networks/PlayerNetwork.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/WarningButtonHandler.cs" Line="25" Column="37" />
+      <File FileName="Assets/Scripts/Game Logic/RoundManager.cs" Line="21" Column="35" />
+      <File FileName="Assets/Scripts/UI/Gallery/GalleryExitHandler.cs" Line="17" Column="4" />
+      <File FileName="Assets/Scripts/Network Communication/Room/DisplayRoomCode.cs" Line="10" Column="5" />
+      <File FileName="Assets/Scripts/Network Communication/Room/PlayerLayoutGroup.cs" Line="23" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

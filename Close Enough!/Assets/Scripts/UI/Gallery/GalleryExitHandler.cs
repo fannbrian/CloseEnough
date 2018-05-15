@@ -8,6 +8,7 @@ namespace CloseEnough
 
 		public void OnAcceptClick() {
 			Debug.Log("CALLED");
+			NetworkRejoinData.instance = new NetworkRejoinData(PhotonNetwork.player.NickName, PhotonNetwork.room.Name);
             GameStateManager.singleton.TransitionNextState();
 		}
 

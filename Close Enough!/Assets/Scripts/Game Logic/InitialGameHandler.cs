@@ -29,8 +29,7 @@ namespace CloseEnough
 			}
          
             // Randomize player order
-			var rnd = new System.Random();
-			var order = playerIds.OrderBy(x => rnd.Next()).ToArray();
+			var order = playerIds.OrderBy(x => Random.Range(0, playerCount)).ToArray();
 
             // Initialize word for each player
 			var wordList = new List<string>();
@@ -40,7 +39,7 @@ namespace CloseEnough
 
 				do
 				{
-					word = WordBank.WORDS[rnd.Next(WordBank.WORDS.Length)];
+					word = WordBank.Words[Random.Range(0, WordBank.Words.Length)];
 				} while (wordList.Contains(word));
 
 				wordList.Add(word);

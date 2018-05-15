@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class DisplayRoomCode : MonoBehaviour {
 	public Text roomName;
     
-	public void InitializeRoomCode () {
+	void OnEnable () {
 		if (PhotonNetwork.room.Name.Length > 0) {
             roomName.text = "Room Code: " + PhotonNetwork.room.Name;
 		} 

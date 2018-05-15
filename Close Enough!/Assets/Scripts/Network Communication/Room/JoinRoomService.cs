@@ -13,9 +13,18 @@ namespace CloseEnough
             singleton = this;
         }
 
-        public void JoinRoom()
+		public void JoinRoom()
         {
-            if (!PhotonNetwork.JoinRoom(roomCodeText.text)) {
+            if (!PhotonNetwork.JoinRoom(roomCodeText.text))
+            {
+                print("Join room failed.");
+            }
+		}
+
+        public void JoinRoom(string code)
+        {
+            if (!PhotonNetwork.JoinRoom(code))
+            {
                 print("Join room failed.");
             }
         }

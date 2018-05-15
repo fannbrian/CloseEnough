@@ -12,6 +12,7 @@ namespace CloseEnough
     /// </summary>
     public class PunNetworkManager : PunBehaviour
     {
+		public GameObject TitlePanel;
         public GameObject NicknamePanel;
         public GameObject LobbyPanel;
         public PlayerLayoutGroup playerLayout;
@@ -19,35 +20,34 @@ namespace CloseEnough
         public PunNetworkManager singleton;
         public float ReconnectDelay;
 
-        public bool IsConnected { get; private set; }
+        public bool IsReconnecting { get; private set; }
 
         private float _timeElapsed = 0;
 
         public PunNetworkManager()
         {
-            IsConnected = true;
             singleton = this;
         }
 
-        private void Connect()
-        {
-			if (PhotonNetwork.inRoom) {
-				PhotonNetwork.LeaveRoom();
-			}
-
-            PhotonNetwork.ConnectUsingSettings("0.0.0");
+        void Connect()
+        {         
+            PhotonNetwork.ConnectUsingSettings("v1");
             PhotonNetwork.automaticallySyncScene = true;
             PhotonNetwork.autoJoinLobby = false;
+			if (NetworkRejoinData.instance != null) {
+				Debug.Log("Detected previous match.");
+				IsReconnecting = true;
+			}
         }
 
-        private void Awake()
+        void Awake()
         {
             print("Connecting to server..");
             Connect();
         }
 
         // If not connected, periodically try to connect.
-        private void Update()
+        void Update()
         {
 			if (PhotonNetwork.connectedAndReady) return;
 
@@ -60,42 +60,27 @@ namespace CloseEnough
             Connect();
         }
 
-		/// <summary>
-		/// If connection to photon failed, set IsConnected to false.
-		/// </summary>
-		/// <param name="cause">Cause.</param>
-		public override void OnFailedToConnectToPhoton(DisconnectCause cause)
-        {
-            IsConnected = false;
-            base.OnFailedToConnectToPhoton(cause);
-        }
+		public override void OnConnectedToMaster()
+		{
+			if (IsReconnecting) {
+				Debug.Log("Reconnected");
+				IsReconnecting = false;
 
+                var settings = new RoomOptions()
+                {
+                    MaxPlayers = 10,
+                    IsVisible = false
+                };
 
-        /// <summary>
-        /// If connection failed, set IsConnected to false.
-        /// </summary>
-        /// <param name="cause">Cause.</param>
-        public override void OnConnectionFail(DisconnectCause cause)
-        {
-            IsConnected = false;
-            base.OnConnectionFail(cause);
-        }
+				PhotonNetwork.player.NickName = NetworkRejoinData.instance.PlayerName;
+				PhotonNetwork.JoinOrCreateRoom(NetworkRejoinData.instance.RoomCode, settings, new TypedLobby());
 
+				TitlePanel.gameObject.SetActive(false);
+				NicknamePanel.gameObject.SetActive(false);
+				LobbyPanel.gameObject.SetActive(true);
+			}
 
-        /// <summary>
-        /// If disconnected, set IsConnected to false.
-        /// </summary>
-        /// <param name="cause">Cause.</param>
-        public override void OnDisconnectedFromPhoton()
-        {
-            IsConnected = false;
-            base.OnDisconnectedFromPhoton();
-        }
-
-        public override void OnConnectedToMaster()
-        {
-            IsConnected = true;
-            base.OnConnectedToMaster();
-        }
-    }
+			base.OnConnectedToMaster();
+		}
+	}
 }
