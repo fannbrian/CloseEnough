@@ -11,14 +11,14 @@ public class SettingsMenu : MonoBehaviour {
     public Slider SfxSlider;
 
     public bool isDirty;
-
+    
     private float _masterVolume;
     private float _bgmVolume;
     private float _sfxVolume;
 
-    private const string MASTER_KEY = "MasterVolume";
-    private const string BGM_KEY = "BgmVolume";
-    private const string SFX_KEY = "SfxVolume";
+    public const string MASTER_KEY = "MasterVolume";
+    public const string BGM_KEY = "BgmVolume";
+    public const string SFX_KEY = "SfxVolume";
 
     
     float TryGetVolume(string key)

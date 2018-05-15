@@ -13,7 +13,7 @@ namespace CloseEnough
         public static List<Object> Sprites { get; set; }
         public string SpritesheetPath = "Art/Doodlesheet";
 
-        void Start()
+        void Awake()
         {
             if (Sprites == null)
             {

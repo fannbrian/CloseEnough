@@ -20,12 +20,8 @@ namespace CloseEnough
             PanelReference.singleton.WaitingPanel.SetActive(false);
             PanelReference.singleton.DrawingPanel.SetActive(true);
 
-			var currentIndex = (GameData.instance.CurrentRound + GameData.instance.InitialIndex) % GameData.instance.PlayerCount;
-			var nodes = GameData.instance.DrawingStacks[currentIndex].Nodes;
-			var node = nodes[nodes.Count - 1];
-         
-			GamePlay.instance.wordToDraw = node.Word;         
-			GamePlay.instance.Draw();
+			RoundManager.instance = new DrawingRoundManager();
+			RoundManager.instance.StartRound();
 		}
 
 		public override void OnExit()

@@ -11,13 +11,12 @@ namespace CloseEnough
 
 		public override void OnEnter()
 		{
-			Timer.instance.ResetTimer(false);
 			PanelReference.singleton.GalleryPanel.SetActive(true);
 		}
 
         public override void OnExit()
-        {
-            PhotonNetwork.LeaveRoom(false);
+		{
+			PhotonNetwork.Disconnect();
             SceneManager.LoadScene("Menu Navigation");
         }
     }

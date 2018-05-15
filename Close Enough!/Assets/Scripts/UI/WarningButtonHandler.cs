@@ -22,8 +22,7 @@ namespace CloseEnough
 
 		public void OnAccept()
 		{
-			Debug.Log("ACCEPTED");
-			GamePlay.instance.FinishRound();
+			RoundManager.instance.EndRound();
 		}
 	}
 }

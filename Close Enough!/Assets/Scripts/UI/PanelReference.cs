@@ -6,6 +6,9 @@ public class PanelReference : MonoBehaviour {
 	public GameObject GuessingPanel;
 	public GameObject GalleryPanel;
 	public GameObject WarningPanel;
+	public GameObject InformationPanel;
+	public GameObject Countdown;
+	public GameObject Timer;
 
 	public static PanelReference singleton;
 

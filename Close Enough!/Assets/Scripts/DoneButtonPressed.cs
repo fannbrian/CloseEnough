@@ -7,7 +7,7 @@ namespace CloseEnough {
 	
 	public class DoneButtonPressed : MonoBehaviour {
 		public void clicked() {         
-			GamePlay.instance.FinishRound();
+			RoundManager.instance.EndRound();
 		}
 	}
 

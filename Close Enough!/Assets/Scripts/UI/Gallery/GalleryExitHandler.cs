@@ -10,5 +10,9 @@ namespace CloseEnough
 			Debug.Log("CALLED");
             GameStateManager.singleton.TransitionNextState();
 		}
+
+		public void CloseWarning() {
+			WarningPanel.SetActive(false);
+		}
 	}
 }

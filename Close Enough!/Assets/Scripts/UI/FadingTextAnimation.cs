@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 namespace CloseEnough
 {
+	/// <summary>
+    /// Makes the Text component's alpha change to create a 'Fade' effect.
+    /// </summary>
     [RequireComponent(typeof(Text))]
     public class FadingTextAnimation : MonoBehaviour
     {

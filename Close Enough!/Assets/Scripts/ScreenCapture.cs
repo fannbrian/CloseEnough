@@ -7,8 +7,6 @@ namespace CloseEnough {
 	public class ScreenCapture : MonoBehaviour
 	{
 	    public RectTransform rectTransform;
-	    bool grab;
-		Texture2D receivedTexture;
 
 		public Texture2D texture;
 
@@ -16,7 +14,6 @@ namespace CloseEnough {
 		// Screenshot image for user's drawing 
 		public RawImage image;
 
-	    Camera _camera;
 	    Rect _screenshotRect;
 	    int _width;
 	    int _height;
@@ -24,9 +21,6 @@ namespace CloseEnough {
 	    void Start()
 	    {
 	        imagePanel.GetComponent<RectTransform>();
-	        imagePanel.gameObject.SetActive(false);
-
-	        image.enabled = false;
 
             var rect = RectTransformToScreenSpace(rectTransform);
 	        _width = (int)rect.width;

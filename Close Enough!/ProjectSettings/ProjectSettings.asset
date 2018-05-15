@@ -161,6 +161,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.TeamCorgi.CloseEnough
+    iOS: com.TeamCorgi.CloseEnough
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16

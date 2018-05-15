@@ -63,8 +63,8 @@ namespace CloseEnough {
 			isDrawing = true;
 
 			// Begin Drawing Round
-			timer.ResetTimer(isDrawing);
-			timer.StartTimer();
+			//timer.ResetTimer(isDrawing);
+			//timer.StartTimer();
 			StartCoroutine ("DisplayDrawingWord");
 		}
 
@@ -86,7 +86,7 @@ namespace CloseEnough {
 
 			// Disable drawing
 			Invoke("Screenshot", .5f);
-			Invoke("DrawWaiting", .8f);
+			Invoke("DrawWaiting", 1f);
 		}
 
 		public void FinishRound() {
@@ -144,8 +144,8 @@ namespace CloseEnough {
 			isDrawing = false;
 
 			// Begin Guessing Round
-			timer.ResetTimer(isDrawing);
-			timer.StartTimer();
+			//timer.ResetTimer(isDrawing);
+			//timer.StartTimer();
 
             roundText.text = "Guessing Round";
 			roundText.gameObject.SetActive(true);
@@ -174,5 +174,6 @@ namespace CloseEnough {
 			yield return new WaitForSeconds (2);
 			guessingPanel.gameObject.SetActive (false);
 		}
+
 	}
 }

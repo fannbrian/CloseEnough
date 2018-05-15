@@ -8,7 +8,7 @@ namespace CloseEnough
 		public GameObject WarningPanel;
 		public void OpenWarning()
 		{
-			if (!Timer.instance.IsCountdown() && !GamePlay.instance.IsRoundDone()) {
+			if (RoundManager.instance.IsRunning) {
 				WarningPanel.SetActive(true);
 			}
 		}

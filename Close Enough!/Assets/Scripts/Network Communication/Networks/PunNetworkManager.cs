@@ -31,6 +31,10 @@ namespace CloseEnough
 
         private void Connect()
         {
+			if (PhotonNetwork.inRoom) {
+				PhotonNetwork.LeaveRoom();
+			}
+
             PhotonNetwork.ConnectUsingSettings("0.0.0");
             PhotonNetwork.automaticallySyncScene = true;
             PhotonNetwork.autoJoinLobby = false;
@@ -45,7 +49,7 @@ namespace CloseEnough
         // If not connected, periodically try to connect.
         private void Update()
         {
-            if (IsConnected) return;
+			if (PhotonNetwork.connectedAndReady) return;
 
             _timeElapsed += Time.deltaTime;
 

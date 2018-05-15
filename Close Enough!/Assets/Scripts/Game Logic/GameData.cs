@@ -17,7 +17,16 @@ namespace CloseEnough
 		public string PlayerNames = "";
 		public int[] PlayerOrder;
 		public DrawingStack[] DrawingStacks;
-		public DrawingStack CurrentStack;
+		public DrawingStack CurrentStack {
+			get {
+				return DrawingStacks[CurrentIndex];
+			}
+		}
+		public int CurrentIndex {
+			get {
+				return (CurrentRound + InitialIndex) % PlayerCount;
+			}
+		}
 		public int InitialIndex;
 		public int PlayersDone;
 	}

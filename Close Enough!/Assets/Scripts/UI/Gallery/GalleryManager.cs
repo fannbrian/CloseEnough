@@ -14,8 +14,7 @@ namespace CloseEnough
 
 		GameObject[] _buttons;
 		GameObject[] _carousels;
-		int _lastIndex;
-
+      
 		// Use this for initialization
 		void Awake()
 		{
@@ -61,6 +60,7 @@ namespace CloseEnough
 
 				var btn = _buttons[i].GetComponent<Button>();
                 btn.GetComponent<Text>().text = word.Replace(" ", "");
+				btn.onClick.AddListener(() => GalleryPanelReferences.instance.WarningPanel.SetActive(false));
 
                 var wrdBtn = _buttons[i].GetComponent<WordButton>();
 				wrdBtn.Carousel = _carousels[i];

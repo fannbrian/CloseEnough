@@ -40,10 +40,13 @@ namespace CloseEnough
 
         [PunRPC]
 		public void SendNode(int index, byte[] nodeBytes) {
+			Debug.Log("RECEIVED DATA");
 			var node = ByteSerializer<StackNode>.Deserialize(nodeBytes);
 			GameData.instance.DrawingStacks[index].Nodes.Add(node);
 			GameData.instance.PlayersDone++;
 			if (GameData.instance.PlayersDone >= GameData.instance.PlayerCount) {
+				Debug.Log("ALL PLAYERS DONE");
+				GameData.instance.PlayersDone = 0;
                 GameData.instance.CurrentRound++;
 				GameStateManager.singleton.TransitionNextState();
 			}

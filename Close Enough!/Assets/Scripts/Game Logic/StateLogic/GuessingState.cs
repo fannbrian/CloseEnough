@@ -20,23 +20,13 @@ namespace CloseEnough
             PanelReference.singleton.WaitingPanel.SetActive(false);
             PanelReference.singleton.GuessingPanel.SetActive(true);
 
-            var currentIndex = (GameData.instance.CurrentRound + GameData.instance.InitialIndex) % GameData.instance.PlayerCount;
-            var nodes = GameData.instance.DrawingStacks[currentIndex].Nodes;
-            var node = nodes[nodes.Count - 1];
-
-			var drawing = new Texture2D(2, 2);
-			drawing.LoadImage(node.Drawing);
-
-			var size = GamePlay.instance.screenCap.GetTextureSize();
-            
-			TextureScale.Bilinear(drawing, (int)size.x, (int)size.y);
-
-			GamePlay.instance.screenCap.SetImage(drawing);
-			GamePlay.instance.Guess();
+			RoundManager.instance = new GuessingRoundManager();
+			RoundManager.instance.StartRound();
 		}
 
 		public override void OnExit()
 		{
+			Debug.Log("EXIT CALLED");
 			GameData.instance.PlayersDone = 0;
 
 			PanelReference.singleton.WaitingPanel.SetActive(false);
