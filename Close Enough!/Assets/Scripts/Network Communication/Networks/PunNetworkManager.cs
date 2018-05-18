@@ -34,10 +34,11 @@ namespace CloseEnough
             PhotonNetwork.ConnectUsingSettings("v1");
             PhotonNetwork.automaticallySyncScene = true;
             PhotonNetwork.autoJoinLobby = false;
-			if (NetworkRejoinData.instance != null) {
-				Debug.Log("Detected previous match.");
-				IsReconnecting = true;
-			}
+
+			if (NetworkRejoinData.instance == null) return;
+			if (!NetworkRejoinData.instance.isReconnecting) return;
+
+			Debug.Log("Detected previous match.");
         }
 
         void Awake()
@@ -62,25 +63,27 @@ namespace CloseEnough
 
 		public override void OnConnectedToMaster()
 		{
-			if (IsReconnecting) {
-				Debug.Log("Reconnected");
-				IsReconnecting = false;
+            base.OnConnectedToMaster();
+			if (NetworkRejoinData.instance == null) return;
+			if (!NetworkRejoinData.instance.isReconnecting) return;
 
-                var settings = new RoomOptions()
-                {
-                    MaxPlayers = 10,
-                    IsVisible = false
-                };
+			NetworkRejoinData.instance.isReconnecting = false;
+			Debug.Log("Reconnected");
 
-				PhotonNetwork.player.NickName = NetworkRejoinData.instance.PlayerName;
-				PhotonNetwork.JoinOrCreateRoom(NetworkRejoinData.instance.RoomCode, settings, new TypedLobby());
+            var settings = new RoomOptions()
+            {
+                MaxPlayers = 10,
+                IsVisible = false
+            };
 
-				TitlePanel.gameObject.SetActive(false);
-				NicknamePanel.gameObject.SetActive(false);
-				LobbyPanel.gameObject.SetActive(true);
-			}
+			PhotonNetwork.player.NickName = NetworkRejoinData.instance.PlayerName;
+			PhotonNetwork.JoinOrCreateRoom(NetworkRejoinData.instance.RoomCode, settings, new TypedLobby());
+            
+			TitlePanel.gameObject.SetActive(false);
+			NicknamePanel.gameObject.SetActive(false);
+			LobbyPanel.gameObject.SetActive(true);
 
-			base.OnConnectedToMaster();
-		}
+			DisplayRoomCode.instance.SetRoomName(NetworkRejoinData.instance.RoomCode);
+   		}
 	}
 }

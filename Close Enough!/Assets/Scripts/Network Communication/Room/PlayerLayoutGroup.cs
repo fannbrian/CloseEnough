@@ -14,6 +14,8 @@ namespace CloseEnough
     /// </summary>
     public class PlayerLayoutGroup : PunBehaviour
     {
+		public PlayerLayoutGroup instance;
+
         [SerializeField]
         private GameObject _playerListingPrefab;
         private GameObject PlayerListingPrefab
@@ -29,6 +31,7 @@ namespace CloseEnough
 
 		void OnEnable()
 		{
+			instance = this;
 			UpdateRoom();
 		}
 

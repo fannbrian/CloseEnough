@@ -15,6 +15,28 @@ namespace CloseEnough
 			singleton = this;
 		}
 
+		const int ASCII_OFFSET = 65;
+        const int ALPHABET_COUNT = 26;
+        
+        string GenerateRoomCode()
+        {
+            var rand = new System.Random();
+            var code = new int[] {
+                rand.Next(ALPHABET_COUNT),
+                rand.Next(ALPHABET_COUNT),
+                rand.Next(ALPHABET_COUNT),
+                rand.Next(ALPHABET_COUNT),
+            };
+            var roomCode = "";
+
+            foreach (var num in code)
+            {
+                roomCode += (char)(num + ASCII_OFFSET);
+            }
+
+            return roomCode;
+        }
+
         /// <summary>
         /// Initializes initial game data and sends it to every player.
         /// </summary>
@@ -53,7 +75,7 @@ namespace CloseEnough
                 stacks[i] = new DrawingStack();
 				stacks[i].Nodes.Add(node);
 			}
-			GameData.instance.LocalView.RPC("StartGame", PhotonTargets.AllBufferedViaServer, order, ByteSerializer<DrawingStack[]>.Serialize(stacks));
+			GameData.instance.LocalView.RPC("StartGame", PhotonTargets.AllBufferedViaServer, order, ByteSerializer<DrawingStack[]>.Serialize(stacks), GenerateRoomCode());
 		}
 
         // Starts the game if every player is connected.
