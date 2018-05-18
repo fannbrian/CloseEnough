@@ -2,6 +2,10 @@
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+/// <summary>
+/// Settings menu.
+/// Changed based on user specifications
+/// </summary>
 public class SettingsMenu : MonoBehaviour {
 	// Initialize the audio mixer
 	public AudioMixer audioMixer;

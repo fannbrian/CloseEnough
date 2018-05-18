@@ -2,6 +2,9 @@
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Determines which scene to load
+	/// </summary>
     public class MenuState : BaseGameState
     {
 		public override BaseGameState GetNextState()
@@ -14,6 +17,7 @@ namespace CloseEnough
 			PhotonNetwork.automaticallySyncScene = false;
 			SceneManager.LoadScene("Menu Navigation");
 		}
+
 
 		public override void OnExit()
 		{

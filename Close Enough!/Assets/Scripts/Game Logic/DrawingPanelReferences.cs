@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Includes Drawing panel references.
+	/// </summary>
 	public class DrawingPanelReferences : MonoBehaviour
 	{
 		public static DrawingPanelReferences instance;

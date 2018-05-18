@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Initializes word bank to the selected word packs
+	/// </summary>
 	public class WordPackSelector : MonoBehaviour
 	{
 		public WordPackObject[] WordPacks;

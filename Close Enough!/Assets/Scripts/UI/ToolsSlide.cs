@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Animation for the left tool side bar
+/// </summary>
 public class ToolsSlide : MonoBehaviour {
 
 	Animator anim;

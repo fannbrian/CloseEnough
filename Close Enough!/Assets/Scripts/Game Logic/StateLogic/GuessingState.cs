@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Initializes guessing round panels
+	/// </summary>
 	public class GuessingState : BaseGameState
 	{
 		public override BaseGameState GetNextState()

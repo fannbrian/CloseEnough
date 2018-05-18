@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Initializes scroll dots for a given stack
+/// </summary>
 public class ScrollDots : MonoBehaviour {
 	public Color UnselectedColor;
 	public Color SelectedColor;

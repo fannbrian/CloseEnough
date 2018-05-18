@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace CloseEnough
 {
+	/// <summary>
+	/// Includes Guessing panel references.
+	/// </summary>
 	public class GuessingPanelReferences : MonoBehaviour
 	{
 		public static GuessingPanelReferences instance;

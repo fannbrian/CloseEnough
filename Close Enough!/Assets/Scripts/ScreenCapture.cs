@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace CloseEnough {
+	/// <summary>
+	/// Captures a screenshot of the player's drawing
+	/// </summary>
 	public class ScreenCapture : MonoBehaviour
 	{
 	    public RectTransform rectTransform;
@@ -18,6 +21,9 @@ namespace CloseEnough {
 	    int _width;
 	    int _height;
 
+		/// <summary>
+		/// Start this instance by initializing size of display screen
+		/// </summary>
 	    void Start()
 	    {
 	        imagePanel.GetComponent<RectTransform>();
@@ -40,19 +46,31 @@ namespace CloseEnough {
 	        return new Rect(x, y, size.x, size.y);
 	    }
 
+		/// <summary>
+		/// Gets the size of the texture.
+		/// </summary>
+		/// <returns>The texture size.</returns>
 		public Vector2 GetTextureSize() {
 			return Vector2.Scale(rectTransform.rect.size, rectTransform.lossyScale);
 		}
-	    
-		// Screen capture 
+
+	    /// <summary>
+	    /// Screenshot this instance.
+	    /// </summary>
 		public void Screenshot() {
 			StartCoroutine ("Capture");
 		}
 
+		/// <summary>
+		/// Apply texture to screenshotted image
+		/// </summary>
 		public void SetImage(Texture2D img) {
 			image.texture = img;
 		}
 
+		/// <summary>
+		/// Capture this instance.
+		/// </summary>
 		IEnumerator Capture() {
 			yield return new WaitForEndOfFrame ();
 
@@ -62,6 +80,9 @@ namespace CloseEnough {
 			image.texture = texture;
 		}
 
+		/// <summary>
+		/// Shows the image.
+		/// </summary>
 		public void showImage() {
 			imagePanel.gameObject.SetActive (true);
 			image.enabled = true;

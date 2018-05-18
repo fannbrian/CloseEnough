@@ -56,7 +56,9 @@ namespace CloseEnough
 			GameData.instance.LocalView.RPC("StartGame", PhotonTargets.AllBufferedViaServer, order, ByteSerializer<DrawingStack[]>.Serialize(stacks));
 		}
 
-        // Starts the game if every player is connected.
+		/// <summary>
+		///  Starts the game if every player is connected.
+		/// </summary>
 		public void TryStartGame()
 		{
             Debug.Log(GameData.instance.PlayerCount + ", " + PhotonNetwork.playerList.Length);

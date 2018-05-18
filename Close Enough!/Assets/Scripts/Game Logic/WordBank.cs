@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 
 namespace CloseEnough {
+	/// <summary>
+	/// Creates a word bank based on given words
+	/// </summary>
 	public class WordBank
 	{
 		public static string[] Words {

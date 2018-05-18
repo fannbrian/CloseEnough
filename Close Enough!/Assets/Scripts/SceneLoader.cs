@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Load a specific scene
+/// 
+/// Param: scene -- Name
+/// </summary>
 public class SceneLoader : MonoBehaviour {
 	public void LoadScene(string scene)
 	{

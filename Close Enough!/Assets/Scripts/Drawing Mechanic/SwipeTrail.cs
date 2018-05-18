@@ -31,6 +31,11 @@ namespace CloseEnough
             _isDrawing = false;
         }
 
+		/// <summary>
+		/// Creates the brush stroke
+		/// </summary>
+		/// <returns>The swipe.</returns>
+		/// <param name="positions">Positions.</param>
 		GameObject CreateSwipe(Vector3[] positions) {
             _positions.Clear();
 

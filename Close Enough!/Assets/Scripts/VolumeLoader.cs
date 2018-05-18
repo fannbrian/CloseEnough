@@ -3,6 +3,9 @@ using UnityEngine.Audio;
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Loads volume based on player's configurations
+	/// </summary>
 	public class VolumeLoader : MonoBehaviour
 	{
 		public AudioMixer audioMixer;

@@ -2,6 +2,9 @@
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Change color of the brush based of user's choice
+	/// </summary>
     public class ColorPicker : MonoBehaviour
     {
         public string EraseState;

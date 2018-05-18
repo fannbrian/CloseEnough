@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Animation slide.
+/// </summary>
 public class animationSlide : MonoBehaviour {
 
 	Animator anim;

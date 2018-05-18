@@ -2,6 +2,9 @@
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Screenshot handler.
+	/// </summary>
 	public class ScreenshotHandler : MonoBehaviour
 	{
 		public static ScreenshotHandler instance;

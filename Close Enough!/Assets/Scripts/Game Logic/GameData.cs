@@ -2,6 +2,9 @@
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Collects information for a given game
+	/// </summary>
 	public class GameData : MonoBehaviour
 	{
         public static GameData instance;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
+/// <summary>
+/// Displays a user's image
+/// </summary>
 public class imageControl : MonoBehaviour {
 
 	RawImage image; 
