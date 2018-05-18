@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 namespace CloseEnough
 {
+	/// <summary>
+	/// Button for each word at its initial round
+	/// </summary>
 	public class WordButton : MonoBehaviour
 	{
 		public GameObject Carousel;

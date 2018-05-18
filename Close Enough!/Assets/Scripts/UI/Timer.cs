@@ -3,6 +3,10 @@ using UnityEngine.UI;
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Timer.
+	/// Serves as a countdown during drawing and guessing rounds
+	/// </summary>
 	public class Timer : MonoBehaviour
 	{
 		public static Timer instance;
@@ -74,6 +78,12 @@ namespace CloseEnough
 			_lastTimer = timerInt;
 		}
 
+		/// <summary>
+		/// Start timer based on round
+		/// Drawing: 30
+		/// Guessing: 20
+		/// </summary>
+		/// <param name="time">Time.</param>
 		public void StartTimer(float time)
 		{
 			timerText.gameObject.SetActive(true);
@@ -81,6 +91,9 @@ namespace CloseEnough
 			_isRunning = true;
 		}
 
+		/// <summary>
+		/// Stops the timer.
+		/// </summary>
 		public void StopTimer()
 		{
 			timerText.gameObject.SetActive(false);

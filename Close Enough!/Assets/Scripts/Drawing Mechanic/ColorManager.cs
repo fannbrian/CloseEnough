@@ -18,6 +18,10 @@ namespace CloseEnough
             CurrentColor = Colors[0].Color;
         }
 
+		/// <summary>
+		/// Sets the color based on user preference
+		/// </summary>
+		/// <param name="color">Color.</param>
         public void SetColor(string color)
         {
             foreach (var option in Colors)

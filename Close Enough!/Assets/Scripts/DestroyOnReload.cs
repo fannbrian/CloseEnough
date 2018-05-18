@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Destroys an object 
+/// </summary>
 public class DestroyOnReload : MonoBehaviour {
 	public static DestroyOnReload instance;
 

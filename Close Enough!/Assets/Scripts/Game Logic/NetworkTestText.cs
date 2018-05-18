@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Network test
+	/// </summary>
 	[RequireComponent(typeof(Text))]
 	public class NetworkTestText : MonoBehaviour
 	{

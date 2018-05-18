@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Room code validation.
+	/// </summary>
 	[RequireComponent(typeof(InputField))]
 	public class RoomCodeValidation : MonoBehaviour
 	{

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 namespace CloseEnough
 {
+	/// <summary>
+	/// Creates initial round of the game
+	/// </summary>
     public class InitialState : BaseGameState
     {
         public override BaseGameState GetNextState()

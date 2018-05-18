@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace CloseEnough {
+	/// <summary>
+	/// Basic gameplay without network communication
+	/// </summary>
 	public class GamePlay : MonoBehaviour {
 		public static GamePlay instance;
 		public int rounds = 1;
@@ -28,6 +31,9 @@ namespace CloseEnough {
 		public Text word;
 		public Text roundText;
 
+		/// <summary>
+		/// Checks if a round has been completed
+		/// </summary>
 		bool _isRoundDone;
 
 		public bool IsRoundDone() {

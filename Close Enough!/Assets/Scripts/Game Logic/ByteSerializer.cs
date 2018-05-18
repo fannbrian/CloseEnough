@@ -3,6 +3,9 @@ using System.IO;
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Serializes objects into byte array to send 
+	/// </summary>
 	public static class ByteSerializer<T>
 	{
 		public static byte[] Serialize(T obj)

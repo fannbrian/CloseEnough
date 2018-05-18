@@ -2,6 +2,9 @@
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Displays information panel
+	/// </summary>
 	public class InformationPanelHandler : MonoBehaviour
 	{
 		public GameObject InformationPanel;

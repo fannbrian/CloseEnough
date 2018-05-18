@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Animation for the right bar.
+/// </summary>
 public class DoneSlide : MonoBehaviour {
 
 	Animator anim;

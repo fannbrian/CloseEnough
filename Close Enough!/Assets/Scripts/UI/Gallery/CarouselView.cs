@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace CloseEnough
 {
+	
 	public class CarouselView : MonoBehaviour
 	{
 		public float MinInterpolation;

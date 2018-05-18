@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace CloseEnough
 {
+	/// <summary>
+	/// Creates word packs
+	/// </summary>
 	[CreateAssetMenu(fileName = "WordPack", menuName = "Word Pack", order = 0)]
 	public class WordPackObject : ScriptableObject
 	{
